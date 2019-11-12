@@ -32,6 +32,8 @@ import LandingPage from "views/examples/LandingPage.js";
 import ProfilePage from "views/examples/ProfilePage.js";
 import OnStep from "views/onstep.js"
 import Login from "views/login.js"
+import SignUp from "views/signup.js"
+
 
 ReactDOM.render(
   <BrowserRouter>
@@ -57,6 +59,10 @@ ReactDOM.render(
            <Route
           path="/login"
           render={props => <Login {...props} />}
+        />
+        <Route
+          path="/signup"
+          render={props => <SignUp {...props} />}
         />
         <Route path="/login-page" render={props => <LoginPage {...props} />} />
         <Redirect to="/index" />
