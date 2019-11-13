@@ -8,7 +8,7 @@ import {
 const Example = (props) => {
   return (
     <div className="row">
-        <div className="col-sm-4 col-md-4">
+        <div className="col-sm-2 col-md-2">
       <Card >
         <CardImg top width="20%" src={require("assets/img/rice.png")} alt="Card image cap"/>
         <CardBody>
@@ -18,6 +18,10 @@ const Example = (props) => {
           <Button>Button</Button>
         </CardBody>
       </Card>
+      </div>
+
+      <div className="col-sm-2 col-md-2">
+
       <Card>
         <CardImg top width="100%" src={require("assets/img/rice.png")} alt="Card image cap" />
         <CardBody>
@@ -27,6 +31,10 @@ const Example = (props) => {
           <Button>Button</Button>
         </CardBody>
       </Card>
+      </div>
+
+      <div className="col-sm-2 col-md-2">
+
       <Card>
         <CardImg top width="100%" src={require("assets/img/rice.png")} alt="Card image cap" />
         <CardBody>
@@ -36,6 +44,10 @@ const Example = (props) => {
           <Button>Button</Button>
         </CardBody>
       </Card>
+      </div>
+
+      <div className="col-sm-2 col-md-2">
+
       <Card>
         <CardImg top width="100%" src={require("assets/img/rice.png")} alt="Card image cap" />
         <CardBody>
@@ -45,6 +57,10 @@ const Example = (props) => {
           <Button>Button</Button>
         </CardBody>
       </Card>
+      </div>
+
+      <div className="col-sm-2 col-md-2">
+
       <Card>
         <CardImg top width="100%" src={require("assets/img/rice.png")} alt="Card image cap" />
         <CardBody>
@@ -54,6 +70,10 @@ const Example = (props) => {
           <Button>Button</Button>
         </CardBody>
       </Card>
+      </div>
+
+      <div className="col-sm-2 col-md-2">
+
       <Card>
         <CardImg top width="100%" src={require("assets/img/rice.png")} alt="Card image cap" />
         <CardBody>
