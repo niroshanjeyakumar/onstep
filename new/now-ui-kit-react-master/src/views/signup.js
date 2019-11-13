@@ -26,7 +26,7 @@ import {
 import ExamplesNavbar from "components/Navbars/Navbar1.js";
 import TransparentFooter from "components/Footers/Footer1.js";
 
-function Login() {
+function Signup() {
   const [iconPills, setIconPills] = React.useState("1");
   const [firstFocus, setFirstFocus] = React.useState(false);
   const [lastFocus, setLastFocus] = React.useState(false);
@@ -515,4 +515,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Signup;
