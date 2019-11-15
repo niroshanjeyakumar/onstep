@@ -105,7 +105,7 @@ function IndexNavbar() {
                     target="_blank"
                   >
                     <i className="now-ui-icons design_bullet-list-67 mr-1"></i>
-                    Documentation
+                    
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
@@ -119,7 +119,20 @@ function IndexNavbar() {
                   <p className="d-lg-none d-xl-none">Orders</p>
                 </NavLink>
                 <UncontrolledTooltip target="#shopping-cart">
-                 View My Shopping Cart
+                 View Available orders
+                </UncontrolledTooltip>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  to ="/shopping_cart" tag={Link}
+                  target="_blank"
+                  id="shopping-cart"
+                >
+                  <i className="now-ui-icons files_paper"></i>
+                  <p className="d-lg-none d-xl-none">Orders</p>
+                </NavLink>
+                <UncontrolledTooltip target="#shopping-cart">
+                 View Completed orders
                 </UncontrolledTooltip>
               </NavItem>
               <NavItem>
