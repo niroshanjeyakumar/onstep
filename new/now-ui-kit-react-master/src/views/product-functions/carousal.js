@@ -14,19 +14,19 @@ import {
 
 const items = [
   {
-    src: require("assets/img/bg1.jpg"),
+    src: require("assets/img/pro1.jpg"),
     altText: "Nature, United States",
-    caption: "Nature, United States"
+    //caption: "Nature, United States"
   },
   {
-    src: require("assets/img/bg3.jpg"),
+    src: require("assets/img/pro2.jpg"),
     altText: "Somewhere Beyond, United States",
-    caption: "Somewhere Beyond, United States"
+    //: "Somewhere Beyond, United States"
   },
   {
-    src: require("assets/img/bg4.jpg"),
+    src: require("assets/img/pro3.jpg"),
     altText: "Yellowstone National Park, United States",
-    caption: "Yellowstone National Park, United States"
+    //caption: "Yellowstone National Park, United States"
   }
 ];
 

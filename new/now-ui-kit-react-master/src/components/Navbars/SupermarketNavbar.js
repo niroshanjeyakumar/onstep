@@ -3,10 +3,6 @@ import { Link } from "react-router-dom";
 // reactstrap components
 import {
   Collapse,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
   NavbarBrand,
   Navbar,
   NavItem,
@@ -84,89 +80,39 @@ function IndexNavbar() {
           >
             <Nav navbar>
               
-              <UncontrolledDropdown nav>
-                <DropdownToggle
-                  caret
-                  color="default"
-                  href="#pablo"
-                  nav
-                  onClick={e => e.preventDefault()}
-                >
-                  <i className="now-ui-icons shopping_shop"></i>
-                  <p>Products</p>
-                </DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem to="/index" tag={Link}>
-                    <i className="now-ui-icons business_chart-pie-36 mr-1"></i>
-                    All Products
-                  </DropdownItem>
-                  <DropdownItem
-                    href="https://demos.creative-tim.com/now-ui-kit-react/#/documentation/introduction?ref=nukr-index-navbar"
-                    target="_blank"
-                  >
-                    <i className="now-ui-icons design_bullet-list-67 mr-1"></i>
-                    Documentation
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-              <NavItem>
-                <NavLink
-                  href="https://twitter.com/CreativeTim?ref=creativetim"
-                  target="_blank"
-                  id="twitter-tooltip"
-                >
-                  <i className="fab fa-twitter"></i>
-                  <p className="d-lg-none d-xl-none">Twitter</p>
-                </NavLink>
-                <UncontrolledTooltip target="#twitter-tooltip">
-                  Follow us on Twitter
-                </UncontrolledTooltip>
-              </NavItem>
-              <NavItem>
-                <NavLink
-                  href="https://www.facebook.com/CreativeTim?ref=creativetim"
-                  target="_blank"
-                  id="facebook-tooltip"
-                >
-                  <i className="fab fa-facebook-square"></i>
-                  <p className="d-lg-none d-xl-none">Facebook</p>
-                </NavLink>
-                <UncontrolledTooltip target="#facebook-tooltip">
-                  Like us on Facebook
-                </UncontrolledTooltip>
-              </NavItem>
-              <NavItem>
-                <NavLink
-                  href="https://www.instagram.com/CreativeTimOfficial?ref=creativetim"
-                  target="_blank"
-                  id="instagram-tooltip"
-                >
-                  <i className="fab fa-instagram"></i>
-                  <p className="d-lg-none d-xl-none">Instagram</p>
-                </NavLink>
-                <UncontrolledTooltip target="#instagram-tooltip">
-                  Follow us on Instagram
-                </UncontrolledTooltip>
-              </NavItem>
+              
               <NavItem>
                 <NavLink
                   to ="/shopping_cart" tag={Link}
                   target="_blank"
                   id="shopping-cart"
                 >
-                  <i className="now-ui-icons shopping_cart-simple"></i>
-                  <p className="d-lg-none d-xl-none">My Cart</p>
+                  <i className="now-ui-icons files_paper"></i>
+                  <p className="d-lg-none d-xl-none">Orders</p>
                 </NavLink>
                 <UncontrolledTooltip target="#shopping-cart">
-                 View My Shopping Cart
+                 View Products
+                </UncontrolledTooltip>
+              </NavItem>
+              <NavItem>
+              <NavLink
+                  to ="/addproduct" tag={Link}
+                  target="_blank"
+                  id="add_product"
+                >
+                  <i className="now-ui-icons shopping_tag-content"></i>
+                  <p className="d-lg-none d-xl-none">Orders</p>
+                </NavLink>
+                <UncontrolledTooltip target="#add_product">
+                 Add Product
                 </UncontrolledTooltip>
               </NavItem>
               <NavItem>
                 <NavLink
-                  to="/login" tag={Link}
+                  to="/delivery_profile" tag={Link}
                   id="myprofile"
                 >
-                  <i className="now-ui-icons users_circle-08"></i>
+                  <i className="now-ui-icons shopping_shop"></i>
                   <p className="d-lg-none d-xl-none">My Profile</p>
                 </NavLink>
                 <UncontrolledTooltip target="#myprofile">

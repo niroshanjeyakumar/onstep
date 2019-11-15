@@ -33,7 +33,8 @@ import ProfilePage from "views/examples/ProfilePage.js";
 import OnStep from "views/onstep.js"
 import Login from "views/login.js"
 import SignUp from "views/signup.js"
-
+import Cart from "views/shoppingcart.js"
+import AddProduct from "views/addproduct.js"
 
 ReactDOM.render(
   <BrowserRouter>
@@ -64,8 +65,16 @@ ReactDOM.render(
           path="/signup"
           render={props => <SignUp {...props} />}
         />
+        <Route
+          path="/shopping_cart"
+          render={props => <Cart {...props} />}
+        />
+        <Route
+          path="/addproduct"
+          render={props => <AddProduct {...props} />}
+        />
         <Route path="/login-page" render={props => <LoginPage {...props} />} />
-        <Redirect to="/index" />
+        <Redirect to="/onstep" />
         <Redirect from="/" to="/onstep" />
       </Switch>
     </Switch>
