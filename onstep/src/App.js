@@ -8,6 +8,7 @@ import ProductList from "./components/product_list";
 import AddProduct from "./components/add_product";
 import logo from "./logo.jpg";
 import HomePage from './components/Homepage/HomePage';
+import Profile from './components/profile/Profile';
 
 function App() {
   return (
@@ -41,7 +42,9 @@ function App() {
 
             <Route path="/edit/:id" component={EditTodo}/>
             <Route path="/register" component={Register}/>
+            <Route path="/profile" component={Profile}/>
             <Route path="/addproduct" component={AddProduct}/>
+            
             
           </div>
 

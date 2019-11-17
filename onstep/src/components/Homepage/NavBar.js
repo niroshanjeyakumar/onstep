@@ -14,10 +14,14 @@ class NavBar extends Component {
                         <table>
                             <tbody><tr>
                                 <td>
-                                    <input type="button" className="btn btn-outline-primary" defaultValue="Login" />
+                                    
+                                    <input type="button" className="btn btn-outline-success" defaultValue="Login" />
+                                    
                                 </td>
                                 <td>
-                                    <button className="btn btn-outline-info my-2 my-sm-0" type="submit">Register</button>
+                                    <Link to="/register">
+                                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Register</button>
+                                    </Link>
                                 </td>
                             </tr>
                             </tbody></table>
