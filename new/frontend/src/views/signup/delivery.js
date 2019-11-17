@@ -66,7 +66,7 @@ return(
                     >
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                          <i className="now-ui-icons users_single-02"></i>
+                          <i className="now-ui-icons shopping_delivery-fast"></i>
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input

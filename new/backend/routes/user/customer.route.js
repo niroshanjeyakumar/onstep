@@ -24,7 +24,23 @@ customerRoutes.route('/').get(function (req, res) {
     }
   });
 });
-
+customerRoutes.route('/login').post(function(req,res){
+  const email = req.body.email;
+  const password = req.body.password;
+  Customer.findOne({ email }).then(user => {
+    if (!user) {
+      return res.status(404).json({ emailnotfound: "Email not found" });
+      
+    }
+      if(password===user.password){
+        console.log("match");
+        return res.status(101).json({passwordsmatch: "Passwords Match"});
+      }
+      else{
+        return res.status(201).json({passwordmismatch:"Passwords Do not match"});
+      }
+  });
+});
 customerRoutes.route('/edit/:id').get(function (req, res) {
   let id = req.params.id;
   Customer.findById(id, function (err, customer){
