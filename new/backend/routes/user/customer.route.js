@@ -26,6 +26,7 @@ customerRoutes.route('/').get(function (req, res) {
 });
 customerRoutes.route('/login').post(function(req,res){
   const email = req.body.email;
+  
   const password = req.body.password;
   Customer.findOne({ email }).then(user => {
     if (!user) {

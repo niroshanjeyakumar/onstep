@@ -8,6 +8,9 @@ let product =new Schema({
     product_seller:{
         type:String
     },
+    seller_id:{
+        type:String
+    },
     product_unit:{
         type:String
     },

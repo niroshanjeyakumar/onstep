@@ -1,5 +1,5 @@
-import React from "react";
-
+import React, {useState,useEffect} from "react";
+import axios from 'axios';
 // reactstrap components
 import {
   Button,
@@ -19,12 +19,16 @@ import {
 // core components
 import Navbar from "components/Navbars/SupermarketNavbar";
 import TransparentFooter from "components/Footers/TransparentFooter.js";
-import Header from "components/Headers/onstepHeader.js"
 
 function LoginPage() {
-  const [firstFocus, setFirstFocus] = React.useState(false);
-  const [lastFocus, setLastFocus] = React.useState(false);
-  React.useEffect(() => {
+  const [nameFocus, setnameFocus] = useState(false);
+  const [priceFocus, setpriceFocus] = useState(false);
+  const [unitFocus, setunitFocus]= useState(false);
+  const [name,setname] =useState("");
+  const [unit, setunit] = useState("");
+  const [price, setPrice] = useState("");
+
+  useEffect(() => {
     document.body.classList.add("login-page");
     document.body.classList.add("sidebar-collapse");
     document.documentElement.classList.remove("nav-open");
@@ -35,10 +39,23 @@ function LoginPage() {
       document.body.classList.remove("sidebar-collapse");
     };
   });
+const seller="cargills";
+const id="121984615684";
+  function saveProduct(){
+    const newProduct={
+      product_name:name,
+      product_seller:seller,
+      seller_id:id,
+      product_unit:unit,
+      product_price:price,
+  }
+  axios.post('http://localhost:4000/onstep/product/add',newProduct)
+  .then(res => console.log(res.data)); 
+  }
+
   return (
     <>
       <Navbar />
-      <Header />
       
       <div className="page-header clear-filter" filter-color="blue">
         <div
@@ -53,14 +70,14 @@ function LoginPage() {
           <h3 className="text-center">Insert Product</h3>
             <Col className="ml-auto mr-auto" md="4">
               <Card className="card-login card-plain">
-                <Form action="" className="form" method="">
+                <Form action="" className="form" method="post">
                   <CardHeader className="text-center">
                   </CardHeader>
                   <CardBody>
                     <InputGroup
                       className={
                         "no-border input-lg" +
-                        (firstFocus ? " input-group-focus" : "")
+                        (nameFocus ? " input-group-focus" : "")
                       }
                     >
                       <InputGroupAddon addonType="prepend">
@@ -69,16 +86,40 @@ function LoginPage() {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
-                        placeholder="First Name..."
+                        placeholder ="Name"
                         type="text"
-                        onFocus={() => setFirstFocus(true)}
-                        onBlur={() => setFirstFocus(false)}
+                        name="name"
+                        value={name}
+                        onChange={e=> setname(e.target.value)}
+                        onFocus={() => setnameFocus(true)}
+                        onBlur={() => setnameFocus(false)}
                       ></Input>
                     </InputGroup>
                     <InputGroup
                       className={
                         "no-border input-lg" +
-                        (lastFocus ? " input-group-focus" : "")
+                        (unitFocus ? " input-group-focus" : "")
+                      }
+                    >
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="now-ui-icons users_circle-08"></i>
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input
+                        placeholder="Unit"
+                        type="text"
+                        name="unit"
+                        value={unit}
+                        onChange={e=> setunit(e.target.value)}
+                        onFocus={() => setunitFocus(true)}
+                        onBlur={() => setunitFocus(false)}
+                      ></Input>
+                    </InputGroup>
+                    <InputGroup
+                      className={
+                        "no-border input-lg" +
+                        (priceFocus ? " input-group-focus" : "")
                       }
                     >
                       <InputGroupAddon addonType="prepend">
@@ -87,10 +128,13 @@ function LoginPage() {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
-                        placeholder="Last Name..."
+                        placeholder="Price"
                         type="text"
-                        onFocus={() => setLastFocus(true)}
-                        onBlur={() => setLastFocus(false)}
+                        name="price"
+                        value={price}
+                        onChange={e=> setPrice(e.target.value)}
+                        onFocus={() => setpriceFocus(true)}
+                        onBlur={() => setpriceFocus(false)}
                       ></Input>
                     </InputGroup>
                   </CardBody>
@@ -100,33 +144,12 @@ function LoginPage() {
                       className="btn-round"
                       color="info"
                       href="#pablo"
-                      onClick={e => e.preventDefault()}
+                      onClick={saveProduct}
                       size="lg"
                     >
-                      Get Started
+                      Add Product
                     </Button>
-                    <div className="pull-left">
-                      <h6>
-                        <a
-                          className="link"
-                          href="#pablo"
-                          onClick={e => e.preventDefault()}
-                        >
-                          Create Account
-                        </a>
-                      </h6>
-                    </div>
-                    <div className="pull-right">
-                      <h6>
-                        <a
-                          className="link"
-                          href="#pablo"
-                          onClick={e => e.preventDefault()}
-                        >
-                          Need Help?
-                        </a>
-                      </h6>
-                    </div>
+                   
                   </CardFooter>
                 </Form>
               </Card>
