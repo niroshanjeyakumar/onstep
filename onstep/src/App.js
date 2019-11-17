@@ -6,14 +6,14 @@ import Register from "./components/registration";
 import EditTodo from "./components/edit-todo.component";
 import ProductList from "./components/product_list";
 import AddProduct from "./components/add_product";
-
 import logo from "./logo.jpg";
+import HomePage from './components/Homepage/HomePage';
 
 function App() {
   return (
     <Router>
           <div className="container">
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          {/* <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <a className="navbar-brand" href="https://www.google.com" target="_blank">
               <img src={logo} width="30" height="30"  />
             </a>
@@ -31,12 +31,18 @@ function App() {
                 </li>
               </ul>
             </div>
-          </nav>
-            <Route path="/" exact component = {ProductList}/> 
+          </nav> */}
+
+          
+
+
+            {/* <Route path="/" exact component = {ProductList}/>  */}
+            <Route path="/" exact component = {HomePage}/> 
 
             <Route path="/edit/:id" component={EditTodo}/>
             <Route path="/register" component={Register}/>
             <Route path="/addproduct" component={AddProduct}/>
+            
           </div>
 
 
