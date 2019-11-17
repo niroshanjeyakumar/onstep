@@ -11,15 +11,20 @@ function DeliveryLogin (){
     const [passwordFocus, setpasswordFocus] = useState(false);
     const [delivery_email, setdelivery_email]= useState(" ");
     const [delivery_password, setdelivery_password]= useState("");
-  
-    function saveDelivery(){
+    const [respose, setresponse] =useState([]);
 
-      const newDel={
-        delivery_email:delivery_email,
-        delivery_password:delivery_password
+    function DelLogin(){
+      
+      
+      axios.post('http://localhost:4000/onstep/user/delivery/login',{email:delivery_email, password:delivery_password} )
+      .then(res => setresponse(res.data));
+            if(delivery_password===respose.delivery_password){
+                console.log("move to delivery home")
+            }
+            else{
+              console.log("error")
+            }
     }
-    axios.post('http://localhost:4000/onstep/user/delivery/',newDel)
-    .then(res => console.log(res.data)); }
 
 
 
@@ -73,7 +78,7 @@ return(
                       className="btn-round"
                       color="warning"
                       size="lg"
-                      onClick={saveDelivery}
+                      onClick={DelLogin}
                     >
                       Login 
                     </Button>

@@ -25,6 +25,23 @@ deliveryRoutes.route('/').get(function (req, res) {
   });
 });
 
+deliveryRoutes.route('/login').post(function(req,res){
+  const email = req.body.email;
+  const password = req.body.password;
+  Delivery.findOne({ delivery_email: email }, ).then(user => {
+    if (!user) {
+      return res.status(404).json({ emailnotfound: "Email not found" });  
+    }
+    else{ return res.json(user)}
+     /* if(password==user.customer_password){
+        return res.status(101).json({passwordsmatch: "Passwords Match"});
+      }
+      else{
+        return res.status(201).json({passwordmismatch:"Passwords Do not match"});
+      }*/
+  });
+});
+
 deliveryRoutes.route('/edit/:id').get(function (req, res) {
   let id = req.params.id;
   Delivery.findById(id, function (err, delivery){
