@@ -60,7 +60,9 @@ ReactDOM.render(
           render={props => <AddProduct {...props} />}
         />
         <Route path="/login-page" render={props => <LoginPage {...props} />} />
-        <Route path="/" exact component = {HomePage}/>
+        <Redirect from="/" to="/onstep"/>
+        <Redirect to="/onstep"/>
+        <Route path="/home" exact component = {HomePage}/>
         <Route path="/profile" render={props => <Profile {...props} />} />
       </Switch>
     </Switch>

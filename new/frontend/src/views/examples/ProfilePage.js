@@ -39,7 +39,7 @@ function ProfilePage() {
           <Container>
             <div className="button-container">
               <Button className="btn-round" color="info" size="lg">
-                Follow
+                Hello
               </Button>
               <Button
                 className="btn-round btn-icon"
