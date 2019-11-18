@@ -21,7 +21,7 @@ import Cart from "views/customer/shoppingcart.js"
 import AddProduct from "views/supermarket/addproduct.js"
 import HomePage from './components/Homepage/HomePage';
 import Profile from './components/profile/Profile';
-
+import DelProfile from "views/delivery.js/ProfilePage"
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
@@ -58,6 +58,10 @@ ReactDOM.render(
         <Route
           path="/addproduct"
           render={props => <AddProduct {...props} />}
+        />
+          <Route
+          path="/delivery-home"
+          render={props => <DelProfile {...props} />}
         />
         <Route path="/login-page" render={props => <LoginPage {...props} />} />
         <Route path="/" exact component = {HomePage}/>
