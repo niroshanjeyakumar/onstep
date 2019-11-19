@@ -11,15 +11,20 @@ function Customerlogin (){
     const [passwordFocus, setpasswordFocus] = useState(false);
     const [customer_email, setcustomer_email]= useState(" ");
     const [customer_password, setcustomer_password]= useState("");
-  
-    function saveCustomer(){
-
-      const newCust={
-        customer_email:customer_email,
-        customer_password:customer_password
-    }
-    axios.post('http://localhost:4000/onstep/user/customer/login',newCust)
-    .then(res => console.log(res.data)); }
+    const [respose, setresponse] =useState([]);
+    
+    function CustLogin(){
+      
+      
+    axios.post('http://localhost:4000/onstep/user/customer/login',{email:customer_email, password:customer_password} )
+    .then(res => setresponse(res.data));
+          if(customer_password===respose.customer_password){
+              console.log("move to customer home")
+          }
+          else{
+            console.log("error")
+          }
+  }
     
 
 
@@ -73,7 +78,7 @@ return(
                       className="btn-round"
                       color="info"
                       size="lg"
-                      onClick={saveCustomer}
+                      onClick={CustLogin}
                     >
                       Login
                     </Button>

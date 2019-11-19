@@ -1,165 +1,43 @@
-import React from 'react';
+import React, {useState,useEffect} from 'react';
+import axios from 'axios';
 import {
-  Card, CardImg, CardText, CardBody,Form,InputGroup,InputGroupAddon,InputGroupText,Input,
-  CardTitle, CardSubtitle, Button
+  Card, CardText, CardBody,
+  CardTitle, CardSubtitle, 
 } from 'reactstrap';
 
+function Products  () {
+  const [product, setproduct] = useState([]);
 
-const Example = (props) => {
-  const [firstFocus, setFirstFocus] = React.useState(false);
+  useEffect(()=>{
+      axios.get('http://localhost:4000/onstep/product/')
+      .then(res=>{
+        setproduct(res.data);
+    })
+    .catch(function(error){
+        console.log(error);
+    }) 
+  });
+  const pro = product.map(function (products, index){
+
+return <div className="col-sm-2 col-md-2" key={index}>
+<Card>
+<CardBody>
+<CardTitle>Item Name ={products.product_name}</CardTitle>
+<CardSubtitle>Seller={products.product_seller}</CardSubtitle>
+<CardText>Unit Price={products.product_price} <br/> Units ={products.product_unit}</CardText>
+</CardBody>
+</Card>
+</div>
+})
+
   return (
-    <div className="row m-4
-    ">
-        <div className="col-sm-2 col-md-2">
-      <Card >
-        <CardImg top width="100%" src={require("assets/img/rice.png")} alt="Card image cap"/>
-        <CardBody>
-          <CardTitle>Item Name</CardTitle>
-          <CardSubtitle>Seller</CardSubtitle>
-          <CardText>Unit Price <br/> Units</CardText>
-          <Form action="" className="form" method="post">
-                    <InputGroup
-                      className={
-                        "no-border input-lg" +
-                        (firstFocus ? " input-group-focus" : "")
-                      }
-                    >
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                          <i className="now-ui-icons ui-1_email-85"></i>
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input
-                        placeholder="Email Address"
-                        type="email"
-                        onFocus={() => setFirstFocus(true)}
-                        onBlur={() => setFirstFocus(false)}
-                      ></Input>
-                    </InputGroup>
-                    <Button
-                      block
-                      className="btn-round"
-                      color="warning"
-                      href="#pablo"
-                      onClick={e => e.preventDefault()}
-                      size="lg"
-                    >
-                      Login
-                    </Button>
-                    </Form>          
-        </CardBody>
-      </Card>
-      </div>
 
-      <div className="col-sm-2 col-md-2">
-      <Card>
-        <CardImg top width="100%" src={require("assets/img/rice.png")} alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Card title</CardTitle>
-          <CardSubtitle>Card subtitle</CardSubtitle>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <Button>Button</Button>
-        </CardBody>
-      </Card>
-      </div>
+    <div className="row m-4">
+        {pro}
 
-      <div className="col-sm-2 col-md-2">
-      <Card>
-        <CardImg top width="100%" src={require("assets/img/rice.png")} alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Card title</CardTitle>
-          <CardSubtitle>Card subtitle</CardSubtitle>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <Button>Button</Button>
-        </CardBody>
-      </Card>
-      </div>
-      <div className="col-sm-2 col-md-2">
-      <Card>
-        <CardImg top width="100%" src={require("assets/img/rice.png")} alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Card title</CardTitle>
-          <CardSubtitle>Card subtitle</CardSubtitle>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <Button>Button</Button>
-        </CardBody>
-      </Card>
-      </div>    
-
-      <div className="col-sm-2 col-md-2">
-      <Card>
-        <CardImg top width="100%" src={require("assets/img/rice.png")} alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Card title</CardTitle>
-          <CardSubtitle>Card subtitle</CardSubtitle>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <Button>Button</Button>
-        </CardBody>
-      </Card>
-      </div>      
-
-      <div className="col-sm-2 col-md-2">
-      <Card>
-        <CardImg top width="100%" src={require("assets/img/rice.png")} alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Card title</CardTitle>
-          <CardSubtitle>Card subtitle</CardSubtitle>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <Button>Button</Button>
-        </CardBody>
-      </Card>
-      </div>
-      <div className="col-sm-2 col-md-2">
-
-      <Card>
-        <CardImg top width="100%" src={require("assets/img/rice.png")} alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Card title</CardTitle>
-          <CardSubtitle>Card subtitle</CardSubtitle>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <Button>Button</Button>
-        </CardBody>
-      </Card>
-      </div>
-
-      <div className="col-sm-2 col-md-2">
-      <Card>
-        <CardImg top width="100%" src={require("assets/img/rice.png")} alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Card title</CardTitle>
-          <CardSubtitle>Card subtitle</CardSubtitle>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <Button>Button</Button>
-        </CardBody>
-      </Card>
-      </div>
-
-      <div className="col-sm-2 col-md-2">
-      <Card>
-        <CardImg top width="100%" src={require("assets/img/rice.png")} alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Card title</CardTitle>
-          <CardSubtitle>Card subtitle</CardSubtitle>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <Button>Button</Button>
-        </CardBody>
-      </Card>
-      </div>
-
-      <div className="col-sm-2 col-md-2">
-
-      <Card>
-        <CardImg top width="100%" src={require("assets/img/rice.png")} alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Card title</CardTitle>
-          <CardSubtitle>Card subtitle</CardSubtitle>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <Button>Button</Button>
-        </CardBody>
-      </Card>
-      </div>
+      
     </div>
   );
 };
 
-export default Example;
+export default Products;

@@ -175,7 +175,7 @@ function LandingPage() {
                     <img
                       alt="..."
                       className="rounded-circle img-fluid img-raised"
-                      src={require("assets/img/ryan.jpg")}
+                      src={require("assets/img/prf.jpg")}
                     ></img>
                     <h4 className="title">Ryan Tompson</h4>
                     <p className="category text-info">Designer</p>
