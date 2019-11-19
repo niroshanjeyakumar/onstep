@@ -14,6 +14,7 @@ productRoutes.route('/add').post(function (req, res) {
     });
 });
 
+
 productRoutes.route('/').get(function (req, res) {
     Product.find(function(err, product){
     if(err){
@@ -27,9 +28,9 @@ productRoutes.route('/').get(function (req, res) {
 
 productRoutes.route('/supermarket').post(function (req, res) {
   const seller=req.body.seller;
-  Product.find({product_seller:seller},function(err, product){
-  if(err){
-    console.log(err);
+  Product.find({product_seller:seller}).then(product => {
+  if(!product){
+    console.log("error");
   }
   else {
     res.json(product);

@@ -23,6 +23,7 @@ import AvailableOrder from "views/delivery/availableorders.js"
 import HomePage from './components/Homepage/HomePage';
 import Profile from './components/profile/Profile';
 import ViewProduct from './views/supermarket/viewproducts.js'
+import DelProfile from "views/delivery.js/ProfilePage";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -69,10 +70,14 @@ ReactDOM.render(
           path="/view"
           render={props => <ViewProduct {...props} />}
         />
+        <Route
+          path="/delivery-home"
+          render={props => <DelProfile {...props} />}
+          />
         <Route path="/login-page" render={props => <LoginPage {...props} />} />
         <Redirect from="/" to="/onstep"/>
         <Redirect to="/onstep"/>
-        <Route path="/home" exact component = {HomePage}/>
+        <Route path="/home" render={props => <HomePage{...props}/>} />
         <Route path="/profile" render={props => <Profile {...props} />} />
       </Switch>
     </Switch>

@@ -2,7 +2,7 @@ import React, {useState,useEffect} from 'react';
 import axios from 'axios';
 import {
   Card, CardText, CardBody,CardFooter,Button,
-  CardTitle, CardSubtitle, 
+  CardTitle, CardSubtitle, Form
 } from 'reactstrap';
 //import AddtoCart from "views/product-functions/addtoCart.js";
 
@@ -10,12 +10,10 @@ function Products  () {
   const [product, setproduct] = useState([]);
   //const [modal,setModal]=useState(true);
   //const [order,setOrder] = useState("")
+  const [productid,setProductid] = useState("");
+  const [ordersize,setOrdersize] = useState("");
+  
 
-  //var cart_product_name ="";
- // var cart_product_id="";
-  //var cart_product_unit="";
-  //var cart_seller="";
-  //var cart_product_price="";
   useEffect(()=>{
       axios.get('http://localhost:4000/onstep/product/')
       .then(res=>{
@@ -66,17 +64,27 @@ function Products  () {
     </div>
     </>)
   }*/
+    function saveOrder() {
+      const newcart={
+        product_id:productid,
+        order_quantity:ordersize
+      }
+    axios.post('http://localhost:4000/onstep/order/add',newcart)
+    .then(res => console.log(res.data)); }
     
-  const pro = product.map(function (products, index){
+  const pro = product.map(function (products){
 
-return <div className="col-sm-2 col-md-2" key={index}>
+return <div className="col-sm-2 col-md-2">
         <Card>
         <CardBody>
         <CardTitle>Item Name ={products.product_name}</CardTitle>
         <CardSubtitle>Seller={products.product_seller}</CardSubtitle>
         <CardText>Unit Price={products.product_price} <br/> Units ={products.product_unit}</CardText>
         </CardBody>
-        <CardFooter><Button color="success">Add to cart</Button></CardFooter>
+        <CardFooter center><Form action="" className="form" method="post">
+      <input type="hidden" name="id" value={product.product_id}/>
+      <input type="number" name="order_size" />
+      <Button color="success" onClick={saveOrder}>Add to Cart</Button></Form></CardFooter>
 </Card>
 
 </div>

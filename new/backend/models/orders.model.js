@@ -39,7 +39,8 @@ let order =new Schema({
         type:String
     },
     order_complete:{
-        type:Boolean
+        type:Boolean,
+        default:false
     }
 });
 

@@ -21,6 +21,7 @@ import DefaultFooter from "components/Footers/DefaultFooter.js";
 
 function ProfilePage() {
   const [pills, setPills] = React.useState("2");
+  
   React.useEffect(() => {
     document.body.classList.add("profile-page");
     document.body.classList.add("sidebar-collapse");
