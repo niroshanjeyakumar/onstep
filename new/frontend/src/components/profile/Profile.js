@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import NavBar2 from './NavBar2'
 
  class Profile extends Component {
     render() {
         return (
             <div>
-                <h2>hhhhhhh</h2>
+                <NavBar2/>
             </div>
         )
     }

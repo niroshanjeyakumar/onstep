@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import "./About.css";
 
+
 class About extends Component {
     render() {
         return (
@@ -30,6 +31,7 @@ class About extends Component {
                     <div className="row aboutback2">
                         <div className="col-3 about-text2"> 
                             <i class="fas fa-futbol"></i>
+
                             <h4>QUALITY PRODUCTS</h4>
                             <p>We work with the best suppliers to offer our customers the fresh grocery products of the highest quality.</p>    
                         </div>
@@ -40,8 +42,8 @@ class About extends Component {
                         </div>
 
                         <div className="col-3 about-text2"> 
-                            <h4>FAST SHIPPING</h4>
-                            <p>Our store offers fast worldwide shipping to all customers regardless of what and how much you order.</p>
+                            <h4>FAST SHOPPING</h4>
+                            <p>Our store offers fast  shopping to all customers regardless of what and how much you order.</p>
                         </div>
 
                         <div className="col-3 about-text2">

@@ -7,7 +7,7 @@ const customerRoutes =require("./routes/user/customer.route")
 const deliveryRoutes =require("./routes/user/delivery.route")
 const supermarketRoutes =require("./routes/user/supermarket.route")
 const productRoutes =require("./routes/product.route")
-const PORT =  4000;
+const PORT =  8000;
 
 app.use(cors());
 app.use(bodyParser.json());
