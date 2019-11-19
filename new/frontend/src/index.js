@@ -22,6 +22,9 @@ import AddProduct from "views/supermarket/addproduct.js"
 import HomePage from './components/Homepage/HomePage';
 import Profile from './components/profile/Profile';
 import DelProfile from "views/delivery.js/ProfilePage"
+import Sprofile from "views/supermarket/Sprofile";
+// import Vege from "views/supermarket/Vege/Vege";
+
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
@@ -63,6 +66,15 @@ ReactDOM.render(
           path="/delivery-home"
           render={props => <DelProfile {...props} />}
         />
+         <Route
+          path="/supermarket"
+          render={props => <Sprofile {...props} />}
+        />
+         {/* <Route
+          path="/sm/vege"
+          render={props => <Vege {...props} />}
+        /> */}
+
         <Route path="/login-page" render={props => <LoginPage {...props} />} />
         <Route path="/" exact component = {HomePage}/>
         <Route path="/profile" render={props => <Profile {...props} />} />
