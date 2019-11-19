@@ -1,4 +1,5 @@
-import React from "react";
+import React,{useState} from "react";
+import axios from 'axios'
 
 // reactstrap components
 import {
@@ -11,11 +12,16 @@ import {
   Container,
   Row,
   Col,
+  Form,
+  FormGroup,
+  Input,
+  FormText,
+  Label,
   UncontrolledTooltip
 } from "reactstrap";
 
 // core components
-import ExamplesNavbar from "components/Navbars/ExamplesNavbar.js";
+import ExamplesNavbar from "components/Navbars/ExamplesNavbar";
 import ProfilePageHeader from "components/Headers/ProfilePageHeader.js";
 import DefaultFooter from "components/Footers/DefaultFooter.js";
 
@@ -30,6 +36,33 @@ function ProfilePage() {
       document.body.classList.remove("sidebar-collapse");
     };
   });
+  const [emailFocus, setemailFocus] = useState(false);
+  const [nameFocus, setnameFocus] = useState(false);
+  const [addressFocus, setaddressFocus] = useState(false);
+  const [numberFocus, setnumberFocus] = useState(false);
+  const [passwordFocus, setpasswordFocus] = useState(false);
+  const [confirmpassFocus, setconfirmpassFocus] = useState(false);
+  const [customer_email, setcustomer_email]= useState(" ");
+  const [customer_name, setcustomer_name]= useState(" ");
+  const [customer_address, setcustomer_address]= useState("");
+  const [customer_number, setcustomer_number]= useState("");
+  const [customer_password, setcustomer_password]= useState("");
+  const [customer_confirmpassword, setcustomer_confirmpassword]= useState("");
+  const [respose, setresponse] =useState([]);
+
+  
+     function CustLogin(){
+          
+    axios.post('http://localhost:4000/onstep/user/customer/edit',{email:customer_email,name:customer_name,address:customer_address,number:customer_number,password:customer_password} )
+    .then(res => setresponse(res.data));
+          if(customer_password===respose.customer_password){ 
+              console.log("move to customer home")
+          }
+          else{
+            console.log("error")
+          }
+  }
+  
   return (
     <>
       <ExamplesNavbar />
@@ -37,43 +70,67 @@ function ProfilePage() {
         <ProfilePageHeader />
         <div className="section">
           <Container>
-            <div className="button-container">
-              <Button className="btn-round" color="info" size="lg">
-                Follow
-              </Button>
-              <Button
-                className="btn-round btn-icon"
-                color="default"
-                id="tooltip515203352"
-                size="lg"
-              >
-                <i className="fab fa-twitter"></i>
-              </Button>
-              <UncontrolledTooltip delay={0} target="tooltip515203352">
-                Follow me on Twitter
-              </UncontrolledTooltip>
-              <Button
-                className="btn-round btn-icon"
-                color="default"
-                id="tooltip340339231"
-                size="lg"
-              >
-                <i className="fab fa-instagram"></i>
-              </Button>
-              <UncontrolledTooltip delay={0} target="tooltip340339231">
-                Follow me on Instagram
-              </UncontrolledTooltip>
+            <div className="button-container"> 
             </div>
-            <h3 className="title">About me</h3>
+            <h2 className="title">Update profile info</h2>
             <h5 className="description">
-              An artist of considerable range, Ryan — the name taken by
-              Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs
-              and records all of his own music, giving it a warm, intimate feel
-              with a solid groove structure. An artist of considerable range.
+            <Form>
+        <FormGroup>
+          <label htmlFor="exampleInputEmail1">Email address</label>
+          <Input
+            aria-describedby="emailHelp"
+            id="exampleInputEmail1"
+            placeholder="Enter email"
+            type="email"
+          ></Input>
+        </FormGroup>
+        <FormGroup>
+          <label htmlFor="exampleInputName1">Name</label>
+          <Input
+            id="exampleInputName1"
+            placeholder="Enter name"
+            type="names"
+          ></Input>
+        </FormGroup>
+        <FormGroup>
+          <label htmlFor="exampleAddress1">Address</label>
+          <Input
+            id="exampleInputAddress1"
+            placeholder="Enter Address"
+            type="names"
+          ></Input>
+        </FormGroup>
+        <FormGroup>
+          <label htmlFor="exampleContactNumber1">Contact Number</label>
+          <Input
+            id="exampleInputContactNumber1"
+            placeholder="Enter contact number"
+            type="names"
+          ></Input>
+        </FormGroup>
+        <FormGroup>
+          <label htmlFor="exampleInputPassword1">Password</label>
+          <Input
+            id="exampleInputPassword1"
+            placeholder="Password"
+            type="password"
+          ></Input>
+        </FormGroup>
+        <FormGroup check>
+          <Label check>
+            <Input type="checkbox"></Input>
+            <span className="form-check-sign"></span>
+            I confirm that I will be providing you with my personal data and hereby expressly consent to the use of such data for the purpose of the order placed with you.
+          </Label>
+        </FormGroup>
+        <Button color="primary" type="submit">
+          Update details
+        </Button>
+      </Form>
             </h5>
             <Row>
               <Col className="ml-auto mr-auto" md="6">
-                <h4 className="title text-center">My Portfolio</h4>
+            
                 <div className="nav-align-center">
                   <Nav
                     className="nav-pills-info nav-pills-just-icons"
@@ -124,16 +181,8 @@ function ProfilePage() {
                   <Col className="ml-auto mr-auto" md="10">
                     <Row className="collections">
                       <Col md="6">
-                        <img
-                          alt="..."
-                          className="img-raised"
-                          src={require("assets/img/bg1.jpg")}
-                        ></img>
-                        <img
-                          alt="..."
-                          className="img-raised"
-                          src={require("assets/img/bg3.jpg")}
-                        ></img>
+                      
+                      
                       </Col>
                       <Col md="6">
                         <img
