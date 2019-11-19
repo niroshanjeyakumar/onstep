@@ -19,8 +19,10 @@ import Login from "views/login.js"
 import SignUp from "views/signup.js"
 import Cart from "views/customer/shoppingcart.js"
 import AddProduct from "views/supermarket/addproduct.js"
+import AvailableOrder from "views/delivery/availableorders.js"
 import HomePage from './components/Homepage/HomePage';
 import Profile from './components/profile/Profile';
+import ViewProduct from './views/supermarket/viewproducts.js'
 
 ReactDOM.render(
   <BrowserRouter>
@@ -58,6 +60,14 @@ ReactDOM.render(
         <Route
           path="/addproduct"
           render={props => <AddProduct {...props} />}
+        />
+        <Route
+          path="/availableorder"
+          render={props => <AvailableOrder {...props} />}
+        />
+        <Route
+          path="/view"
+          render={props => <ViewProduct {...props} />}
         />
         <Route path="/login-page" render={props => <LoginPage {...props} />} />
         <Redirect from="/" to="/onstep"/>

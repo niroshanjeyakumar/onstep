@@ -27,7 +27,7 @@ customerRoutes.route('/').get(function (req, res) {
 customerRoutes.route('/login').post(function(req,res){
   const email = req.body.email;
   const password = req.body.password;
-  Customer.findOne({ customer_email: email }, ).then(user => {
+  Customer.findOne({ customer_email: email }).then(user => {
     if (!user) {
       return res.status(404).json({ emailnotfound: "Email not found" });  
     }

@@ -1,13 +1,15 @@
 import React, {useState,useEffect} from 'react';
 import axios from 'axios';
 import {
-  Card, CardText, CardBody,CardFooter,Button,Modal,ModalBody,
+  Card, CardText, CardBody,CardFooter,Button,
   CardTitle, CardSubtitle, 
 } from 'reactstrap';
+//import AddtoCart from "views/product-functions/addtoCart.js";
 
 function Products  () {
   const [product, setproduct] = useState([]);
-  const [modal,setModal]=useState(true);
+  //const [modal,setModal]=useState(true);
+  //const [order,setOrder] = useState("")
 
   //var cart_product_name ="";
  // var cart_product_id="";
@@ -23,7 +25,7 @@ function Products  () {
         console.log(error);
     }) 
   });
-  function addproduct(cart){
+ /* function addproduct(cart){
     console.log(cart.product_name);
     console.log(modal);
       return (
@@ -63,10 +65,9 @@ function Products  () {
     </Modal>
     </div>
     </>)
-  }
+  }*/
     
   const pro = product.map(function (products, index){
-    
 
 return <div className="col-sm-2 col-md-2" key={index}>
         <Card>
@@ -75,7 +76,7 @@ return <div className="col-sm-2 col-md-2" key={index}>
         <CardSubtitle>Seller={products.product_seller}</CardSubtitle>
         <CardText>Unit Price={products.product_price} <br/> Units ={products.product_unit}</CardText>
         </CardBody>
-        <CardFooter><Button color="success" onClick= {()=>{setModal(true);addproduct(products)}} >Add to Cart</Button></CardFooter>
+        <CardFooter><Button color="success">Add to cart</Button></CardFooter>
 </Card>
 
 </div>

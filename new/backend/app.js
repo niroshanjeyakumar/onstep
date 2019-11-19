@@ -7,7 +7,8 @@ const customerRoutes =require("./routes/user/customer.route")
 const deliveryRoutes =require("./routes/user/delivery.route")
 const supermarketRoutes =require("./routes/user/supermarket.route")
 const productRoutes =require("./routes/product.route")
-const cartRoutes =require("./routes/cart.route")
+//const cartRoutes =require("./routes/cart.route")
+//const orderRoutes =require("./routes/orders.route.js")
 const PORT =  4000;
 
 app.use(cors());
@@ -26,6 +27,8 @@ app.use('/onstep/user/customer',customerRoutes);
 app.use('/onstep/user/delivery',deliveryRoutes);
 app.use('/onstep/user/supermarket',supermarketRoutes);
 app.use('/onstep/product',productRoutes);
+//app.use('/onstep/cart',cartRoutes);
+//app.use('/onstep/order',orderRoutes);
 
 app.listen(PORT,function(){
     console.log("Server is running on Port: " + PORT)

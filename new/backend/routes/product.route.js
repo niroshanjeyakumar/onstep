@@ -25,6 +25,18 @@ productRoutes.route('/').get(function (req, res) {
   });
 });
 
+productRoutes.route('/supermarket').post(function (req, res) {
+  const seller=req.body.seller;
+  Product.find({product_seller:seller},function(err, product){
+  if(err){
+    console.log(err);
+  }
+  else {
+    res.json(product);
+  }
+});
+});
+
 productRoutes.route('/edit/:id').get(function (req, res) {
   let id = req.params.id;
   Product.findById(id, function (err, product){

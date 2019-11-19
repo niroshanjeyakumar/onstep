@@ -39,7 +39,7 @@ function LoginPage() {
       document.body.classList.remove("sidebar-collapse");
     };
   });
-const seller="cargills";
+const seller="Niroshan";
 const id="121984615684";
   function saveProduct(){
     const newProduct={
