@@ -53,7 +53,7 @@ function ProfilePage() {
   
      function CustLogin(){
           
-    axios.post('http://localhost:4000/onstep/user/customer/profile',{email:customer_email,name:customer_name,address:customer_address,number:customer_number,password:customer_password} )
+    axios.post('http://localhost:4000/onstep/user/customer/edit',{email:customer_email,name:customer_name,address:customer_address,number:customer_number,password:customer_password} )
     .then(res => setresponse(res.data));
           if(customer_password===respose.customer_password){ 
               console.log("move to customer home")
@@ -130,7 +130,7 @@ function ProfilePage() {
             </h5>
             <Row>
               <Col className="ml-auto mr-auto" md="6">
-                <h4 className="title text-center">My Portfolio</h4>
+            
                 <div className="nav-align-center">
                   <Nav
                     className="nav-pills-info nav-pills-just-icons"

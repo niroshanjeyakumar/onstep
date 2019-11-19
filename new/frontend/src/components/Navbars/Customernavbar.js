@@ -16,8 +16,7 @@ import {
   UncontrolledTooltip
 } from "reactstrap";
 
-
-function IndexNavbar() {
+function Customernavbar() {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   React.useEffect(() => {
@@ -50,41 +49,9 @@ function IndexNavbar() {
           }}
         />
       ) : null}
-      <Navbar className={"fixed-top " + navbarColor} expand="lg" color="info">
+      <Navbar className={"fixed-top " + navbarColor} color="info" expand="lg">
         <Container>
-          <div className="navbar-translate">
-            <NavbarBrand
-              href="https://demos.creative-tim.com/now-ui-kit-react/#/index?ref=nukr-index-navbar"
-              target="_blank"
-              id="navbar-brand"
-            >
-              Onstep
-            </NavbarBrand>
-            <UncontrolledTooltip target="#navbar-brand">
-              Your Online Grocery Shop
-            </UncontrolledTooltip>
-            <button
-              className="navbar-toggler navbar-toggler"
-              onClick={() => {
-                document.documentElement.classList.toggle("nav-open");
-                setCollapseOpen(!collapseOpen);
-              }}
-              aria-expanded={collapseOpen}
-              type="button"
-            >
-              <span className="navbar-toggler-bar top-bar"></span>
-              <span className="navbar-toggler-bar middle-bar"></span>
-              <span className="navbar-toggler-bar bottom-bar"></span>
-            </button>
-          </div>
-          <Collapse
-            className="justify-content-end"
-            isOpen={collapseOpen}
-            navbar
-          >
-            <Nav navbar>
-              
-            <UncontrolledDropdown className="button-dropdown">
+          <UncontrolledDropdown className="button-dropdown">
             <DropdownToggle
               caret
               data-toggle="dropdown"
@@ -120,30 +87,84 @@ function IndexNavbar() {
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
-          
+          <div className="navbar-translate">
+            <NavbarBrand
+              href="https://demos.creative-tim.com/now-ui-kit-react/index?ref=nukr-examples-navbar"
+              target="_blank"
+              id="navbar-brand"
+            >
+              Now Ui Kit
+            </NavbarBrand>
+            <UncontrolledTooltip target="#navbar-brand">
+              Designed by Invision. Coded by Creative Tim
+            </UncontrolledTooltip>
+            <button
+              className="navbar-toggler navbar-toggler"
+              onClick={() => {
+                document.documentElement.classList.toggle("nav-open");
+                setCollapseOpen(!collapseOpen);
+              }}
+              aria-expanded={collapseOpen}
+              type="button"
+            >
+              <span className="navbar-toggler-bar top-bar"></span>
+              <span className="navbar-toggler-bar middle-bar"></span>
+              <span className="navbar-toggler-bar bottom-bar"></span>
+            </button>
+          </div>
+          <Collapse
+            className="justify-content-end"
+            isOpen={collapseOpen}
+            navbar
+          >
+            <Nav navbar>
+              <NavItem>
+                <NavLink to="/index" tag={Link}>
+                  Back to Kit
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="https://github.com/creativetimofficial/now-ui-kit-react/issues?ref=creativetim">
+                  Have an issue?
+                </NavLink>
+              </NavItem>
               <NavItem>
                 <NavLink
-                  to ="/shopping_cart" tag={Link}
+                  href="https://twitter.com/CreativeTim?ref=creativetim"
                   target="_blank"
-                  id="shopping-cart"
+                  id="twitter-tooltip"
                 >
-                  <i className="now-ui-icons files_paper"></i>
-                  <p className="d-lg-none d-xl-none">Orders</p>
+                  <i className="fab fa-twitter"></i>
+                  <p className="d-lg-none d-xl-none">Twitter</p>
                 </NavLink>
-                <UncontrolledTooltip target="#shopping-cart">
-                 View My Shopping Cart
+                <UncontrolledTooltip target="#twitter-tooltip">
+                  Follow us on Twitter
                 </UncontrolledTooltip>
               </NavItem>
               <NavItem>
                 <NavLink
-                  to="/delivery_profile" tag={Link}
-                  id="myprofile"
+                  href="https://www.facebook.com/CreativeTim?ref=creativetim"
+                  target="_blank"
+                  id="facebook-tooltip"
                 >
-                  <i className="now-ui-icons shopping_delivery-fast"></i>
-                  <p className="d-lg-none d-xl-none">My Profile</p>
+                  <i className="fab fa-facebook-square"></i>
+                  <p className="d-lg-none d-xl-none">Facebook</p>
                 </NavLink>
-                <UncontrolledTooltip target="#myprofile">
-                 View My Profile
+                <UncontrolledTooltip target="#facebook-tooltip">
+                  Like us on Facebook
+                </UncontrolledTooltip>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  href="https://www.instagram.com/CreativeTimOfficial?ref=creativetim"
+                  target="_blank"
+                  id="instagram-tooltip"
+                >
+                  <i className="fab fa-instagram"></i>
+                  <p className="d-lg-none d-xl-none">Instagram</p>
+                </NavLink>
+                <UncontrolledTooltip target="#instagram-tooltip">
+                  Follow us on Instagram
                 </UncontrolledTooltip>
               </NavItem>
             </Nav>
@@ -154,5 +175,4 @@ function IndexNavbar() {
   );
 }
 
-export default IndexNavbar;
-
+export default Customernavbar;
