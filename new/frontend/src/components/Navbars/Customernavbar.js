@@ -84,31 +84,43 @@ function IndexNavbar() {
           >
             <Nav navbar>
               
-              <UncontrolledDropdown nav>
-                <DropdownToggle
-                  caret
-                  color="default"
-                  href="#pablo"
-                  nav
-                  onClick={e => e.preventDefault()}
-                >
-                  <i className="now-ui-icons shopping_shop"></i>
-                  <p>Products</p>
-                </DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem to="/index" tag={Link}>
-                    <i className="now-ui-icons business_chart-pie-36 mr-1"></i>
-                    All Products
-                  </DropdownItem>
-                  <DropdownItem
-                    href="https://demos.creative-tim.com/now-ui-kit-react/#/documentation/introduction?ref=nukr-index-navbar"
-                    target="_blank"
-                  >
-                    <i className="now-ui-icons design_bullet-list-67 mr-1"></i>
-                    Documentation
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
+            <UncontrolledDropdown className="button-dropdown">
+            <DropdownToggle
+              caret
+              data-toggle="dropdown"
+              href="#pablo"
+              id="navbarDropdown"
+              tag="a"
+              onClick={e => e.preventDefault()}
+            >
+              <span className="button-bar"></span>
+              <span className="button-bar"></span>
+              <span className="button-bar"></span>
+            </DropdownToggle>
+            <DropdownMenu aria-labelledby="navbarDropdown">
+              <DropdownItem header tag="a">
+                Dropdown header
+              </DropdownItem>
+              <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+                Action
+              </DropdownItem>
+              <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+                Another action
+              </DropdownItem>
+              <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+                Something else here
+              </DropdownItem>
+              <DropdownItem divider></DropdownItem>
+              <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+                Separated link
+              </DropdownItem>
+              <DropdownItem divider></DropdownItem>
+              <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+                One more separated link
+              </DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown>
+          
               <NavItem>
                 <NavLink
                   to ="/shopping_cart" tag={Link}
