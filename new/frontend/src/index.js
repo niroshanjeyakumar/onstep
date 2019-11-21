@@ -21,7 +21,7 @@ import Cart from "views/customer/shoppingcart.js"
 import AddProduct from "views/supermarket/addproduct.js"
 import HomePage from './components/Homepage/HomePage';
 import Profile from './components/profile/Profile';
-import DelProfile from "views/delivery.js/ProfilePage"
+import DelProfile from "views/delivery/ProfilePage"
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
