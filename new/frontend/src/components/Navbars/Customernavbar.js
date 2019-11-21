@@ -16,8 +16,7 @@ import {
   UncontrolledTooltip
 } from "reactstrap";
 
-
-function IndexNavbar() {
+function Customernavbar() {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   React.useEffect(() => {
@@ -50,18 +49,54 @@ function IndexNavbar() {
           }}
         />
       ) : null}
-      <Navbar className={"fixed-top " + navbarColor} expand="lg" color="info">
+      <Navbar className={"fixed-top " + navbarColor} color="info" expand="lg">
         <Container>
+          <UncontrolledDropdown className="button-dropdown">
+            <DropdownToggle
+              caret
+              data-toggle="dropdown"
+              href="#pablo"
+              id="navbarDropdown"
+              tag="a"
+              onClick={e => e.preventDefault()}
+            >
+              <span className="button-bar"></span>
+              <span className="button-bar"></span>
+              <span className="button-bar"></span>
+            </DropdownToggle>
+            <DropdownMenu aria-labelledby="navbarDropdown">
+              <DropdownItem header tag="a">
+                Dropdown header
+              </DropdownItem>
+              <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+                Action
+              </DropdownItem>
+              <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+                Another action
+              </DropdownItem>
+              <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+                Something else here
+              </DropdownItem>
+              <DropdownItem divider></DropdownItem>
+              <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+                Separated link
+              </DropdownItem>
+              <DropdownItem divider></DropdownItem>
+              <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+                One more separated link
+              </DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown>
           <div className="navbar-translate">
             <NavbarBrand
-              href="https://demos.creative-tim.com/now-ui-kit-react/#/index?ref=nukr-index-navbar"
+              href="https://demos.creative-tim.com/now-ui-kit-react/index?ref=nukr-examples-navbar"
               target="_blank"
               id="navbar-brand"
             >
-              Onstep
+              Now Ui Kit
             </NavbarBrand>
             <UncontrolledTooltip target="#navbar-brand">
-              Your Online Grocery Shop
+              Designed by Invision. Coded by Creative Tim
             </UncontrolledTooltip>
             <button
               className="navbar-toggler navbar-toggler"
@@ -83,55 +118,53 @@ function IndexNavbar() {
             navbar
           >
             <Nav navbar>
-              
-              <UncontrolledDropdown nav>
-                <DropdownToggle
-                  caret
-                  color="default"
-                  href="#pablo"
-                  nav
-                  onClick={e => e.preventDefault()}
-                >
-                  <i className="now-ui-icons shopping_shop"></i>
-                  <p>Products</p>
-                </DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem to="/index" tag={Link}>
-                    <i className="now-ui-icons business_chart-pie-36 mr-1"></i>
-                    All Products
-                  </DropdownItem>
-                  <DropdownItem
-                    href="https://demos.creative-tim.com/now-ui-kit-react/#/documentation/introduction?ref=nukr-index-navbar"
-                    target="_blank"
-                  >
-                    <i className="now-ui-icons design_bullet-list-67 mr-1"></i>
-                    Documentation
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
+              <NavItem>
+                <NavLink to="/index" tag={Link}>
+                  Back to Kit
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="https://github.com/creativetimofficial/now-ui-kit-react/issues?ref=creativetim">
+                  Have an issue?
+                </NavLink>
+              </NavItem>
               <NavItem>
                 <NavLink
-                  to ="/shopping_cart" tag={Link}
+                  href="https://twitter.com/CreativeTim?ref=creativetim"
                   target="_blank"
-                  id="shopping-cart"
+                  id="twitter-tooltip"
                 >
-                  <i className="now-ui-icons files_paper"></i>
-                  <p className="d-lg-none d-xl-none">Orders</p>
+                  <i className="fab fa-twitter"></i>
+                  <p className="d-lg-none d-xl-none">Twitter</p>
                 </NavLink>
-                <UncontrolledTooltip target="#shopping-cart">
-                 View My Shopping Cart
+                <UncontrolledTooltip target="#twitter-tooltip">
+                  Follow us on Twitter
                 </UncontrolledTooltip>
               </NavItem>
               <NavItem>
                 <NavLink
-                  to="/delivery_profile" tag={Link}
-                  id="myprofile"
+                  href="https://www.facebook.com/CreativeTim?ref=creativetim"
+                  target="_blank"
+                  id="facebook-tooltip"
                 >
-                  <i className="now-ui-icons shopping_delivery-fast"></i>
-                  <p className="d-lg-none d-xl-none">My Profile</p>
+                  <i className="fab fa-facebook-square"></i>
+                  <p className="d-lg-none d-xl-none">Facebook</p>
                 </NavLink>
-                <UncontrolledTooltip target="#myprofile">
-                 View My Profile
+                <UncontrolledTooltip target="#facebook-tooltip">
+                  Like us on Facebook
+                </UncontrolledTooltip>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  href="https://www.instagram.com/CreativeTimOfficial?ref=creativetim"
+                  target="_blank"
+                  id="instagram-tooltip"
+                >
+                  <i className="fab fa-instagram"></i>
+                  <p className="d-lg-none d-xl-none">Instagram</p>
+                </NavLink>
+                <UncontrolledTooltip target="#instagram-tooltip">
+                  Follow us on Instagram
                 </UncontrolledTooltip>
               </NavItem>
             </Nav>
@@ -142,5 +175,4 @@ function IndexNavbar() {
   );
 }
 
-export default IndexNavbar;
-
+export default Customernavbar;

@@ -30,12 +30,18 @@ function ProfilePageHeader() {
         <div
           className="page-header-image"
           style={{
+
+            backgroundImage: "url(" + require("assets/img/signup.jpg") + ")"
             backgroundImage: "url(" + require("assets/img/bgn.jpg") + ")"
+
           }}
           ref={pageHeader}
         ></div>
         <Container>
           <div className="photo-container">
+
+            <img alt="..." src={require("assets/img/img_avatar5.png")}></img>
+
             <img alt="..." src={require("assets/img/prf.jpg")}></img>
           </div>
           <h3 className="title">Delivery Personnel</h3>
@@ -44,6 +50,7 @@ function ProfilePageHeader() {
               <h4>30</h4>
              <p> Completed Deliveries </p>
           </div>
+          <h3 className="title">Customer profile</h3>
         </Container>
       </div>
     </>
