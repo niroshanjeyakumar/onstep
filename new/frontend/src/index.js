@@ -63,6 +63,15 @@ ReactDOM.render(
           path="/delivery-home"
           render={props => <DelProfile {...props} />}
         />
+         <Route
+          path="/supermarket"
+          render={props => <Sprofile {...props} />}
+        />
+         {/* <Route
+          path="/sm/vege"
+          render={props => <Vege {...props} />}
+        /> */}
+
         <Route path="/login-page" render={props => <LoginPage {...props} />} />
         <Route path="/" exact component = {HomePage}/>
         <Route path="/profile" render={props => <Profile {...props} />} />
