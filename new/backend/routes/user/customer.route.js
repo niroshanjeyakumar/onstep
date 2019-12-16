@@ -72,6 +72,52 @@ customerRoutes.route('/delete/:id').get(function (req, res) {
         if(err) res.json(err);
         else res.json('Successfully removed');
     });
+  });
+
+/*customerRoutes.route('/edit').get(function (req, res) {
+  const email = req.body.email;
+  const name = req.body.name;
+  const address = req.body.address;
+  const number = req.body.number;
+  const password = req.body.password; 
+  Customer.findOne({ customer_email: email }, ).then(user => {
+    if (!user) {
+      return res.status(404).json({ emailnotfound: "Email not found" });  
+    }
+    else{ return res.json(user)}
+     
+  });
+});*/
+
+customerRoutes.route('/edit/:id').get(function (req, res) {
+  let id = req.params.id;
+  customer.findById(id, function (err, customer){
+      res.json(customer);
+  });
 });
+
+customerRoutes.route('/edit/:id').post(function (req, res) {
+  customer.findById(req.params.id, function(err, customer) {
+  if (!customer)
+    res.status(404).send("data is not found");
+  else {
+      customer.customer_name = req.body.customer_name;
+      customer.customer_email= req.body.customer_email;
+      customer.customer_address= req.body.customer_address;
+      customer.customer_number= req.body.customer_number;
+      customer.customer_password= req.body.customer_password;
+
+      customer.save().then(customer => {
+        res.json('Update complete');
+    })
+    .catch(err => {
+          res.status(400).send("unable to update the database");
+    });
+  }
+});
+});
+  
+
+
 
 module.exports = customerRoutes;

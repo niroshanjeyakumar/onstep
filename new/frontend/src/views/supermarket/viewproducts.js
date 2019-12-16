@@ -8,7 +8,7 @@ import {
 
 //import AddtoCart from "views/product-functions/addtoCart.js";
 import IndexNavbar from "components/Navbars/SupermarketNavbar";
-import IndexHeader from "components/Headers/onstepHeader";
+import IndexHeader from "components/Headers/supermarkethomeheader";
 import DarkFooter from "components/Footers/onstepFooter.js";
 
 function Products  () {
@@ -18,8 +18,6 @@ function Products  () {
     document.body.classList.add("profile-page");
     document.body.classList.add("sidebar-collapse");
     document.documentElement.classList.remove("nav-open");
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
     return function cleanup() {
       document.body.classList.remove("profile-page");
       document.body.classList.remove("sidebar-collapse");

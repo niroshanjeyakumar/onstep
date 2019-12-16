@@ -50,7 +50,7 @@ function IndexNavbar() {
         <Container>
           <div className="navbar-translate">
             <NavbarBrand
-              to ="/onstep" tag={Link}
+              to ="/supermarket-profile" tag={Link}
               id="navbar-brand"
             >
               Onstep
@@ -106,7 +106,7 @@ function IndexNavbar() {
               </NavItem>
               <NavItem>
                 <NavLink
-                  to="/delivery_profile" tag={Link}
+                  to="/supermarkethome" tag={Link}
                   id="myprofile"
                 >
                   <i className="now-ui-icons shopping_shop"></i>
@@ -114,6 +114,18 @@ function IndexNavbar() {
                 </NavLink>
                 <UncontrolledTooltip target="#myprofile">
                  View My Profile
+                </UncontrolledTooltip>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  to="/" tag={Link}
+                  id="logout"
+                >
+                  <i className="now-ui-icons media-1_button-power"></i>
+                  <p className="d-lg-none d-xl-none">Logout</p>
+                </NavLink>
+                <UncontrolledTooltip target="#logout">
+                 LogOut
                 </UncontrolledTooltip>
               </NavItem>
             </Nav>

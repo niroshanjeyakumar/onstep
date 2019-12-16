@@ -1,7 +1,6 @@
 /*eslint-disable*/
 import React from "react";
-import { Link } from "react-router-dom";
-
+import {Link} from "react-router-dom"
 // reactstrap components
 import { Container } from "reactstrap";
 
@@ -15,13 +14,12 @@ function TransparentFooter() {
               <a
                 to="/onstep" tag={Link}
               >
-                Onstep
+                OnStep
               </a>
             </li>
             <li>
               <a
-                href="http://presentation.creative-tim.com?ref=nukr-transparent-footer"
-                target="_blank"
+                to="/onstep" tag={Link}
               >
                 About Us
               </a>

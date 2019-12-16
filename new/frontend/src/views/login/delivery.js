@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {Redirect} from 'react-router-dom'
 import axios from 'axios'
 import {
 Form,
@@ -12,6 +13,7 @@ function DeliveryLogin (){
     const [delivery_email, setdelivery_email]= useState(" ");
     const [delivery_password, setdelivery_password]= useState("");
     const [respose, setresponse] =useState([]);
+    const [loggedin,setLoggedin] = useState(false);
 
     function DelLogin(){
       
@@ -19,14 +21,19 @@ function DeliveryLogin (){
       axios.post('http://localhost:4000/onstep/user/delivery/login',{email:delivery_email, password:delivery_password} )
       .then(res => setresponse(res.data));
             if(delivery_password===respose.delivery_password){
-                console.log("move to delivery home")
+              setLoggedin(true);
             }
             else{
               console.log("error")
             }
     }
 
-
+    if(loggedin){
+      return(
+        <Redirect to="/delivery-home" />
+      )
+    }
+    else{
 
     
 return(
@@ -83,7 +90,7 @@ return(
                       Login 
                     </Button>
                     </Form>
-)
+)}
 }
 
 export default DeliveryLogin;

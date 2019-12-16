@@ -1,12 +1,13 @@
-import React from "react";
+import React,{useEffect} from "react";
 
 // reactstrap components
-// import {
-// } from "reactstrap";
+import {
+  Container,
+ } from "reactstrap";
 
 // core components
-import IndexNavbar from "components/Navbars/onstepNavbar.js";
-import IndexHeader from "components/Headers/onstepHeader.js";
+import IndexNavbar from "components/Navbars/Customernavbar";
+import IndexHeader from "components/Headers/customerhomeHeader";
 import DarkFooter from "components/Footers/Footer1";
 
 // sections for this page
@@ -14,14 +15,12 @@ import DarkFooter from "components/Footers/Footer1";
 import Cart from "views/customer/shoppingCart/cart.js";
 
 function Onstep() {
-  React.useEffect(() => {
-    document.body.classList.add("index-page");
+  useEffect(() => {
+    document.body.classList.add("profile-page");
     document.body.classList.add("sidebar-collapse");
     document.documentElement.classList.remove("nav-open");
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
     return function cleanup() {
-      document.body.classList.remove("index-page");
+      document.body.classList.remove("profile-page");
       document.body.classList.remove("sidebar-collapse");
     };
   });
@@ -31,7 +30,12 @@ function Onstep() {
       <div className="wrapper">
         <IndexHeader />
         <div className="main">
+          <Container>
           <Cart />
+          
+          <h1 align="center">Under Construction</h1>
+          </Container>
+          
         </div>
         <DarkFooter />
       </div>

@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {Redirect} from 'react-router-dom'
 import axios from 'axios'
 import {
 Form,
@@ -12,24 +13,29 @@ function Customerlogin (){
     const [customer_email, setcustomer_email]= useState(" ");
     const [customer_password, setcustomer_password]= useState("");
     const [respose, setresponse] =useState([]);
-    
+    const [loggedin,setLoggedin] = useState(false);
     function CustLogin(){
       
       
     axios.post('http://localhost:4000/onstep/user/customer/login',{email:customer_email, password:customer_password} )
     .then(res => setresponse(res.data));
           if(customer_password===respose.customer_password){
-              console.log("move to customer home")
+        setLoggedin(true);
           }
           else{
             console.log("error")
           }
   }
     
-
-
+if(loggedin){
+  return(
+    <Redirect to="/profile-page" />
+  )
+}
+else{
     
 return(
+
                 <Form action="" className="form" method="post">
                     <InputGroup
                       className={
@@ -83,7 +89,7 @@ return(
                       Login
                     </Button>
                     </Form>
-)
+)}
 }
 
 export default Customerlogin;

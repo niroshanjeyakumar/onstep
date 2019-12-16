@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {Redirect} from 'react-router-dom'
 import axios from 'axios'
 import {
 Form,
@@ -12,21 +13,25 @@ function SupermarketLogin (){
     const [supermarket_email, setsupermarket_email]= useState(" ");
     const [supermarket_password, setsupermarket_password]= useState("");
     const [respose, setresponse] =useState([]);
-  
+    const [loggedin,setLoggedin] = useState(false);
     function SmarketLogin(){
       
       
       axios.post('http://localhost:4000/onstep/user/supermarket/login',{email:supermarket_email, password:supermarket_password} )
       .then(res => setresponse(res.data));
             if(supermarket_password===respose.supermarket_password){
-                console.log("move to Supermarket home")
-            }
+              setLoggedin(true);}
             else{
               console.log("error")
             }
     }
     
-
+    if(loggedin){
+      return(
+        <Redirect to="/supermarkethome" />
+      )
+    }
+    else{
 
     
 return(
@@ -84,7 +89,7 @@ return(
                       Login 
                     </Button>
                     </Form>
-)
+)}
 }
 
 export default SupermarketLogin;

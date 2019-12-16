@@ -20,8 +20,7 @@ function TransparentFooter() {
             </li>
             <li>
               <a
-                href="http://presentation.creative-tim.com?ref=nukr-transparent-footer"
-                target="_blank"
+                to="/onstep" tag={Link}
               >
                 About Us
               </a>

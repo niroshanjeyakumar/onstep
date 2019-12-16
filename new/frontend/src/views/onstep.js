@@ -5,7 +5,7 @@ import React from "react";
 // } from "reactstrap";
 
 // core components
-import IndexNavbar from "components/Navbars/onstepNavbar.js";
+import IndexNavbar from "components/Navbars/Customernavbar";
 import IndexHeader from "components/Headers/onstepHeader.js";
 import DarkFooter from "components/Footers/onstepFooter.js";
 

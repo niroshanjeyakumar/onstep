@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
-
+import './Footer.css';
 class Footer extends Component {
     render() {
         return (
             <div>
                 <div>
-                    <div className="footer">
+                    <div className="footer_home">
                         <div className="container">
                             <div className="row">
-                                <div className="col-lg-5 col-xs-12 about-company">
-                                    <h4><img src="/images/logo.jpg" width={30} height={30} /><u><center>OnStep</center></u></h4>
-                                    <p className="pr-5 text-white-50"> <h5><center>Grocery Online Store</center></h5></p>
-                                    <br />
+                                <div className="col-lg-4 col-xs-12 about-company">
+                                           <br />
                                     <br />
 
                                     <p className="pr-5 text-white-50"> © 2019 OnStep. All rights reserved</p>
@@ -21,9 +19,9 @@ class Footer extends Component {
 
                                 </div>
 
-                                <div class="col-lg-3 col-xs-12 links">
+                                <div class="col-lg-4 col-xs-12 links">
                                     <h5 className="mt-lg-0 mt-sm-3">CONTACT US</h5>
-                                    <p className="pr-5 text-white-50"> </p>
+                                    <p className="pr-5 text-white-50">niroshananthan@gmail.com </p>
                                 </div>
 
                                 <div class="col-lg-4 col-xs-12 location">

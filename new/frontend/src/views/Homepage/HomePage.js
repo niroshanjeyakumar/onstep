@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import NavBar from './NavBar';
-import Footer from './Footer';
+import NavBar from 'components/Navbars/onstepNavbar';
+import Footer from 'components/Footers/onstepFooter.js';
 import InfoPage from './InfoPage';
 import About from './About';
 

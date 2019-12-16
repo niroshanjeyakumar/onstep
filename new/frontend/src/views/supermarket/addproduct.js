@@ -18,7 +18,7 @@ import {
 
 // core components
 import Navbar from "components/Navbars/SupermarketNavbar";
-import TransparentFooter from "components/Footers/TransparentFooter.js";
+import TransparentFooter from "components/Footers/loginfooter";
 
 function LoginPage() {
   const [nameFocus, setnameFocus] = useState(false);
@@ -61,7 +61,7 @@ const id="121984615684";
         <div
           className="page-header-image"
           style={{
-            backgroundImage: "url(" + require("assets/img/login.jpg") + ")"
+            backgroundImage: "url(" + require("assets/img/productbg.jpg") + ")"
           }}
         ></div>
         
@@ -82,7 +82,7 @@ const id="121984615684";
                     >
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                          <i className="now-ui-icons users_circle-08"></i>
+                          <i className="now-ui-icons shopping_box"></i>
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
@@ -103,7 +103,7 @@ const id="121984615684";
                     >
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                          <i className="now-ui-icons users_circle-08"></i>
+                          <i className="now-ui-icons shopping_basket"></i>
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
@@ -124,7 +124,7 @@ const id="121984615684";
                     >
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                          <i className="now-ui-icons text_caps-small"></i>
+                          <i className="now-ui-icons business_money-coins"></i>
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input

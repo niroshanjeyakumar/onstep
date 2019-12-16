@@ -16,7 +16,7 @@ import {
 } from "reactstrap";
 
 // core components
-import ExamplesNavbar from "components/Navbars/Navbar1.js";
+import ExamplesNavbar from "components/Navbars/onstepNavbar";
 import TransparentFooter from "components/Footers/Footer1.js";
 import Customer from "views/signup/customer.js";
 import Supermarket from "views/signup/supermarket.js"
@@ -26,6 +26,7 @@ import Delivery from "views/signup/delivery.js"
 
 function Signup() {
   const [iconPills, setIconPills] = React.useState("1");
+  
   React.useEffect(() => {
     document.body.classList.add("login-page");
     document.body.classList.add("sidebar-collapse");

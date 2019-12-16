@@ -54,8 +54,7 @@ function IndexNavbar() {
         <Container>
           <div className="navbar-translate">
             <NavbarBrand
-              href="https://demos.creative-tim.com/now-ui-kit-react/#/index?ref=nukr-index-navbar"
-              target="_blank"
+              to ="/home" tag={Link}
               id="navbar-brand"
             >
               Onstep
@@ -96,71 +95,14 @@ function IndexNavbar() {
                   <p>Products</p>
                 </DropdownToggle>
                 <DropdownMenu>
-                  <DropdownItem to="/index" tag={Link}>
-                    <i className="now-ui-icons business_chart-pie-36 mr-1"></i>
+                  <DropdownItem to="/products" tag={Link}>
+                    <i className="now-ui-icons shopping_basket"></i>
                     All Products
                   </DropdownItem>
-                  <DropdownItem
-                    href="https://demos.creative-tim.com/now-ui-kit-react/#/documentation/introduction?ref=nukr-index-navbar"
-                    target="_blank"
-                  >
-                    <i className="now-ui-icons design_bullet-list-67 mr-1"></i>
-                    Documentation
-                  </DropdownItem>
+                  
                 </DropdownMenu>
               </UncontrolledDropdown>
-              <NavItem>
-                <NavLink
-                  href="https://twitter.com/CreativeTim?ref=creativetim"
-                  target="_blank"
-                  id="twitter-tooltip"
-                >
-                  <i className="fab fa-twitter"></i>
-                  <p className="d-lg-none d-xl-none">Twitter</p>
-                </NavLink>
-                <UncontrolledTooltip target="#twitter-tooltip">
-                  Follow us on Twitter
-                </UncontrolledTooltip>
-              </NavItem>
-              <NavItem>
-                <NavLink
-                  href="https://www.facebook.com/CreativeTim?ref=creativetim"
-                  target="_blank"
-                  id="facebook-tooltip"
-                >
-                  <i className="fab fa-facebook-square"></i>
-                  <p className="d-lg-none d-xl-none">Facebook</p>
-                </NavLink>
-                <UncontrolledTooltip target="#facebook-tooltip">
-                  Like us on Facebook
-                </UncontrolledTooltip>
-              </NavItem>
-              <NavItem>
-                <NavLink
-                  href="https://www.instagram.com/CreativeTimOfficial?ref=creativetim"
-                  target="_blank"
-                  id="instagram-tooltip"
-                >
-                  <i className="fab fa-instagram"></i>
-                  <p className="d-lg-none d-xl-none">Instagram</p>
-                </NavLink>
-                <UncontrolledTooltip target="#instagram-tooltip">
-                  Follow us on Instagram
-                </UncontrolledTooltip>
-              </NavItem>
-              <NavItem>
-                <NavLink
-                  to ="/shopping_cart" tag={Link}
-                  target="_blank"
-                  id="shopping-cart"
-                >
-                  <i className="now-ui-icons shopping_cart-simple"></i>
-                  <p className="d-lg-none d-xl-none">My Cart</p>
-                </NavLink>
-                <UncontrolledTooltip target="#shopping-cart">
-                 View My Shopping Cart
-                </UncontrolledTooltip>
-              </NavItem>
+             
               <NavItem>
                 <NavLink
                   to="/login" tag={Link}
@@ -170,7 +112,7 @@ function IndexNavbar() {
                   <p className="d-lg-none d-xl-none">My Profile</p>
                 </NavLink>
                 <UncontrolledTooltip target="#myprofile">
-                 View My Profile
+                 Login
                 </UncontrolledTooltip>
               </NavItem>
             </Nav>

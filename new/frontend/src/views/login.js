@@ -16,7 +16,7 @@ import {
 } from "reactstrap";
 
 // core components
-import ExamplesNavbar from "components/Navbars/Navbar1.js";
+import ExamplesNavbar from "components/Navbars/onstepNavbar";
 import TransparentFooter from "components/Footers/Footer1.js";
 import Customer from "views/login/customer.js";
 import Supermarket from "views/login/supermarket.js"
