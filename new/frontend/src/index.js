@@ -20,10 +20,12 @@ import SignUp from "views/signup.js"
 import Cart from "views/customer/shoppingcart.js"
 import AddProduct from "views/supermarket/addproduct.js"
 import AvailableOrder from "views/delivery/availableorders.js"
-import HomePage from './components/Homepage/HomePage';
-import Profile from './components/profile/Profile';
-import ViewProduct from './views/supermarket/viewproducts.js'
-import DelProfile from "views/delivery.js/ProfilePage";
+import HomePage from './views/Homepage/HomePage';
+import Profile from './views/profile/Profile';
+import ViewProduct from './views/supermarket/viewproducts.js';
+import DelProfile from "views/delivery/ProfilePage";
+import Supermarket from "views/supermarket/supermarket_profile";
+import Completedorders from "views/delivery/completedorders.js";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -43,7 +45,7 @@ ReactDOM.render(
           render={props => <ProfilePage {...props} />}
         />
          <Route
-          path="/onstep"
+          path="/products"
           render={props => <OnStep {...props} />}
         />
            <Route
@@ -74,11 +76,27 @@ ReactDOM.render(
           path="/delivery-home"
           render={props => <DelProfile {...props} />}
           />
+        <Route 
+          path="/supermarkethome"
+          render= {props => <Supermarket {...props}/>}
+          />
+          <Route 
+          path="/completedorders"
+          render= {props => <Completedorders {...props}/>}
+          />
+      
+         {/* <Route
+          path="/sm/vege"
+          render={props => <Vege {...props} />}
+        /> */}
+
         <Route path="/login-page" render={props => <LoginPage {...props} />} />
+        <Route path="/onstep" render={props =><HomePage {...props}/>} />
+        <Route path="/profile" render={props => <Profile {...props} />} />
         <Redirect from="/" to="/onstep"/>
         <Redirect to="/onstep"/>
-        <Route path="/home" render={props => <HomePage{...props}/>} />
-        <Route path="/profile" render={props => <Profile {...props} />} />
+        
+        
       </Switch>
     </Switch>
   </BrowserRouter>,

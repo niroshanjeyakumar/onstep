@@ -54,7 +54,7 @@ function IndexNavbar() {
         <Container>
           <div className="navbar-translate">
             <NavbarBrand
-              to ="/onstep" tag={Link}
+              to ="/products" tag={Link}
               id="navbar-brand"
             >
               Onstep
@@ -95,27 +95,21 @@ function IndexNavbar() {
                   <p>Products</p>
                 </DropdownToggle>
                 <DropdownMenu>
-                  <DropdownItem to="/index" tag={Link}>
-                    <i className="now-ui-icons business_chart-pie-36 mr-1"></i>
+                  <DropdownItem to="/products" tag={Link}>
+                    <i className="now-ui-icons shopping_basket"></i>
                     All Products
                   </DropdownItem>
-                  <DropdownItem
-                    href="https://demos.creative-tim.com/now-ui-kit-react/#/documentation/introduction?ref=nukr-index-navbar"
-                    target="_blank"
-                  >
-                    <i className="now-ui-icons design_bullet-list-67 mr-1"></i>
-                    Documentation
-                  </DropdownItem>
+                  
                 </DropdownMenu>
               </UncontrolledDropdown>
+             
               <NavItem>
                 <NavLink
                   to ="/shopping_cart" tag={Link}
-                  target="_blank"
                   id="shopping-cart"
                 >
-                  <i className="now-ui-icons files_paper"></i>
-                  <p className="d-lg-none d-xl-none">Orders</p>
+                  <i className="now-ui-icons shopping_cart-simple"></i>
+                  <p className="d-lg-none d-xl-none">My Cart</p>
                 </NavLink>
                 <UncontrolledTooltip target="#shopping-cart">
                  View My Shopping Cart
@@ -123,14 +117,26 @@ function IndexNavbar() {
               </NavItem>
               <NavItem>
                 <NavLink
-                  to="/delivery_profile" tag={Link}
+                  to="/profile-page" tag={Link}
                   id="myprofile"
                 >
-                  <i className="now-ui-icons shopping_delivery-fast"></i>
+                  <i className="now-ui-icons users_circle-08"></i>
                   <p className="d-lg-none d-xl-none">My Profile</p>
                 </NavLink>
                 <UncontrolledTooltip target="#myprofile">
                  View My Profile
+                </UncontrolledTooltip>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  to="/" tag={Link}
+                  id="logout"
+                >
+                  <i className="now-ui-icons media-1_button-power"></i>
+                  <p className="d-lg-none d-xl-none">Logout</p>
+                </NavLink>
+                <UncontrolledTooltip target="#logout">
+                 LogOut
                 </UncontrolledTooltip>
               </NavItem>
             </Nav>
@@ -142,4 +148,3 @@ function IndexNavbar() {
 }
 
 export default IndexNavbar;
-
