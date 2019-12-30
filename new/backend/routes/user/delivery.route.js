@@ -55,7 +55,7 @@ deliveryRoutes.route('/login').post(function(req,res){
       if(bcrypt.compareSync(password,user.delivery_password)){
         req.session.User_id=user._id;
         req.session.UserType="delivery";
-        req.session.email=user.email;
+        req.session.email=user.delivery_email;
         console.log(req.session.email);
         return res.json({email: true, password:true });
       }

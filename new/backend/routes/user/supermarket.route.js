@@ -55,7 +55,7 @@ supermarketRoutes.route('/login').post(function(req,res){
       if(bcrypt.compareSync(password,user.supermarket_password)){
         req.session.User_id=user._id;
         req.session.UserType="supermarket";
-        req.session.email=user.email;
+        req.session.email=user.supermarket_email;
         console.log(req.session.email);
         return res.json({email: true, password:true });
       }
