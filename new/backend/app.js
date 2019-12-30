@@ -3,7 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const session = require('express-session');
+var session = require('express-session');
+const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const customerRoutes =require("./routes/user/customer.route")
 const deliveryRoutes =require("./routes/user/delivery.route")
@@ -16,6 +17,13 @@ const PORT =  4000;
 app.use(cors());
 app.use(bodyParser.json());
 
+app.use(session({
+    secret:"Onstep Online Shopping Platform",
+    resave:false, 
+    saveUninitialized:false
+}))
+app.use(passport.initialize())
+app.use(passport.session())
 mongoose.connect('mongodb://127.0.0.1:27017/onstep',{useNewUrlParser:true});
 const connection = mongoose.connection;
 

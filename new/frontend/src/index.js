@@ -13,7 +13,7 @@ import Index from "views/Index.js";
 import NucleoIcons from "views/NucleoIcons.js";
 import LoginPage from "views/examples/LoginPage.js";
 import LandingPage from "views/examples/LandingPage.js";
-import ProfilePage from "views/examples/ProfilePage.js";
+import ProfilePage from "views/customer/ProfilePage.js";
 import OnStep from "views/onstep.js"
 import Login from "views/login.js"
 import SignUp from "views/signup.js"

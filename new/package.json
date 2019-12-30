@@ -4,7 +4,7 @@
   "description": "Onstep",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"(npm start --prefix frontend)\" \"(npm start --prefix backend)\"",
+    "start": "concurrently \"(npm start --prefix frontend)\" \"(npm start --prefix backend)\" ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
