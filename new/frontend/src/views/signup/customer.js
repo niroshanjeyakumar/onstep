@@ -40,7 +40,7 @@ function CustomerRegistration (){
     axios.post('http://localhost:4000/onstep/user/customer/add',newCust)
     .then(res => {console.log(res.data);
       const data=res.data.email;
-      if (data==true){
+      if (data===true){
         setemailAlert(true);
       }
     }

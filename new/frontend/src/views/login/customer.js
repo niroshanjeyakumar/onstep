@@ -23,15 +23,15 @@ function Customerlogin (){
     axios.post('http://localhost:4000/onstep/user/customer/login',{email:customer_email, password:customer_password} )
     .then(res => {setresponse(res.data);
 
-          if (response.email==false){
+          if (response.email===false){
               console.log("Email not found");
               setloginfailAlert(true);
           }
-          else if(response.email==true && response.password==false){
+          else if(response.email===true && response.password===false){
             console.log("Password wrong");
             setloginfailAlert(true);
           }
-          else if(response.email==true && response.password==true){
+          else if(response.email===true && response.password===true){
             setLoggedin(true);
           }
           //console.log(response.json.email);

@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {Redirect} from 'react-router-dom'
 import axios from 'axios'
 import {
-Form,
+Form,Alert,Container,
 InputGroup, InputGroupAddon,InputGroupText, Input,Button
 } from "reactstrap";
 
@@ -12,18 +12,26 @@ function SupermarketLogin (){
     const [passwordFocus, setpasswordFocus] = useState(false);
     const [supermarket_email, setsupermarket_email]= useState(" ");
     const [supermarket_password, setsupermarket_password]= useState("");
-    const [respose, setresponse] =useState([]);
+    const [response, setresponse] =useState([]);
     const [loggedin,setLoggedin] = useState(false);
+    const [loginfailAlert, setloginfailAlert] = React.useState(false);
     function SmarketLogin(){
       
       
       axios.post('http://localhost:4000/onstep/user/supermarket/login',{email:supermarket_email, password:supermarket_password} )
       .then(res => setresponse(res.data));
-            if(supermarket_password===respose.supermarket_password){
-              setLoggedin(true);}
-            else{
-              console.log("error")
-            }
+
+        if (response.email===false){
+            console.log("Email not found");
+            setloginfailAlert(true);
+        }
+        else if(response.email===true && response.password===false){
+          console.log("Password wrong");
+          setloginfailAlert(true);
+        }
+        else if(response.email===true && response.password===true){
+          setLoggedin(true);
+        }
     }
     
     if(loggedin){
@@ -35,6 +43,24 @@ function SupermarketLogin (){
 
     
 return(
+<>
+                <Alert color="danger" isOpen={loginfailAlert}>
+                  <Container>
+                    <div className="alert-icon">
+                      <i className="now-ui-icons ui-1_bell-53"></i>
+                    </div>
+                    Invalid Email and/or Password
+                    <button
+                      type="button"
+                      className="close"
+                      onClick={() => setloginfailAlert(false)}
+                    >
+                      <span aria-hidden="true">
+                        <i className="now-ui-icons ui-1_simple-remove"></i>
+                      </span>
+                    </button>
+                  </Container>
+                </Alert>
                 <Form action="" className="form" method="post">
                     <InputGroup
                       className={
@@ -89,6 +115,7 @@ return(
                       Login 
                     </Button>
                     </Form>
+                    </>
 )}
 }
 
