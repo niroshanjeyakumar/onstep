@@ -1,17 +1,36 @@
 const express = require('express');
 const supermarketRoutes = express.Router();
+const session = require('express-session');
+const bcrypt = require('bcryptjs');
+const passport=require('passport');
+const LocalStrategy=require('passport-local').Strategy;
+const saltrounds=10;
 
 let Supermarket = require('../../models/user/supermarket.model');
 
 supermarketRoutes.route('/add').post(function (req, res) {
   let supermarket = new Supermarket(req.body);
-  supermarket.save()
-    .then(supermarket => {
-      res.status(200).json({'supermarket': 'supermarket in added successfully'});
-    })
-    .catch(err => {
-    res.status(400).send("unable to save to database");
-    });
+  Supermarket.findOne({supermarket_email:supermarket.supermarket_email}).then(user=>{
+    if(user) {
+      console.log(user.supermarket_email);
+      res.json({email : true});}
+  
+    else {
+      const password=req.body.supermarket_password;
+      const salt= bcrypt.genSaltSync(saltrounds);
+      const hashedpass=bcrypt.hashSync(password,salt);
+      console.log(hashedpass);
+      
+      supermarket.supermarket_password = hashedpass;
+      console.log(supermarket.supermarket_password);
+      supermarket.save()
+        .then(supermarket => {
+          res.status(200).json({'supermarket': 'supermarket in added successfully'});
+        })
+        .catch(err => {
+        res.status(400).send("unable to save to database");
+        });}
+  }).catch(err=> {console.log(err);});
 });
 
 supermarketRoutes.route('/').get(function (req, res) {
@@ -30,16 +49,21 @@ supermarketRoutes.route('/login').post(function(req,res){
   const password = req.body.password;
   Supermarket.findOne({ supermarket_email: email }, ).then(user => {
     if (!user) {
-      return res.status(404).json({ emailnotfound: "Email not found" });  
+      return res.json({ email: false, password:false });  
     }
-    else{ return res.json(user)}
-     /* if(password==user.customer_password){
-        return res.status(101).json({passwordsmatch: "Passwords Match"});
+    else{ 
+      if(bcrypt.compareSync(password,user.supermarket_password)){
+        req.session.User_id=user._id;
+        req.session.UserType="supermarket";
+        req.session.email=user.supermarket_email;
+        console.log(req.session.email);
+        return res.json({email: true, password:true });
       }
       else{
-        return res.status(201).json({passwordmismatch:"Passwords Do not match"});
-      }*/
-  });
+        return res.json({email: true, password:false, id:user._id });
+      }
+    }
+  })
 });
 
 supermarketRoutes.route('/edit/:id').get(function (req, res) {

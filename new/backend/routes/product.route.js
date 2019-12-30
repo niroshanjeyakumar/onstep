@@ -14,6 +14,7 @@ productRoutes.route('/add').post(function (req, res) {
     });
 });
 
+
 productRoutes.route('/').get(function (req, res) {
     Product.find(function(err, product){
     if(err){
@@ -23,6 +24,18 @@ productRoutes.route('/').get(function (req, res) {
       res.json(product);
     }
   });
+});
+
+productRoutes.route('/supermarket').post(function (req, res) {
+  const seller=req.body.seller;
+  Product.find({product_seller:seller}).then(product => {
+  if(!product){
+    console.log("error");
+  }
+  else {
+    res.json(product);
+  }
+});
 });
 
 productRoutes.route('/edit/:id').get(function (req, res) {

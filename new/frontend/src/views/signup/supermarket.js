@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 import {
-Form,
+Form, Alert, Container,
 InputGroup, InputGroupAddon,InputGroupText, Input,Button
 } from "reactstrap";
 
@@ -21,10 +21,14 @@ function SupermarketRegistration (){
     const [supermarket_number, setsupermarket_number]= useState("");
     const [supermarket_password, setsupermarket_password]= useState("");
     const [supermarket_confirmpassword, setsupermarket_confirmpassword]= useState("");
+    const [emailAlert, setemailAlert] = React.useState(false);
+    const [passwordAlert, setpasswordAlert] = React.useState(false);
   
     function saveSupermarket(){
+      setemailAlert(false);
+      setpasswordAlert(false);
       if (supermarket_password!==supermarket_confirmpassword){
-         alert("Passwords do not match")
+         setpasswordAlert(true);
       }
       else{
       const newSupermarket={
@@ -36,12 +40,53 @@ function SupermarketRegistration (){
         supermarket_password:supermarket_password
     }
     axios.post('http://localhost:4000/onstep/user/supermarket/add',newSupermarket)
-    .then(res => console.log(res.data)); }
+    .then(res => {console.log(res.data);
+      const data=res.data.email;
+      if (data===true){
+        setemailAlert(true);
+      }
+    }
+    ); }
     }
 
 
     
 return(
+  <>
+                  <Alert color="danger" isOpen={emailAlert}>
+                  <Container>
+                    <div className="alert-icon">
+                      <i className="now-ui-icons ui-1_bell-53"></i>
+                    </div>
+                    Email already in use!
+                    <button
+                      type="button"
+                      className="close"
+                      onClick={() => setemailAlert(false)}
+                    >
+                      <span aria-hidden="true">
+                        <i className="now-ui-icons ui-1_simple-remove"></i>
+                      </span>
+                    </button>
+                  </Container>
+                </Alert>
+                <Alert color="warning" isOpen={passwordAlert}>
+                  <Container>
+                    <div className="alert-icon">
+                      <i className="now-ui-icons ui-1_bell-53"></i>
+                    </div>
+                    Passwords do not match!
+                    <button
+                      type="button"
+                      className="close"
+                      onClick={() => setpasswordAlert(false)}
+                    >
+                      <span aria-hidden="true">
+                        <i className="now-ui-icons ui-1_simple-remove"></i>
+                      </span>
+                    </button>
+                  </Container>
+                </Alert>
                 <Form action="" className="form" method="post">
                     <InputGroup
                       className={
@@ -202,6 +247,7 @@ return(
                       Sign Up 
                     </Button>
                     </Form>
+                    </>
 )
 }
 

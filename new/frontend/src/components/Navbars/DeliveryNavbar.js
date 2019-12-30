@@ -20,6 +20,7 @@ import {
 function IndexNavbar() {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [collapseOpen, setCollapseOpen] = React.useState(false);
+
   React.useEffect(() => {
     const updateNavbarColor = () => {
       if (
@@ -54,8 +55,7 @@ function IndexNavbar() {
         <Container>
           <div className="navbar-translate">
             <NavbarBrand
-              href="https://demos.creative-tim.com/now-ui-kit-react/#/index?ref=nukr-index-navbar"
-              target="_blank"
+              to ="/delivery_profile" tag={Link}
               id="navbar-brand"
             >
               Onstep
@@ -84,60 +84,34 @@ function IndexNavbar() {
           >
             <Nav navbar>
               
-              <UncontrolledDropdown nav>
-                <DropdownToggle
-                  caret
-                  color="default"
-                  href="#pablo"
-                  nav
-                  onClick={e => e.preventDefault()}
-                >
-                  <i className="now-ui-icons shopping_shop"></i>
-                  <p>Products</p>
-                </DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem to="/index" tag={Link}>
-                    <i className="now-ui-icons business_chart-pie-36 mr-1"></i>
-                    All Products
-                  </DropdownItem>
-                  <DropdownItem
-                    href="https://demos.creative-tim.com/now-ui-kit-react/#/documentation/introduction?ref=nukr-index-navbar"
-                    target="_blank"
-                  >
-                    <i className="now-ui-icons design_bullet-list-67 mr-1"></i>
-                    
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
+              
               <NavItem>
                 <NavLink
-                  to ="/shopping_cart" tag={Link}
-                  target="_blank"
-                  id="shopping-cart"
+                  to ="/availableorder" tag={Link}
+                  id="available-order"
                 >
                   <i className="now-ui-icons files_paper"></i>
                   <p className="d-lg-none d-xl-none">Orders</p>
                 </NavLink>
-                <UncontrolledTooltip target="#shopping-cart">
+                <UncontrolledTooltip target="#available-order">
                  View Available orders
                 </UncontrolledTooltip>
               </NavItem>
               <NavItem>
                 <NavLink
-                  to ="/shopping_cart" tag={Link}
-                  target="_blank"
-                  id="shopping-cart"
+                  to ="/completedorders" tag={Link}
+                  id="completed"
                 >
-                  <i className="now-ui-icons files_paper"></i>
+                  <i className="now-ui-icons files_box"></i>
                   <p className="d-lg-none d-xl-none">Orders</p>
                 </NavLink>
-                <UncontrolledTooltip target="#shopping-cart">
+                <UncontrolledTooltip target="#completed">
                  View Completed orders
                 </UncontrolledTooltip>
               </NavItem>
               <NavItem>
                 <NavLink
-                  to="/delivery_profile" tag={Link}
+                  to="/delivery-home" tag={Link}
                   id="myprofile"
                 >
                   <i className="now-ui-icons shopping_delivery-fast"></i>
@@ -145,6 +119,18 @@ function IndexNavbar() {
                 </NavLink>
                 <UncontrolledTooltip target="#myprofile">
                  View My Profile
+                </UncontrolledTooltip>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  to="/" tag={Link}
+                  id="logout"
+                >
+                  <i className="now-ui-icons media-1_button-power"></i>
+                  <p className="d-lg-none d-xl-none">Logout</p>
+                </NavLink>
+                <UncontrolledTooltip target="#logout">
+                 LogOut
                 </UncontrolledTooltip>
               </NavItem>
             </Nav>

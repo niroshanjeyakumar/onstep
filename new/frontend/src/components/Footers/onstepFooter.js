@@ -1,6 +1,6 @@
 /*eslint-disable*/
 import React from "react";
-
+import {Link} from "react-router-dom"
 // reactstrap components
 import { Container } from "reactstrap";
 
@@ -15,16 +15,14 @@ function DefaultFooter() {
             <ul>
               <li>
                 <a
-                  href="https://www.creative-tim.com?ref=nukr-default-footer"
-                  target="_blank"
+                  to="/onstep" tag={Link}
                 >
-                  Creative Tim
+                  Onstep
                 </a>
               </li>
               <li>
                 <a
-                  href="http://presentation.creative-tim.com?ref=nukr-default-footer"
-                  target="_blank"
+                  to="/onstep" tag={Link}
                 >
                   About Us
                 </a>

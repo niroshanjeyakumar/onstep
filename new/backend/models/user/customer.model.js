@@ -6,7 +6,8 @@ let customer_model =new Schema({
         type:String
     },
     customer_email:{
-        type:String
+        type:String,
+        unique:true
     },
     customer_number:{
         type:String
@@ -17,7 +18,10 @@ let customer_model =new Schema({
     customer_password:{
         type:String
     }
+
 });
+
+
 
 
 module.exports=mongoose.model('customer',customer_model);

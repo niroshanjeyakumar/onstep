@@ -1,12 +1,18 @@
 import React, {useState,useEffect} from 'react';
 import axios from 'axios';
 import {
-  Card, CardText, CardBody,
-  CardTitle, CardSubtitle, 
+  Card, CardText, CardBody,CardFooter,Button,
+  CardTitle, CardSubtitle, Form
 } from 'reactstrap';
+//import AddtoCart from "views/product-functions/addtoCart.js";
 
 function Products  () {
   const [product, setproduct] = useState([]);
+  //const [modal,setModal]=useState(true);
+  //const [order,setOrder] = useState("")
+  const [productid,setProductid] = useState("");
+  const [ordersize,setOrdersize] = useState("");
+  
 
   useEffect(()=>{
       axios.get('http://localhost:4000/onstep/product/')
@@ -17,16 +23,70 @@ function Products  () {
         console.log(error);
     }) 
   });
-  const pro = product.map(function (products, index){
+ /* function addproduct(cart){
+    console.log(cart.product_name);
+    console.log(modal);
+      return (
+      
+      <>
+      <div>
+      <Modal isOpen={modal} toggle={() => setModal(false)}>
+      
+      <div className="modal-header justify-content-center">
+        <button
+          className="close"
+          type="button"
+          onClick={() => setModal(false)}
+        >
+          <i className="now-ui-icons ui-1_simple-remove"></i>
+        </button>
+  <h4 className="title title-up">Title={cart.product_name}</h4>
+      </div>
 
-return <div className="col-sm-2 col-md-2" key={index}>
-<Card>
-<CardBody>
-<CardTitle>Item Name ={products.product_name}</CardTitle>
-<CardSubtitle>Seller={products.product_seller}</CardSubtitle>
-<CardText>Unit Price={products.product_price} <br/> Units ={products.product_unit}</CardText>
-</CardBody>
+      <ModalBody>
+        <p>
+          Far far away
+        </p>
+      </ModalBody>
+      <div className="modal-footer">
+        <Button color="default" type="button">
+          Nice Button
+        </Button>
+        <Button
+          color="danger"
+          type="button"
+          onClick={() => setModal(false)}
+        >
+          Close
+        </Button>
+      </div>
+    </Modal>
+    </div>
+    </>)
+  }*/
+    function saveOrder() {
+      const newcart={
+        product_id:productid,
+        order_quantity:ordersize
+      }
+    axios.post('http://localhost:4000/onstep/order/add',newcart)
+    .then(res => console.log(res.data)); }
+    
+  const pro = product.map(function (products){
+
+return <div className="col-sm-2 col-md-2">
+        <Card>
+        <CardBody>
+        <CardTitle>Item Name ={products.product_name}</CardTitle>
+        <CardSubtitle>Seller={products.product_seller}</CardSubtitle>
+        <CardText>Unit Price={products.product_price} <br/> Units ={products.product_unit}</CardText>
+        </CardBody>
+        <CardFooter center><Form action="" className="form" method="post">
+      <input type="hidden" name="id" value={product.product_id}/>
+      <input type="number" name="order_size" />
+      <Button color="success" onClick={saveOrder}>Add to Cart</Button></Form></CardFooter>
 </Card>
+
 </div>
 })
 

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 import {
-Form,
+Form,Alert,Container,
 InputGroup, InputGroupAddon,InputGroupText, Input,Button
 } from "reactstrap";
 
@@ -17,10 +17,14 @@ function DeliveryRegistration (){
     const [delivery_number, setdelivery_number]= useState("");
     const [delivery_password, setdelivery_password]= useState("");
     const [delivery_confirmpassword, setdelivery_confirmpassword]= useState("");
+    const [emailAlert, setemailAlert] = React.useState(false);
+    const [passwordAlert, setpasswordAlert] = React.useState(false);
   
     function saveDelivery(){
+      setemailAlert(false);
+      setpasswordAlert(false);
       if (delivery_password!==delivery_confirmpassword){
-         alert("Passwords do not match")
+         setpasswordAlert(true);
       }
       else{
       const newDel={
@@ -30,12 +34,53 @@ function DeliveryRegistration (){
         delivery_password:delivery_password
     }
     axios.post('http://localhost:4000/onstep/user/delivery/add',newDel)
-    .then(res => console.log(res.data)); }
+    .then(res => {console.log(res.data);
+      const data=res.data.email;
+      if (data===true){
+        setemailAlert(true);
+      }
+    }
+    ); }
     }
 
 
     
 return(
+  <>
+                  <Alert color="danger" isOpen={emailAlert}>
+                  <Container>
+                    <div className="alert-icon">
+                      <i className="now-ui-icons ui-1_bell-53"></i>
+                    </div>
+                    Email already in use!
+                    <button
+                      type="button"
+                      className="close"
+                      onClick={() => setemailAlert(false)}
+                    >
+                      <span aria-hidden="true">
+                        <i className="now-ui-icons ui-1_simple-remove"></i>
+                      </span>
+                    </button>
+                  </Container>
+                </Alert>
+                <Alert color="warning" isOpen={passwordAlert}>
+                  <Container>
+                    <div className="alert-icon">
+                      <i className="now-ui-icons ui-1_bell-53"></i>
+                    </div>
+                    Passwords do not match!
+                    <button
+                      type="button"
+                      className="close"
+                      onClick={() => setpasswordAlert(false)}
+                    >
+                      <span aria-hidden="true">
+                        <i className="now-ui-icons ui-1_simple-remove"></i>
+                      </span>
+                    </button>
+                  </Container>
+                </Alert>
                 <Form action="" className="form" method="post">
                     <InputGroup
                       className={
@@ -152,6 +197,7 @@ return(
                       Sign Up 
                     </Button>
                     </Form>
+                    </>
 )
 }
 

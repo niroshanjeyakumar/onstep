@@ -1,17 +1,37 @@
 const express = require('express');
 const customerRoutes = express.Router();
-
-let Customer = require('../../models/user/customer.model');
+const session = require('express-session');
+const bcrypt = require('bcryptjs');
+const passport=require('passport');
+const LocalStrategy=require('passport-local').Strategy;
+const saltrounds=10;
+ 
+const Customer = require('../../models/user/customer.model');  
 
 customerRoutes.route('/add').post(function (req, res) {
-  let customer = new Customer(req.body);
-  customer.save()
-    .then(customer => {
-      res.status(200).json({'customer': 'customer in added successfully'});
-    })
-    .catch(err => {
-    res.status(400).send("unable to save to database");
-    });
+  //const email =req.params.email
+  const customer = new Customer(req.body);
+  Customer.findOne({customer_email:customer.customer_email}).then(user=>{
+    if(user) {
+      console.log(user.customer_email);
+      res.json({email : true});}
+  
+    else {
+      const password=req.body.customer_password;
+      const salt= bcrypt.genSaltSync(saltrounds);
+      const hashedpass=bcrypt.hashSync(password,salt);
+      console.log(hashedpass);
+      
+      customer.customer_password = hashedpass;
+      console.log(customer.customer_password);
+      customer.save()
+        .then(customer => {
+          res.status(200).json({'customer': 'customer in added successfully'});
+        })
+        .catch(err => {
+        res.status(400).send("unable to save to database");
+        });}
+  }).catch(err=> {console.log(err);});
 });
 
 customerRoutes.route('/').get(function (req, res) {
@@ -27,19 +47,27 @@ customerRoutes.route('/').get(function (req, res) {
 customerRoutes.route('/login').post(function(req,res){
   const email = req.body.email;
   const password = req.body.password;
-  Customer.findOne({ customer_email: email }, ).then(user => {
+ /* passport.use(new LocalStrategy (
+    function(email,password){*/
+      Customer.findOne({ customer_email: email },function(err,user) {
     if (!user) {
-      return res.status(404).json({ emailnotfound: "Email not found" });  
+      return res.json({ email: false, password:false });  
     }
-    else{ return res.json(user)}
-     /* if(password==user.customer_password){
-        return res.status(101).json({passwordsmatch: "Passwords Match"});
+    else{ 
+      if(bcrypt.compareSync(password,user.customer_password)){
+        req.session.User_id=user._id;
+        req.session.UserType="customer";
+        req.session.email=user.customer_email;
+        console.log(req.session.email);
+        return res.json({email: true, password:true });
       }
       else{
-        return res.status(201).json({passwordmismatch:"Passwords Do not match"});
-      }*/
-  });
+        return res.json({email: true, password:false, id:user._id });
+      }
+    }
+  })
 });
+
 customerRoutes.route('/edit/:id').get(function (req, res) {
   let id = req.params.id;
   Customer.findById(id, function (err, customer){
@@ -117,6 +145,16 @@ customerRoutes.route('/edit/:id').post(function (req, res) {
 });
 });
   
+function checkAuthenticated(req,res, next){
+  if(req.isAuthenticated()){
+    return next()
+  }
+}
+function checkNotAuthenticated(req,res,next){
+  if(req.isAuthenticated()){
+    return res.redirect ('/')
+  }
+}
 
 
 
