@@ -47,8 +47,7 @@ customerRoutes.route('/').get(function (req, res) {
 customerRoutes.route('/login').post(function(req,res){
   const email = req.body.email;
   const password = req.body.password;
- /* passport.use(new LocalStrategy (
-    function(email,password){*/
+
       Customer.findOne({ customer_email: email },function(err,user) {
     if (!user) {
       return res.json({ email: false, password:false });  

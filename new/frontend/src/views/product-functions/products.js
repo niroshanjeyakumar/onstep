@@ -65,11 +65,8 @@ function Products  () {
     </>)
   }*/
     function saveOrder() {
-      const newcart={
-        product_id:productid,
-        order_quantity:ordersize
-      }
-    axios.post('http://localhost:4000/onstep/order/add',newcart)
+
+    axios.post('http://localhost:4000/onstep/order/add',{product_id:productid,order_size:ordersize})
     .then(res => console.log(res.data)); }
     
   const pro = product.map(function (products){
@@ -82,8 +79,8 @@ return <div className="col-sm-2 col-md-2">
         <CardText>Unit Price={products.product_price} <br/> Units ={products.product_unit}</CardText>
         </CardBody>
         <CardFooter center><Form action="" className="form" method="post">
-      <input type="hidden" name="id" value={product.product_id}/>
-      <input type="number" name="order_size" />
+      <input type="hidden" name="id" value={product.product_id} onLoad={e=>setProductid(e.target.value)}/>
+      <input type="number" name="order_size" onChange={e=>setOrdersize(e.target.value)} />
       <Button color="success" onClick={saveOrder}>Add to Cart</Button></Form></CardFooter>
 </Card>
 
