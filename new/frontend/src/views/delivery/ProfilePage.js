@@ -66,8 +66,8 @@ function ProfilePage() {
                       <dt class="col-sm-3">Phone Number</dt>
                         <dd class="col-sm-9">01234567890</dd>
 
-                      <dt class="col-sm-3">NIC No</dt>
-                        <dd class="col-sm-9">903456789V</dd>
+                      <dt class="col-sm-3">E-mail</dt>
+                        <dd class="col-sm-9">abc@123.com</dd>
 
                        <dt class="col-sm-3">Address</dt>
                        <dd class="col-sm-9">Piliyandala</dd>
