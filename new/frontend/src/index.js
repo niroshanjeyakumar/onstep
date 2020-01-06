@@ -19,6 +19,7 @@ import Login from "views/login.js"
 import SignUp from "views/signup.js"
 import Cart from "views/customer/shoppingcart.js"
 import AddProduct from "views/supermarket/addproduct.js"
+<<<<<<< HEAD
 import AvailableOrder from "views/delivery/availableorders.js"
 import HomePage from './views/Homepage/HomePage';
 import Profile from './views/profile/Profile';
@@ -27,6 +28,11 @@ import DelProfile from "views/delivery/ProfilePage";
 import Supermarket from "views/supermarket/supermarket_profile";
 import Completedorders from "views/delivery/completedorders.js";
 
+=======
+import HomePage from './components/Homepage/HomePage';
+import Profile from './components/profile/Profile';
+import DelProfile from "views/delivery/ProfilePage"
+>>>>>>> origin/thisakya
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
