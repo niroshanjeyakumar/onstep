@@ -31,10 +31,6 @@ function ProfilePageHeader() {
           className="page-header-image"
           style={{
 
-<<<<<<< HEAD:new/frontend/src/components/Headers/delivery-homeHeader.js
-=======
-            backgroundImage: "url(" + require("assets/img/signup.jpg") + ")",
->>>>>>> origin/thisakya:new/frontend/src/components/Headers/ProfilePageHeader.js
             backgroundImage: "url(" + require("assets/img/bgn.jpg") + ")"
 
           }}

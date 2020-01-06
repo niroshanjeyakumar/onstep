@@ -1,10 +1,14 @@
 const express = require('express');
 const productRoutes = express.Router();
+const session = require('express-session');
 
 let Product = require('../models/products.model');
 
 productRoutes.route('/add').post(function (req, res) {
   let product = new Product(req.body);
+  console.log(req.session.UserType);
+  if(req.session.UserType==="supermarket"){
+    product.seller_id=req.session.User_id;
   product.save()
     .then(product => {
       res.status(200).json({'product': 'product in added successfully'});
@@ -12,6 +16,7 @@ productRoutes.route('/add').post(function (req, res) {
     .catch(err => {
     res.status(400).send("unable to save to database");
     });
+  }
 });
 
 

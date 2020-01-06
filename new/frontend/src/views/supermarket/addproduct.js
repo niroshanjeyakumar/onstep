@@ -39,13 +39,11 @@ function LoginPage() {
       document.body.classList.remove("sidebar-collapse");
     };
   });
-const seller="Niroshan";
-const id="121984615684";
+//const seller="Niroshan";
+//const id="121984615684";
   function saveProduct(){
     const newProduct={
       product_name:name,
-      product_seller:seller,
-      seller_id:id,
       product_unit:unit,
       product_price:price,
   }
@@ -143,7 +141,6 @@ const id="121984615684";
                       block
                       className="btn-round"
                       color="info"
-                      href="#pablo"
                       onClick={saveProduct}
                       size="lg"
                     >

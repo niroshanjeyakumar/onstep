@@ -5,7 +5,7 @@ let product =new Schema({
     product_name:{
         type:String
     },
-    product_seller:{
+    product_category:{
         type:String
     },
     seller_id:{
@@ -16,7 +16,12 @@ let product =new Schema({
     },
     product_price:{
         type: String
+    },
+    product_available:{
+        type:Boolean,
+        default: true
     }
+
 });
 
 
