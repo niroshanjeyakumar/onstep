@@ -8,6 +8,9 @@ let cart =new Schema({
     order_quantity:{
         type: String
     },
+    customer_id:{
+        type:String
+    },
     order_status:{
         type:Boolean,
         default:false

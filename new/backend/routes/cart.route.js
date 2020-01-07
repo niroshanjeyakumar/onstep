@@ -1,10 +1,16 @@
 const express = require('express');
 const cartRoutes = express.Router();
+const session = require('express-session');
 
 let Cart = require('../models/cart.model');
 
 cartRoutes.route('/add').post(function (req, res) {
-  let cart = new Cart(req.body);
+  const newcart={
+    product_id:req.body.product_id, 
+    order_quantity:req.body.order_size,
+    customer_id: req.session.User_id
+  };
+  let cart = new Cart(newcart);
   cart.save()
     .then(cart => {
       res.status(200).json({'cart': 'cart in added successfully'});
@@ -15,7 +21,9 @@ cartRoutes.route('/add').post(function (req, res) {
 });
 
 cartRoutes.route('/').get(function (req, res) {
+
     Cart.find(function(err, cart){
+      
     if(err){
       console.log(err);
     }

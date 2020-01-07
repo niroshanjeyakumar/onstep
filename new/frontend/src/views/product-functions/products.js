@@ -64,10 +64,10 @@ function Products  () {
     </div>
     </>)
   }*/
-    function saveOrder(product) {
-      console.log(product);
+    function saveCart(product) {
+      //console.log(product);
       //setProductid(product);
-    axios.post('http://localhost:4000/onstep/order/add',{product_id:product,order_size:ordersize})
+    axios.post('http://localhost:4000/onstep/cart/add',{product_id:product,order_size:ordersize})
     .then(res => console.log(res.data)); }
     
   const pro = product.map(function (products){
@@ -81,8 +81,8 @@ return <div className="col-sm-2 col-md-2">
         </CardBody>
         <CardFooter center><Form action="" className="form" method="post">
       
-      <input type="number" name="order_size" onChange={e=>setOrdersize(e.target.value)} />
-      <Button color="success" onClick={()=>saveOrder(products._id)}>Add to Cart</Button></Form></CardFooter>
+      <input type="number" name="order_size" onChange={e=>setOrdersize(e.target.value)} required/>
+      <Button color="success" onClick={()=>saveCart(products._id)}>Add to Cart</Button></Form></CardFooter>
 </Card>
 
 </div>

@@ -32,7 +32,10 @@ app.use(session({
     secret:"Onstep Online Shopping Platform",
     resave:false, 
     saveUninitialized:false,
-    store: new MongoStore({ mongooseConnection: connection })
+    store: new MongoStore({ 
+        mongooseConnection: connection,
+        touchAfter: 3600 
+    })
 }))
 app.use(passport.initialize())
 app.use(passport.session())
