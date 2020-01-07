@@ -17,6 +17,10 @@ let customer_model =new Schema({
     customer_password:{
         type:String
     }
+   /* photo: {
+        data: Buffer,
+        contentType: String
+        }*/
 });
 
 

@@ -108,7 +108,7 @@ customerRoutes.route('/edit/:id').post(function (req, res) {
       customer.customer_password= req.body.customer_password;
 
       customer.save().then(customer => {
-        res.json('Update complete');
+        res.json('Update completed');
     })
     .catch(err => {
           res.status(400).send("unable to update the database");
