@@ -10,7 +10,7 @@ function Products  () {
   const [product, setproduct] = useState([]);
   //const [modal,setModal]=useState(true);
   //const [order,setOrder] = useState("")
-  const [productid,setProductid] = useState("");
+  //const [productid,setProductid] = useState("");
   const [ordersize,setOrdersize] = useState("");
   
 
@@ -64,16 +64,14 @@ function Products  () {
     </div>
     </>)
   }*/
-    function saveOrder() {
-      const newcart={
-        product_id:productid,
-        order_quantity:ordersize
-      }
-    axios.post('http://localhost:4000/onstep/order/add',newcart)
+    function saveCart(product) {
+      //console.log(product);
+      //setProductid(product);
+    axios.post('http://localhost:4000/onstep/cart/add',{product_id:product,order_size:ordersize})
     .then(res => console.log(res.data)); }
     
   const pro = product.map(function (products){
-
+//<input type="hidden" name="id" value={this.products._id} on={e=>setProductid(e.target.value)}/>
 return <div className="col-sm-2 col-md-2">
         <Card>
         <CardBody>
@@ -82,9 +80,9 @@ return <div className="col-sm-2 col-md-2">
         <CardText>Unit Price={products.product_price} <br/> Units ={products.product_unit}</CardText>
         </CardBody>
         <CardFooter center><Form action="" className="form" method="post">
-      <input type="hidden" name="id" value={product.product_id}/>
-      <input type="number" name="order_size" />
-      <Button color="success" onClick={saveOrder}>Add to Cart</Button></Form></CardFooter>
+      
+      <input type="number" name="order_size" onChange={e=>setOrdersize(e.target.value)} required/>
+      <Button color="success" onClick={()=>saveCart(products._id)}>Add to Cart</Button></Form></CardFooter>
 </Card>
 
 </div>

@@ -5,20 +5,20 @@ import axios from 'axios';
 // reactstrap components
 import {
   Button,
-  NavItem,
-  NavLink,
-  Nav,
-  TabContent,
-  TabPane,
+//  NavItem,
+  //NavLink,
+  //Nav,
+  //TabContent,
+  //TabPane,
   Container,
-  Row,
-  Col,
+  //Row,
+  //Col,
   Form,
   FormGroup,
   Input,
-  FormText,
+ // FormText,
   Label,
-  UncontrolledTooltip
+ // UncontrolledTooltip
 } from "reactstrap";
 
 // core components
@@ -27,7 +27,7 @@ import ProfilePageHeader from "components/Headers/customerhomeHeader";
 import DefaultFooter from "components/Footers/onstepFooter";
 
 function ProfilePage() {
-  const [pills, setPills] = React.useState("2");
+ // const [pills, setPills] = React.useState("2");
   
   React.useEffect(() => {
     document.body.classList.add("profile-page");
@@ -38,18 +38,18 @@ function ProfilePage() {
       document.body.classList.remove("sidebar-collapse");
     };
   });
-  const [emailFocus, setemailFocus] = useState(false);
-  const [nameFocus, setnameFocus] = useState(false);
-  const [addressFocus, setaddressFocus] = useState(false);
-  const [numberFocus, setnumberFocus] = useState(false);
-  const [passwordFocus, setpasswordFocus] = useState(false);
-  const [confirmpassFocus, setconfirmpassFocus] = useState(false);
+  //const [emailFocus, setemailFocus] = useState(false);
+  //const [nameFocus, setnameFocus] = useState(false);
+ // const [addressFocus, setaddressFocus] = useState(false);
+  //const [numberFocus, setnumberFocus] = useState(false);
+ // const [passwordFocus, setpasswordFocus] = useState(false);
+ // const [confirmpassFocus, setconfirmpassFocus] = useState(false);
   const [customer_email, setcustomer_email]= useState(" ");
   const [customer_name, setcustomer_name]= useState(" ");
   const [customer_address, setcustomer_address]= useState("");
   const [customer_number, setcustomer_number]= useState("");
   const [customer_password, setcustomer_password]= useState("");
-  const [customer_confirmpassword, setcustomer_confirmpassword]= useState("");
+  //const [customer_confirmpassword, setcustomer_confirmpassword]= useState("");
   const [respose, setresponse] =useState([]);
 
   

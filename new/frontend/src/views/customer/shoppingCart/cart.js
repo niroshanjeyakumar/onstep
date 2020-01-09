@@ -1,8 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import axios from 'axios';
 import {
-  Card, CardText, CardBody,
-  CardTitle, CardSubtitle, 
+  Button, Table
 } from 'reactstrap';
 function Products  () {
   const [product, setproduct] = useState([]);
@@ -16,25 +15,61 @@ function Products  () {
         console.log(error);
     }) 
   });
+  function deletefromcart (id){
+    axios.get("http://localhost:4000/onstep/cart/delete/"+id).catch(function(error){
+      console.log(error);
+  }) 
+  }
+  function editcart (id){
+    axios.get("http://localhost:4000/onstep/cart/update/"+id).catch(function(error){
+      console.log(error);
+  }) 
+  }
+
+  function makeorder (id){
+    new order{
+      cart_id:
+    };
+    axios.get("http://localhost:4000/onstep/order/add/").catch(function(error){
+      console.log(error);
+  }) 
+  }
   const pro = product.map(function (products, index){
 
-return <div className="col-sm-2 col-md-2" key={index}>
-<Card>
-<CardBody>
-<CardTitle>Item Name ={products.product_name}</CardTitle>
-<CardSubtitle>Seller={products.product_seller}</CardSubtitle>
-<CardText>Unit Price={products.product_price} <br/> Units ={products.product_unit}</CardText>
-</CardBody>
-</Card>
-</div>
+return ( 
+<tr key={index}>
+  <td>{products.product_name}</td>
+  <td>{products.product_seller}</td>
+  <td>{products.product_price}</td>
+  <td>{products.order_size}</td>
+  <td>{products.product_price*products.order_size}</td>
+  <td><Button color="success" onClick={()=> makeorder(products._id)}>Order</Button></td>
+  <td><Button color="warning" onClick={()=> editcart(products._id)}>Edit</Button></td>
+  <td><Button color="danger" onClick={()=> deletefromcart(products._id)}>Delete</Button></td>
+</tr>
+)
+
 })
 
   return (
 
     <div className="row m-4">
+        <Table hover>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Seller</th>
+          <th>Unit price</th>
+          <th>Order Quantity</th>
+          <th>Total Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        
         {pro}
 
-      
+      </tbody>
+      </Table>
     </div>
   );
 };

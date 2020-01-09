@@ -1,10 +1,14 @@
 const express = require('express');
 const orderRoutes = express.Router();
 
-let Order = require('../models/order.model');
+let Order = require('../models/orders.model.js');
 
 orderRoutes.route('/add').post(function (req, res) {
-  let order = new Order(req.body);
+  const neworder={
+    product_id:req.body.product_id, 
+    order_quantity:req.body.order_size
+  };
+  let order = new Order (neworder);
   order.save()
     .then(order => {
       res.status(200).json({'order': 'order in added successfully'});

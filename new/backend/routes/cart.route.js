@@ -1,10 +1,17 @@
 const express = require('express');
 const cartRoutes = express.Router();
+const session = require('express-session');
 
 let Cart = require('../models/cart.model');
+let Product = require('../models/products.model');
 
 cartRoutes.route('/add').post(function (req, res) {
-  let cart = new Cart(req.body);
+  const newcart={
+    product_id:req.body.product_id, 
+    order_quantity:req.body.order_size,
+    customer_id: req.session.User_id
+  };
+  let cart = new Cart(newcart);
   cart.save()
     .then(cart => {
       res.status(200).json({'cart': 'cart in added successfully'});
@@ -15,11 +22,14 @@ cartRoutes.route('/add').post(function (req, res) {
 });
 
 cartRoutes.route('/').get(function (req, res) {
-    Cart.find(function(err, cart){
+
+    Cart.find().populate('Product').exec(function(err, cart){
+      
     if(err){
       console.log(err);
     }
     else {
+      
       res.json(cart);
     }
   });
@@ -33,7 +43,7 @@ cartRoutes.route('/edit/:id').get(function (req, res) {
 });
 
 //  Defined update route
-/*cartRoutes.route('/update/:id').post(function (req, res) {
+cartRoutes.route('/update/:id').post(function (req, res) {
     Cart.findById(req.params.id, function(err, cart) {
     if (!cart)
       res.status(404).send("data is not found");
@@ -50,7 +60,7 @@ cartRoutes.route('/edit/:id').get(function (req, res) {
       });
     }
   });
-});*/
+});
 
 cartRoutes.route('/delete/:id').get(function (req, res) {
     Cart.findByIdAndRemove({_id: req.params.id}, function(err, cart){

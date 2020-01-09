@@ -31,9 +31,11 @@ function Onstep() {
         <IndexHeader />
         <div className="main">
           <Container>
+            <br/>
+          <h1 align="center">Shopping Cart</h1>
           <Cart />
           
-          <h1 align="center">Under Construction</h1>
+          
           </Container>
           
         </div>
