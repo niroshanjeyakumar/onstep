@@ -2,6 +2,9 @@ const mongoose =require('mongoose');
 const Schema =mongoose.Schema;
 
 let product =new Schema({
+    _id:{
+        type:mongoose.Schema.Types.ObjectId
+    },
     product_name:{
         type:String
     },
