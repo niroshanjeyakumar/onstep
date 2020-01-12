@@ -1,5 +1,6 @@
 import React, {useState,useEffect} from "react";
 import axios from 'axios';
+import '../../assets/css/custom.css'
 // reactstrap components
 import {
   Button,
@@ -22,9 +23,11 @@ import TransparentFooter from "components/Footers/loginfooter";
 
 function LoginPage() {
   const [nameFocus, setnameFocus] = useState(false);
+  const [categoryFocus, setcategoryFocus] = useState("");
   const [priceFocus, setpriceFocus] = useState(false);
   const [unitFocus, setunitFocus]= useState(false);
   const [name,setname] =useState("");
+  const [category, setcategory] = useState("");
   const [unit, setunit] = useState("");
   const [price, setPrice] = useState("");
 
@@ -39,16 +42,21 @@ function LoginPage() {
       document.body.classList.remove("sidebar-collapse");
     };
   });
-//const seller="Niroshan";
-//const id="121984615684";
+
+  const user=localStorage.getItem('user');
+  const userData=JSON.parse(user);
   function saveProduct(){
+    
+    console.log(userData.details._id);
     const newProduct={
       product_name:name,
       product_unit:unit,
-      product_price:price,
-  }
+      seller_id:userData.details._id,
+      product_category:category,
+      product_price:price
+  };
   axios.post('http://localhost:4000/onstep/product/add',newProduct)
-  .then(res => console.log(res.data)); 
+  .then(res => console.log(res.data)).catch(err=>console.log(err)); 
   }
 
   return (
@@ -92,6 +100,31 @@ function LoginPage() {
                         onFocus={() => setnameFocus(true)}
                         onBlur={() => setnameFocus(false)}
                       ></Input>
+                    </InputGroup>
+                    <InputGroup
+                      className={
+                        "no-border input-lg" +
+                        (categoryFocus ? " input-group-focus" : "")
+                      }
+                    >
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="now-ui-icons shopping_box"></i>
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input type="select" 
+                        placeholder="Category"
+                        name="category"
+                        value={category}
+                        onChange={e=> setcategory(e.target.value)}
+                        onFocus={() => setcategoryFocus(true)}
+                        onBlur={() => setcategoryFocus(false)}>
+                        <option >Dry Goods</option>
+                        <option>Fruits</option>
+                        <option>Sanitary Goods</option>
+                        <option>Biscuits</option>
+                        <option>Drinks</option>
+                      </Input>
                     </InputGroup>
                     <InputGroup
                       className={

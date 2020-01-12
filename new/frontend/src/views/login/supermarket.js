@@ -12,26 +12,29 @@ function SupermarketLogin (){
     const [passwordFocus, setpasswordFocus] = useState(false);
     const [supermarket_email, setsupermarket_email]= useState(" ");
     const [supermarket_password, setsupermarket_password]= useState("");
-    const [response, setresponse] =useState([]);
+   // const [response, setresponse] =useState([]);
     const [loggedin,setLoggedin] = useState(false);
     const [loginfailAlert, setloginfailAlert] = React.useState(false);
     function SmarketLogin(){
       
       
       axios.post('http://localhost:4000/onstep/user/supermarket/login',{email:supermarket_email, password:supermarket_password} )
-      .then(res => setresponse(res.data));
-
-        if (response.email===false){
-            console.log("Email not found");
-            setloginfailAlert(true);
-        }
-        else if(response.email===true && response.password===false){
-          console.log("Password wrong");
-          setloginfailAlert(true);
-        }
-        else if(response.email===true && response.password===true){
-          setLoggedin(true);
-        }
+      .then(res =>  {
+    
+    if (res.data.email===false){
+        console.log("Email not found");
+        setloginfailAlert(true);
+    }
+    else if(res.data.email===true && res.data.password===false){
+      console.log("Password wrong");
+      setloginfailAlert(true);
+    }
+    else if(res.data.email===true && res.data.password===true){
+      setLoggedin(true);
+      var user={type:'supermarket', details:res.data.details};
+            localStorage.setItem('user',JSON.stringify(user))
+    }
+  });
     }
     
     if(loggedin){

@@ -3,6 +3,7 @@ import axios from 'axios';
 import {
   Button, Table
 } from 'reactstrap';
+
 function Products  () {
   const [product, setproduct] = useState([]);
   
@@ -60,6 +61,9 @@ return (
           <th>Unit price</th>
           <th>Order Quantity</th>
           <th>Total Price</th>
+          <th></th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>

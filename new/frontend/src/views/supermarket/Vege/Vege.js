@@ -38,7 +38,7 @@ class Vege extends Component {
                                             <a href="#pablo" tabindex="0" role="menuitem" class="dropdown-item">View customer rating </a></div></li></ul></div></div></nav></div>
                 </div>
 
-               <Footer/>
+            
             </div>
         )
     }

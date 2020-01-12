@@ -57,7 +57,7 @@ supermarketRoutes.route('/login').post(function(req,res){
         req.session.UserType="supermarket";
         req.session.email=user.supermarket_email;
         console.log(req.session.email);
-        return res.json({email: true, password:true });
+        return res.json({email: true, password:true,details:user });
       }
       else{
         return res.json({email: true, password:false, id:user._id });

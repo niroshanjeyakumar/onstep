@@ -12,27 +12,28 @@ function Customerlogin (){
     const [passwordFocus, setpasswordFocus] = useState(false);
     const [customer_email, setcustomer_email]= useState(" ");
     const [customer_password, setcustomer_password]= useState("");
-    const [response, setresponse] =useState([]);
+    //const [response, setresponse] =useState([]);
     const [loggedin,setLoggedin] = useState(false);
     const [loginfailAlert, setloginfailAlert] = React.useState(false);
-    
 
     function CustLogin(){
-      setresponse("");
+     // setresponse("");
       setloginfailAlert(false);
     axios.post('http://localhost:4000/onstep/user/customer/login',{email:customer_email, password:customer_password} )
-    .then(res => {setresponse(res.data);
+    .then(res => {
 
-          if (response.email===false){
+          if (res.data.email===false){
               console.log("Email not found");
               setloginfailAlert(true);
           }
-          else if(response.email===true && response.password===false){
+          else if(res.data.email===true && res.data.password===false){
             console.log("Password wrong");
             setloginfailAlert(true);
           }
-          else if(response.email===true && response.password===true){
+          else if(res.data.email===true && res.data.password===true){
             setLoggedin(true);
+            var user={type:'customer', details:res.data.details};
+            localStorage.setItem('user',JSON.stringify(user))
           }
           //console.log(response.json.email);
           //setLoggedin(true);

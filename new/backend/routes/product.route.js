@@ -6,17 +6,16 @@ let Product = require('../models/products.model');
 
 productRoutes.route('/add').post(function (req, res) {
   let product = new Product(req.body);
-  console.log(req.session.UserType);
-  if(req.session.UserType==="supermarket"){
-    product.seller_id=req.session.User_id;
+  //console.log(product);
   product.save()
     .then(product => {
       res.status(200).json({'product': 'product in added successfully'});
     })
     .catch(err => {
+      console.log(err);
     res.status(400).send("unable to save to database");
+    
     });
-  }
 });
 
 
@@ -33,7 +32,7 @@ productRoutes.route('/').get(function (req, res) {
 
 productRoutes.route('/supermarket').post(function (req, res) {
   const seller=req.body.seller;
-  Product.find({product_seller:seller}).then(product => {
+  Product.find({seller_id:seller}).then(product => {
   if(!product){
     console.log("error");
   }
