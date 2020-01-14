@@ -2,10 +2,10 @@ import React from "react";
 
 // reactstrap components
 import {
-  Button,
+  //Button,
   Container,
   Row,
-  UncontrolledTooltip
+  //UncontrolledTooltip
 } from "reactstrap";
 
 // core components
@@ -14,7 +14,7 @@ import ProfilePageHeader from "components/Headers/supermarkethomeheader";
 import DefaultFooter from "components/Footers/onstepFooter";
 
 function ProfilePage() {
-  const [pills, setPills] = React.useState("2");
+  //const [pills, setPills] = React.useState("2");
   React.useEffect(() => {
     document.body.classList.add("profile-page");
     document.body.classList.add("sidebar-collapse");

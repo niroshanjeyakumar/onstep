@@ -1,13 +1,10 @@
 const mongoose =require('mongoose');
 const Schema =mongoose.Schema;
-
+const Product = require('../models/products.model');
 let cart =new Schema({
-    product_id:{
-        type:String
-    },
     product: { 
         type: Schema.Types.ObjectId, 
-        ref: 'Product' 
+        ref: 'products' 
     },
     order_quantity:{
         type: String

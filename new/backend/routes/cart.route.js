@@ -6,12 +6,7 @@ let Cart = require('../models/cart.model');
 let Product = require('../models/products.model');
 
 cartRoutes.route('/add').post(function (req, res) {
-  const newcart={
-    product_id:req.body.product_id, 
-    order_quantity:req.body.order_size,
-    customer_id: req.session.User_id
-  };
-  let cart = new Cart(newcart);
+  let cart = new Cart(req.body);
   cart.save()
     .then(cart => {
       res.status(200).json({'cart': 'cart in added successfully'});
@@ -23,7 +18,9 @@ cartRoutes.route('/add').post(function (req, res) {
 
 cartRoutes.route('/').get(function (req, res) {
 
-    Cart.find().populate('Product').exec(function(err, cart){
+    Cart.find()
+    .populate('product')
+    .then(function(cart, err){
       
     if(err){
       console.log(err);

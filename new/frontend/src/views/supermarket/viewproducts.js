@@ -2,8 +2,8 @@ import React, {useState,useEffect} from 'react';
 import axios from 'axios';
 
 import {
-  Card, CardText, CardBody,
-  CardTitle, 
+  Button,
+  Table
 } from 'reactstrap';
 
 //import AddtoCart from "views/product-functions/addtoCart.js";
@@ -24,9 +24,10 @@ function Products  () {
     };
   });
 
-  const super_name = "Niroshan" 
+  const user=localStorage.getItem('user');
+  const userData=JSON.parse(user);
   useEffect(()=>{
-      axios.post('http://localhost:4000/onstep/product/supermarket',{seller:super_name})
+      axios.post('http://localhost:4000/onstep/product/supermarket',{seller:userData.details._id})
       .then(res=>{
         setproduct(res.data);
     })
@@ -35,18 +36,28 @@ function Products  () {
     }) 
   });
  
-    
+  function deleteproduct (id){
+    axios.get("http://localhost:4000/onstep/product/delete/"+id).catch(function(error){
+      console.log(error);
+  }) 
+  }
+  function editproduct (id){
+    axios.get("http://localhost:4000/onstep/product/update/"+id).catch(function(error){
+      console.log(error);
+  }) 
+  }
   const pro = product.map(function (products){
 
-            return <div className="col-sm-2 col-md-2">
-                    <Card>
-                    <CardBody>
-                    <CardTitle>Item Name ={products.product_name}</CardTitle>
-                    <CardText>Unit Price={products.product_price} <br/> Units ={products.product_unit}</CardText>
-                    </CardBody>
-                    
-            </Card>
-            </div>
+            return (
+              <tr>
+                <td>{products.product_name}</td>
+                <td>{products.product_category}</td>
+                <td>{products.product_unit}</td>
+                <td>{products.product_price}</td>
+                <td><Button color="warning" onClick={()=> editproduct(products._id)}>Edit</Button></td>
+                <td><Button color="danger" onClick={()=> deleteproduct(products._id)}>Delete</Button></td>
+              </tr>
+            )
             })
 
             return (
@@ -56,7 +67,23 @@ function Products  () {
                   <IndexHeader />
                   <div className="main">
                   <div className="row m-4">
-                    {pro}
+                      <Table hover>
+                    <thead>
+                      <tr>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Unit</th>
+                        <th>Unit price</th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                      {pro}
+
+                    </tbody>
+                    </Table>
                   </div>
                   </div>
                   <DarkFooter />

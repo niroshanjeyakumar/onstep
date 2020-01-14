@@ -67,7 +67,14 @@ function Products  () {
     function saveCart(product) {
       //console.log(product);
       //setProductid(product);
-    axios.post('http://localhost:4000/onstep/cart/add',{product_id:product,order_size:ordersize})
+      const cust=localStorage.getItem('user');
+      const customer =JSON.parse(cust);
+      var newcart={
+        product_id:product,
+        order_size:ordersize,
+        customer_id:customer.details._id
+      }
+    axios.post('http://localhost:4000/onstep/cart/add',newcart)
     .then(res => console.log(res.data)); }
     
   const pro = product.map(function (products){

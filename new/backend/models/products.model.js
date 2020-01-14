@@ -1,15 +1,17 @@
 const mongoose =require('mongoose');
 const Schema =mongoose.Schema;
-
+const seller = require('./user/supermarket.model.js')
 let product =new Schema({
     product_name:{
         type:String
     },
     product_category:{
-        type:String
+        type:String,
+        default:"general"
     },
     seller_id:{
-        type:String
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'supermarkets'
     },
     product_unit:{
         type:String
@@ -25,4 +27,4 @@ let product =new Schema({
 });
 
 
-module.exports=mongoose.model('products',product);
+module.exports=mongoose.model('product',product);
