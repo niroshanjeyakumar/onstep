@@ -1,6 +1,7 @@
 const mongoose =require('mongoose');
 const Schema =mongoose.Schema;
-const seller = require('./user/supermarket.model.js')
+const seller = require('./user/supermarket.model.js');
+
 let product =new Schema({
     product_name:{
         type:String
@@ -12,6 +13,9 @@ let product =new Schema({
     seller_id:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'supermarkets'
+    },
+    seller_name:{
+        type:String
     },
     product_unit:{
         type:String

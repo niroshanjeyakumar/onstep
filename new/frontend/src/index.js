@@ -26,7 +26,7 @@ import ViewProduct from './views/supermarket/viewproducts.js';
 import DelProfile from "views/delivery/ProfilePage";
 import Supermarket from "views/supermarket/supermarket_profile";
 import Completedorders from "views/delivery/completedorders.js";
-
+import MyOrders from "views/customer/myorders.js"
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
@@ -59,6 +59,10 @@ ReactDOM.render(
         <Route
           path="/shopping_cart"
           render={props => <Cart {...props} />}
+        />
+         <Route
+          path="/myorders"
+          render={props => <MyOrders {...props} />}
         />
         <Route
           path="/addproduct"

@@ -52,6 +52,7 @@ function LoginPage() {
       product_name:name,
       product_unit:unit,
       seller_id:userData.details._id,
+      seller_name:userData.details.supermarket_name,
       product_category:category,
       product_price:price
   };
@@ -119,7 +120,8 @@ function LoginPage() {
                         onChange={e=> setcategory(e.target.value)}
                         onFocus={() => setcategoryFocus(true)}
                         onBlur={() => setcategoryFocus(false)}>
-                        <option >Dry Goods</option>
+                        <option>Select Category</option>
+                        <option>Dry Goods</option>
                         <option>Fruits</option>
                         <option>Sanitary Goods</option>
                         <option>Biscuits</option>

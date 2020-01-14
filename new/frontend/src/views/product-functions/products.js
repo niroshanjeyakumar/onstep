@@ -70,8 +70,8 @@ function Products  () {
       const cust=localStorage.getItem('user');
       const customer =JSON.parse(cust);
       var newcart={
-        product_id:product,
-        order_size:ordersize,
+        product:product,
+        order_quantity:ordersize,
         customer_id:customer.details._id
       }
     axios.post('http://localhost:4000/onstep/cart/add',newcart)
@@ -83,7 +83,7 @@ return <div className="col-sm-2 col-md-2">
         <Card>
         <CardBody>
         <CardTitle>Item Name ={products.product_name}</CardTitle>
-        <CardSubtitle>Seller={products.product_seller}</CardSubtitle>
+        <CardSubtitle>Seller={products.seller_name}</CardSubtitle>
         <CardText>Unit Price={products.product_price} <br/> Units ={products.product_unit}</CardText>
         </CardBody>
         <CardFooter center><Form action="" className="form" method="post">

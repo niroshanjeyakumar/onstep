@@ -31,6 +31,36 @@ cartRoutes.route('/').get(function (req, res) {
     }
   });
 });
+cartRoutes.route('/cust/:id').get(function (req, res) {
+  let id = req.params.id;
+  Cart.find({customer_id:id})
+  .populate('product')
+  .then(function(cart, err){
+    
+  if(err){
+    console.log(err);
+  }
+  else {
+    
+    res.json(cart);
+  }
+});
+});
+cartRoutes.route('/:id').get(function (req, res) {
+  let id = req.params.id;
+  Cart.findById(id)
+  .populate('product')
+  .then(function(cart, err){
+    
+  if(err){
+    console.log(err);
+  }
+  else {
+    
+    res.json(cart);
+  }
+});
+});
 
 cartRoutes.route('/edit/:id').get(function (req, res) {
   let id = req.params.id;
