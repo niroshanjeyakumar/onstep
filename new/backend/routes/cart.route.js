@@ -33,7 +33,7 @@ cartRoutes.route('/').get(function (req, res) {
 });
 cartRoutes.route('/cust/:id').get(function (req, res) {
   let id = req.params.id;
-  Cart.find({customer_id:id})
+  Cart.find({customer_id:id, order_status:false})
   .populate('product')
   .then(function(cart, err){
     
@@ -46,8 +46,10 @@ cartRoutes.route('/cust/:id').get(function (req, res) {
   }
 });
 });
+
 cartRoutes.route('/:id').get(function (req, res) {
   let id = req.params.id;
+  
   Cart.findById(id)
   .populate('product')
   .then(function(cart, err){
@@ -56,38 +58,45 @@ cartRoutes.route('/:id').get(function (req, res) {
     console.log(err);
   }
   else {
+    cart.order_status=true;
+    cart.save(function (err,Order){
+      if(err){
+        console.log(err);
+      }
+      else{
+        res.json(Order);
+      }
+    })
     
-    res.json(cart);
   }
 });
 });
-
-cartRoutes.route('/edit/:id').get(function (req, res) {
-  let id = req.params.id;
-  Cart.findById(id, function (err, cart){
-      res.json(cart);
-  });
-});
+// cartRoutes.route('/edit/:id').get(function (req, res) {
+//   let id = req.params.id;
+//   Cart.findById(id, function (err, cart){
+//       res.json(cart);
+//   });
+// });
 
 //  Defined update route
-cartRoutes.route('/update/:id').post(function (req, res) {
-    Cart.findById(req.params.id, function(err, cart) {
-    if (!cart)
-      res.status(404).send("data is not found");
-    else {
-        cart.person_name = req.body.person_name;
-        cart.cart_name = req.body.cart_name;
-        cart.cart_gst_number = req.body.cart_gst_number;
+// cartRoutes.route('/update/:id').post(function (req, res) {
+//     Cart.findById(req.params.id, function(err, cart) {
+//     if (!cart)
+//       res.status(404).send("data is not found");
+//     else {
+//         cart.person_name = req.body.person_name;
+//         cart.cart_name = req.body.cart_name;
+//         cart.cart_gst_number = req.body.cart_gst_number;
 
-        cart.save().then(cart => {
-          res.json('Update complete');
-      })
-      .catch(err => {
-            res.status(400).send("unable to update the database");
-      });
-    }
-  });
-});
+//         cart.save().then(cart => {
+//           res.json('Update complete');
+//       })
+//       .catch(err => {
+//             res.status(400).send("unable to update the database");
+//       });
+//     }
+//   });
+// });
 
 cartRoutes.route('/delete/:id').get(function (req, res) {
     Cart.findByIdAndRemove({_id: req.params.id}, function(err, cart){

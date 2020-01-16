@@ -27,14 +27,17 @@ import ViewProduct from './views/supermarket/viewproducts.js';
 import DelProfile from "views/delivery/ProfilePage";
 import Supermarket from "views/supermarket/supermarket_profile";
 import Completedorders from "views/delivery/completedorders.js";
+import AciveOrder from "views/delivery/activeorders.js";
+import IncomingOrders from "views/supermarket/supermarketOrder.js";
 //import AdminLayout from "";
 import MyOrders from "views/customer/myorders.js";
-
+//import Logout from "views/logout.js"
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Switch>
         <Route path="/index" render={props => <Index {...props} />} />
+        
         <Route
           path="/nucleo-icons"
           render={props => <NucleoIcons {...props} />}
@@ -78,6 +81,10 @@ ReactDOM.render(
           render={props => <AvailableOrder {...props} />}
         />
         <Route
+          path="/activeorder"
+          render={props => <AciveOrder {...props} />}
+        />
+        <Route
           path="/view"
           render={props => <ViewProduct {...props} />}
         />
@@ -89,6 +96,10 @@ ReactDOM.render(
           path="/supermarkethome"
           render= {props => <Supermarket {...props}/>}
           />
+          <Route
+          path="/incomingorders"
+          render={props => <IncomingOrders {...props} />}
+        />
           <Route 
           path="/completedorders"
           render= {props => <Completedorders {...props}/>}

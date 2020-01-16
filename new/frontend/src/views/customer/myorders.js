@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import axios from 'axios';
 import {
-  Table
+  Table, Button
 } from 'reactstrap';
 
 import IndexNavbar from "components/Navbars/Customernavbar";
@@ -21,7 +21,7 @@ function Products  () {
 
       const [product, setproduct] = useState([]);
 
-      const cust=localStorage.getItem('user');
+      const cust=sessionStorage.getItem('user');
       const customer =JSON.parse(cust);
       const id= customer.details._id;
       useEffect(()=>{
@@ -34,17 +34,37 @@ function Products  () {
         }) 
       });
       var status;
+     function removeOrder(id){
+       console.log(id);
+     }
+     function trackOrder(id){
+      console.log(id);
+    }
+    function recievedOrder(id){
+      axios.post("http://localhost:4000/onstep/order/recieved/"+id).catch(err=>{console.log(err);})
+    }
+
       const pro = product.map(function (products, index){
-        
+        var remove=true;
+        var track=true;
+        var recieved=true;
+
         if (!products.order_accepted){
             status="Active";
         }
-        else if(!products.order_purchased){
+        else if (products.order_accepted && !products.order_purchased && !products.order_delivered){
+          status="Accepted";
+      }
+        else if(products.order_purchased && !products.order_complete){
             status="In delivery";
+            track=false;
+            recieved=false;
         }
-        else if(!products.order_delivered){
+        else if(products.order_complete){
             status="Delivered";
+            remove=false;
         }
+
         
           return (  
               <tr>
@@ -55,11 +75,11 @@ function Products  () {
               <td>{products.product.product_price}</td>
               <td>{products.order_quantity}</td>
               <td>{products.product.product_price*products.order_quantity}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>{products.order_accepted ? products.delivery.delivery_name : " "}</td>
+              <td>{products.order_accepted ? products.delivery.delivery_number : " "}</td>
+              <td><Button color="success" onClick={()=>recievedOrder(products._id)} disabled={recieved}>Recieved</Button></td>
+              <td><Button color="info" onClick={()=>trackOrder(products._id)} disabled={track}>Track Order</Button></td>
+              <td><Button color="danger" onClick={()=>removeOrder(products._id)} disabled={remove}>Delete</Button></td>
               </tr>
           );
       

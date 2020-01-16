@@ -33,7 +33,7 @@ function Customerlogin (){
           else if(res.data.email===true && res.data.password===true){
             setLoggedin(true);
             var user={type:'customer', details:res.data.details};
-            localStorage.setItem('user',JSON.stringify(user))
+            sessionStorage.setItem('user',JSON.stringify(user))
           }
           //console.log(response.json.email);
           //setLoggedin(true);

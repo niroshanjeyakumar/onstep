@@ -14,9 +14,80 @@ orderRoutes.route('/add').post(function (req, res) {
     res.status(400).send("unable to save to database");
     });
 });
+orderRoutes.route('/accept').post(function (req, res) {
+
+  let id = req.body.order_id;
+  
+  Order.findById(id)
+  .then(function(order, err){
+    
+  if(err){
+    console.log(err);
+  }
+  else {
+    order.delivery=req.body.delivery;
+    order.order_accepted=true;
+    order.save(function (err,Order){
+      if(err){
+        console.log(err);
+      }
+      else{
+        res.json(Order);
+      }
+    })
+}}).catch(err=>{console.log(err);})
+  });
+
+
+  orderRoutes.route('/purchased/:id').post(function (req, res) {
+
+    let id = req.params.id;
+    
+    Order.findById(id)
+    .then(function(order, err){
+      
+    if(err){
+      console.log(err);
+    }
+    else {
+      order.order_purchased=true;
+      order.save(function (err,Order){
+        if(err){
+          console.log(err);
+        }
+        else{
+          res.json(Order);
+        }
+      })
+  }}).catch(err=>{console.log(err);})
+    });
+
+
+    orderRoutes.route('/recieved/:id').post(function (req, res) {
+
+      let id = req.params.id;
+      
+      Order.findById(id)
+      .then(function(order, err){
+        
+      if(err){
+        console.log(err);
+      }
+      else {
+        order.order_complete=true;
+        order.save(function (err,Order){
+          if(err){
+            console.log(err);
+          }
+          else{
+            res.json(Order);
+          }
+        })
+    }}).catch(err=>{console.log(err);})
+      });
 
 orderRoutes.route('/customer/:id').get(function (req, res) {
-    Order.find({customer:req.params.id}).populate('product').then(function(order, err){
+  Order.find({customer:req.params.id}).populate({path : 'product delivery'}).then(function(order, err){
     if(err){
       console.log(err);
     }
@@ -25,8 +96,29 @@ orderRoutes.route('/customer/:id').get(function (req, res) {
     }
   });
 });
-orderRoutes.route('/customer/:id').get(function (req, res) {
-  Order.find({delivery:req.params.id, orders_accepted:true}).populate('product').then(function(order, err){
+orderRoutes.route('/completed/:id').get(function (req, res) {
+  Order.find({delivery:req.params.id,order_complete:true}).populate({path : 'product'}).then(function(order, err){
+    if(err){
+      console.log(err);
+    }
+    else {
+      res.json(order);
+    }
+  });
+});
+orderRoutes.route('/supermarket/:id').get(function (req, res) {
+  Order.find({seller:req.params.id,order_accepted:true}).populate('product delivery').then(function(order, err){
+  if(err){
+    console.log(err);
+  }
+  else {
+    res.json(order);
+  }
+});
+});
+
+orderRoutes.route('/del/:id').get(function (req, res) {
+  Order.find({delivery:req.params.id,order_accepted:true}).populate('product customer').then(function(order, err){
   if(err){
     console.log(err);
   }

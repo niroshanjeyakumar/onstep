@@ -33,7 +33,7 @@ function DeliveryLogin (){
         else if(res.data.email===true && res.data.password===true){
           setLoggedin(true);
           var user={type:'delivery', details:res.data.details};
-            localStorage.setItem('user',JSON.stringify(user))
+            sessionStorage.setItem('user',JSON.stringify(user))
         }
       });
     }

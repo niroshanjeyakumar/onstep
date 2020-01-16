@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import axios from 'axios';
 import {
-  Table
+  Table, Button
 } from 'reactstrap';
 
 import IndexNavbar from "components/Navbars/DeliveryNavbar";
@@ -21,6 +21,9 @@ function Products  () {
 
       const [product, setproduct] = useState([]);
 
+      const cust=sessionStorage.getItem('user');
+      const customer =JSON.parse(cust);
+      const ID= customer.details._id;
 
       useEffect(()=>{
           axios.get('http://localhost:4000/onstep/order/del')
@@ -33,6 +36,15 @@ function Products  () {
       });
      // console.log(product);
      // var status;
+
+      function acceptDelivery(id){
+        const orderAccept={ 
+          order_id:id,
+          delivery:ID
+        }
+        axios.post("http://localhost:4000/onstep/order/accept",orderAccept).catch(err=>{console.log(err);})
+      }
+
       const pro = product.map(function (products, index){
         
         // if (!products.order_accepted){
@@ -54,10 +66,11 @@ function Products  () {
               <td>{products.order_quantity}</td>
               <td>{products.product.product_price*products.order_quantity}</td>
               <td>{products.customer.customer_address}</td>
+              <td>{products.customer.customer_number}</td>
+              <td><Button color="success" onClick={()=>acceptDelivery(products._id)}>Accept Delivery</Button></td>
               <td></td>
               <td></td>
-              <td></td>
-              <td></td>
+              
               </tr>
           );
       

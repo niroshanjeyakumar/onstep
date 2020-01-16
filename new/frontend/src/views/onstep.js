@@ -27,7 +27,7 @@ function Onstep() {
       document.body.classList.remove("sidebar-collapse");
     };
   });
- // const user=localStorage.getItem('user');
+ // const user=sessionStorage.getItem('user');
  // const userData=JSON.parse(user);
   return (
     <>

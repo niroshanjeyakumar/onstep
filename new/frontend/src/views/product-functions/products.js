@@ -67,7 +67,7 @@ function Products  () {
     function saveCart(product) {
       //console.log(product);
       //setProductid(product);
-      const cust=localStorage.getItem('user');
+      const cust=sessionStorage.getItem('user');
       const customer =JSON.parse(cust);
       var newcart={
         product:product,
