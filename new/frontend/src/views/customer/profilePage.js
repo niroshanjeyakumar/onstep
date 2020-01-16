@@ -21,8 +21,8 @@ import {
 } from "reactstrap";
 
 // core components
-import ExamplesNavbar from "components/Navbars/ExamplesNavbar";
-import ProfilePageHeader from "components/Headers/ProfilePageHeader.js";
+import Customernavbar from "components/Navbars/Customernavbar.js";
+import ProfilePageHeader from "components/Headers/CustomerHeader.js";
 import DefaultFooter from "components/Footers/DefaultFooter.js";
 
 function ProfilePage() {
@@ -65,7 +65,7 @@ function ProfilePage() {
   
   return (
     <>
-      <ExamplesNavbar />
+      <Customernavbar />
       <div className="wrapper">
         <ProfilePageHeader />
         <div className="section">
@@ -203,28 +203,6 @@ function ProfilePage() {
                   <Col className="ml-auto mr-auto" md="10">
                     <Row className="collections">
                       <Col md="6">
-                        <img
-                          alt="..."
-                          className="img-raised"
-                          src={require("assets/img/bg6.jpg")}
-                        ></img>
-                        <img
-                          alt="..."
-                          className="img-raised"
-                          src={require("assets/img/bg11.jpg")}
-                        ></img>
-                      </Col>
-                      <Col md="6">
-                        <img
-                          alt="..."
-                          className="img-raised"
-                          src={require("assets/img/bg7.jpg")}
-                        ></img>
-                        <img
-                          alt="..."
-                          className="img-raised"
-                          src={require("assets/img/bg8.jpg")}
-                        ></img>
                       </Col>
                     </Row>
                   </Col>
@@ -232,30 +210,7 @@ function ProfilePage() {
                 <TabPane tabId="pills3">
                   <Col className="ml-auto mr-auto" md="10">
                     <Row className="collections">
-                      <Col md="6">
-                        <img
-                          alt="..."
-                          className="img-raised"
-                          src={require("assets/img/bg3.jpg")}
-                        ></img>
-                        <img
-                          alt="..."
-                          className="img-raised"
-                          src={require("assets/img/bg8.jpg")}
-                        ></img>
-                      </Col>
-                      <Col md="6">
-                        <img
-                          alt="..."
-                          className="img-raised"
-                          src={require("assets/img/bg7.jpg")}
-                        ></img>
-                        <img
-                          alt="..."
-                          className="img-raised"
-                          src={require("assets/img/bg6.jpg")}
-                        ></img>
-                      </Col>
+                      
                     </Row>
                   </Col>
                 </TabPane>
