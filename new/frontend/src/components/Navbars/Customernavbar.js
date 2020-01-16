@@ -117,6 +117,18 @@ function IndexNavbar() {
               </NavItem>
               <NavItem>
                 <NavLink
+                  to ="/myorders" tag={Link}
+                  id="myorders"
+                >
+                  <i className="now-ui-icons shopping_bag-16"></i>
+                  <p className="d-lg-none d-xl-none">My Cart</p>
+                </NavLink>
+                <UncontrolledTooltip target="#myorders">
+                 View My Orders
+                </UncontrolledTooltip>
+              </NavItem>
+              <NavItem>
+                <NavLink
                   to="/profile-page" tag={Link}
                   id="myprofile"
                 >

@@ -8,6 +8,7 @@ import "assets/css/bootstrap.min.css";
 import "assets/scss/now-ui-kit.scss";
 import "assets/demo/demo.css";
 import "assets/demo/nucleo-icons-page-styles.css";
+
 // pages for this kit
 import Index from "views/Index.js";
 import NucleoIcons from "views/NucleoIcons.js";
@@ -26,6 +27,8 @@ import ViewProduct from './views/supermarket/viewproducts.js';
 import DelProfile from "views/delivery/ProfilePage";
 import Supermarket from "views/supermarket/supermarket_profile";
 import Completedorders from "views/delivery/completedorders.js";
+//import AdminLayout from "";
+import MyOrders from "views/customer/myorders.js";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -36,6 +39,8 @@ ReactDOM.render(
           path="/nucleo-icons"
           render={props => <NucleoIcons {...props} />}
         />
+      {/* <Route path="/admin" render={props => <AdminLayout {...props} />} /> */}
+   
         <Route
           path="/landing-page"
           render={props => <LandingPage {...props} />}
@@ -59,6 +64,10 @@ ReactDOM.render(
         <Route
           path="/shopping_cart"
           render={props => <Cart {...props} />}
+        />
+         <Route
+          path="/myorders"
+          render={props => <MyOrders {...props} />}
         />
         <Route
           path="/addproduct"

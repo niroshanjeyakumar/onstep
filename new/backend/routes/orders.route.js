@@ -4,11 +4,8 @@ const orderRoutes = express.Router();
 let Order = require('../models/orders.model.js');
 
 orderRoutes.route('/add').post(function (req, res) {
-  const neworder={
-    product_id:req.body.product_id, 
-    order_quantity:req.body.order_size
-  };
-  let order = new Order (neworder);
+
+  let order = new Order (req.body);
   order.save()
     .then(order => {
       res.status(200).json({'order': 'order in added successfully'});
@@ -18,8 +15,8 @@ orderRoutes.route('/add').post(function (req, res) {
     });
 });
 
-orderRoutes.route('/').get(function (req, res) {
-    Order.find(function(err, order){
+orderRoutes.route('/customer/:id').get(function (req, res) {
+    Order.find({customer:req.params.id}).populate('product').then(function(order, err){
     if(err){
       console.log(err);
     }
@@ -28,13 +25,35 @@ orderRoutes.route('/').get(function (req, res) {
     }
   });
 });
-
-orderRoutes.route('/edit/:id').get(function (req, res) {
-  let id = req.params.id;
-  Order.findById(id, function (err, order){
-      res.json(order);
-  });
+orderRoutes.route('/customer/:id').get(function (req, res) {
+  Order.find({delivery:req.params.id, orders_accepted:true}).populate('product').then(function(order, err){
+  if(err){
+    console.log(err);
+  }
+  else {
+    res.json(order);
+  }
 });
+});
+
+orderRoutes.route('/del').get(function (req, res) {
+  Order.find({order_accepted:false}).populate('product customer').then(function(order, err){
+  if(err){
+    console.log(err);
+  }
+  else {
+    res.json(order);
+  }
+});
+});
+
+
+// orderRoutes.route('/edit/:id').get(function (req, res) {
+//   let id = req.params.id;
+//   Order.findById(id, function (err, order){
+//       res.json(order);
+//   });
+// });
 
 //  Defined update route
 /*orderRoutes.route('/update/:id').post(function (req, res) {

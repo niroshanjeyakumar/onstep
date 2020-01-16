@@ -4,8 +4,8 @@ import {
   Table
 } from 'reactstrap';
 
-import IndexNavbar from "components/Navbars/DeliveryNavbar";
-import IndexHeader from "components/Headers/delivery-homeHeader";
+import IndexNavbar from "components/Navbars/Customernavbar";
+import IndexHeader from "components/Headers/customerhomeHeader";
 import DarkFooter from "components/Footers/Footer1";
 
 function Products  () {
@@ -21,9 +21,11 @@ function Products  () {
 
       const [product, setproduct] = useState([]);
 
-
+      const cust=localStorage.getItem('user');
+      const customer =JSON.parse(cust);
+      const id= customer.details._id;
       useEffect(()=>{
-          axios.get('http://localhost:4000/onstep/order/del')
+          axios.get('http://localhost:4000/onstep/order/customer/'+id)
           .then(res=>{
             setproduct(res.data);
         })
@@ -31,29 +33,29 @@ function Products  () {
             console.log(error);
         }) 
       });
-     // console.log(product);
-     // var status;
+      var status;
       const pro = product.map(function (products, index){
         
-        // if (!products.order_accepted){
-        //     status="Active";
-        // }
-        // else if(!products.order_purchased){
-        //     status="In delivery";
-        // }
-        // else if(!products.order_delivered){
-        //     status="Delivered";
-        // }
+        if (!products.order_accepted){
+            status="Active";
+        }
+        else if(!products.order_purchased){
+            status="In delivery";
+        }
+        else if(!products.order_delivered){
+            status="Delivered";
+        }
         
           return (  
               <tr>
-            <th>{index+1}</th>
+      <th>{index+1}</th>
+              <td>{status}</td>
               <td>{products.product.product_name}</td>
               <td>{products.product.seller_name}</td>
               <td>{products.product.product_price}</td>
               <td>{products.order_quantity}</td>
               <td>{products.product.product_price*products.order_quantity}</td>
-              <td>{products.customer.customer_address}</td>
+              <td></td>
               <td></td>
               <td></td>
               <td></td>
@@ -67,18 +69,19 @@ function Products  () {
       <>
     <IndexNavbar/>
     <IndexHeader/><br/>
-    <h1 align="center">Available Orders</h1>
+    <h1 align="center">My Orders</h1>
     <div className="row m-4">
       <Table hover>
     <thead>
       <tr>
         <th>#</th>
+        <th>Status</th>
         <th>Product</th>
         <th>Seller</th>
         <th>Unit price</th>
         <th>Order Quantity</th>
         <th>Total Price</th>
-        <th>Delivery Lcation</th>
+        <th>Delivery Person Name</th>
         <th>Contact No</th>
         <th></th>
         <th></th>
