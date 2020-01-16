@@ -1,7 +1,11 @@
 import React, {useState,useEffect} from 'react';
 import axios from 'axios';
 import {
+<<<<<<< HEAD
   Table, Button
+=======
+  Table
+>>>>>>> 40f540d96ba87dc04dce6178f82a2625130a58fc
 } from 'reactstrap';
 
 import IndexNavbar from "components/Navbars/Customernavbar";
@@ -21,7 +25,11 @@ function Products  () {
 
       const [product, setproduct] = useState([]);
 
+<<<<<<< HEAD
       const cust=sessionStorage.getItem('user');
+=======
+      const cust=localStorage.getItem('user');
+>>>>>>> 40f540d96ba87dc04dce6178f82a2625130a58fc
       const customer =JSON.parse(cust);
       const id= customer.details._id;
       useEffect(()=>{
@@ -34,6 +42,7 @@ function Products  () {
         }) 
       });
       var status;
+<<<<<<< HEAD
      function removeOrder(id){
        console.log(id);
      }
@@ -65,6 +74,19 @@ function Products  () {
             remove=false;
         }
 
+=======
+      const pro = product.map(function (products, index){
+        
+        if (!products.order_accepted){
+            status="Active";
+        }
+        else if(!products.order_purchased){
+            status="In delivery";
+        }
+        else if(!products.order_delivered){
+            status="Delivered";
+        }
+>>>>>>> 40f540d96ba87dc04dce6178f82a2625130a58fc
         
           return (  
               <tr>
@@ -75,11 +97,19 @@ function Products  () {
               <td>{products.product.product_price}</td>
               <td>{products.order_quantity}</td>
               <td>{products.product.product_price*products.order_quantity}</td>
+<<<<<<< HEAD
               <td>{products.order_accepted ? products.delivery.delivery_name : " "}</td>
               <td>{products.order_accepted ? products.delivery.delivery_number : " "}</td>
               <td><Button color="success" onClick={()=>recievedOrder(products._id)} disabled={recieved}>Recieved</Button></td>
               <td><Button color="info" onClick={()=>trackOrder(products._id)} disabled={track}>Track Order</Button></td>
               <td><Button color="danger" onClick={()=>removeOrder(products._id)} disabled={remove}>Delete</Button></td>
+=======
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+>>>>>>> 40f540d96ba87dc04dce6178f82a2625130a58fc
               </tr>
           );
       

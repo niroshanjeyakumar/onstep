@@ -87,7 +87,11 @@ orderRoutes.route('/accept').post(function (req, res) {
       });
 
 orderRoutes.route('/customer/:id').get(function (req, res) {
+<<<<<<< HEAD
   Order.find({customer:req.params.id}).populate({path : 'product delivery'}).then(function(order, err){
+=======
+    Order.find({customer:req.params.id}).populate('product').then(function(order, err){
+>>>>>>> 40f540d96ba87dc04dce6178f82a2625130a58fc
     if(err){
       console.log(err);
     }
@@ -96,6 +100,7 @@ orderRoutes.route('/customer/:id').get(function (req, res) {
     }
   });
 });
+<<<<<<< HEAD
 orderRoutes.route('/completed/:id').get(function (req, res) {
   Order.find({delivery:req.params.id,order_complete:true}).populate({path : 'product'}).then(function(order, err){
     if(err){
@@ -105,6 +110,28 @@ orderRoutes.route('/completed/:id').get(function (req, res) {
       res.json(order);
     }
   });
+=======
+orderRoutes.route('/customer/:id').get(function (req, res) {
+  Order.find({delivery:req.params.id, orders_accepted:true}).populate('product').then(function(order, err){
+  if(err){
+    console.log(err);
+  }
+  else {
+    res.json(order);
+  }
+});
+});
+
+orderRoutes.route('/del').get(function (req, res) {
+  Order.find({order_accepted:false}).populate('product customer').then(function(order, err){
+  if(err){
+    console.log(err);
+  }
+  else {
+    res.json(order);
+  }
+});
+>>>>>>> 40f540d96ba87dc04dce6178f82a2625130a58fc
 });
 orderRoutes.route('/supermarket/:id').get(function (req, res) {
   Order.find({seller:req.params.id,order_accepted:true}).populate('product delivery').then(function(order, err){
@@ -138,6 +165,14 @@ orderRoutes.route('/del').get(function (req, res) {
   }
 });
 });
+
+
+// orderRoutes.route('/edit/:id').get(function (req, res) {
+//   let id = req.params.id;
+//   Order.findById(id, function (err, order){
+//       res.json(order);
+//   });
+// });
 
 
 // orderRoutes.route('/edit/:id').get(function (req, res) {

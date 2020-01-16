@@ -10,7 +10,11 @@ function Products  () {
  // const [modal, setModal] = useState(false);
   
   //const toggle = () => setModal(!modal);
+<<<<<<< HEAD
   const cust=sessionStorage.getItem('user');
+=======
+  const cust=localStorage.getItem('user');
+>>>>>>> 40f540d96ba87dc04dce6178f82a2625130a58fc
   const customer =JSON.parse(cust);
   const ID= customer.details._id;
   useEffect(()=>{
