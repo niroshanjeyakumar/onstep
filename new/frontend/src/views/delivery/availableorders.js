@@ -1,11 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import axios from 'axios';
 import {
-<<<<<<< HEAD
   Table, Button
-=======
-  Table
->>>>>>> 40f540d96ba87dc04dce6178f82a2625130a58fc
 } from 'reactstrap';
 
 import IndexNavbar from "components/Navbars/DeliveryNavbar";
@@ -25,12 +21,9 @@ function Products  () {
 
       const [product, setproduct] = useState([]);
 
-<<<<<<< HEAD
       const cust=sessionStorage.getItem('user');
       const customer =JSON.parse(cust);
       const ID= customer.details._id;
-=======
->>>>>>> 40f540d96ba87dc04dce6178f82a2625130a58fc
 
       useEffect(()=>{
           axios.get('http://localhost:4000/onstep/order/del')
@@ -43,7 +36,6 @@ function Products  () {
       });
      // console.log(product);
      // var status;
-<<<<<<< HEAD
 
       function acceptDelivery(id){
         const orderAccept={ 
@@ -53,8 +45,6 @@ function Products  () {
         axios.post("http://localhost:4000/onstep/order/accept",orderAccept).catch(err=>{console.log(err);})
       }
 
-=======
->>>>>>> 40f540d96ba87dc04dce6178f82a2625130a58fc
       const pro = product.map(function (products, index){
         
         // if (!products.order_accepted){
@@ -76,18 +66,11 @@ function Products  () {
               <td>{products.order_quantity}</td>
               <td>{products.product.product_price*products.order_quantity}</td>
               <td>{products.customer.customer_address}</td>
-<<<<<<< HEAD
               <td>{products.customer.customer_number}</td>
               <td><Button color="success" onClick={()=>acceptDelivery(products._id)}>Accept Delivery</Button></td>
               <td></td>
               <td></td>
               
-=======
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
->>>>>>> 40f540d96ba87dc04dce6178f82a2625130a58fc
               </tr>
           );
       
