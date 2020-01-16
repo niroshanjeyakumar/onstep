@@ -39,8 +39,9 @@ function ProfilePageHeader() {
         ></div>
         <Container>
           <div className="photo-container">
+          
 
-            <img alt="..." src={require("assets/img/img_avatar5.png")}></img>
+           
           </div>
           <h3 className="title">Customer profile</h3>
         </Container>

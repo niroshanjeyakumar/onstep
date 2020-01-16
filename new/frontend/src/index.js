@@ -14,16 +14,18 @@ import NucleoIcons from "views/NucleoIcons.js";
 import LoginPage from "views/examples/LoginPage.js";
 import LandingPage from "views/examples/LandingPage.js";
 import ProfilePage from "views/examples/ProfilePage.js";
-import OnStep from "views/onstep.js"
-import Login from "views/login.js"
-import SignUp from "views/signup.js"
-import Cart from "views/customer/shoppingcart.js"
-import AddProduct from "views/supermarket/addproduct.js"
+import OnStep from "views/onstep.js";
+import Login from "views/login.js";
+import SignUp from "views/signup.js";
+import Cart from "views/customer/Cart.js";
+import CustomerProfile from "views/customer/profilePage.js";
+import AddProduct from "views/supermarket/addproduct.js";
 import HomePage from './components/Homepage/HomePage';
 import Profile from './components/profile/Profile';
 import DelProfile from "views/delivery.js/ProfilePage"
 import Sprofile from "views/supermarket/Sprofile";
 // import Vege from "views/supermarket/Vege/Vege";
+
 
 ReactDOM.render(
   <BrowserRouter>
@@ -53,6 +55,10 @@ ReactDOM.render(
         <Route
           path="/signup"
           render={props => <SignUp {...props} />}
+        />
+         <Route
+          path="/customer-profile"
+          render={props => <CustomerProfile {...props} />}
         />
         <Route
           path="/shopping_cart"
