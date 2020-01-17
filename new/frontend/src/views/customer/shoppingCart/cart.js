@@ -6,9 +6,19 @@ import {
 
 function Products  () {
   const [product, setproduct] = useState([]);
+  //const [neworder, setnewOrder]=useState([]);
+ // const [modal, setModal] = useState(false);
   
+  //const toggle = () => setModal(!modal);
+<<<<<<< HEAD
+  const cust=sessionStorage.getItem('user');
+=======
+  const cust=localStorage.getItem('user');
+>>>>>>> 40f540d96ba87dc04dce6178f82a2625130a58fc
+  const customer =JSON.parse(cust);
+  const ID= customer.details._id;
   useEffect(()=>{
-      axios.get('http://localhost:4000/onstep/cart/')
+      axios.get('http://localhost:4000/onstep/cart/cust/'+ID)
       .then(res=>{
         setproduct(res.data);
     })
@@ -16,29 +26,49 @@ function Products  () {
         console.log(error);
     }) 
   });
+ // console.log(product);
   function deletefromcart (id){
     axios.get("http://localhost:4000/onstep/cart/delete/"+id).catch(function(error){
       console.log(error);
   }) 
   }
   function editcart (id){
+    
     axios.get("http://localhost:4000/onstep/cart/update/"+id).catch(function(error){
       console.log(error);
   }) 
   }
 
   function makeorder (id){
-    
-    axios.get("http://localhost:4000/onstep/order/add/",).catch(function(error){
-      console.log(error);
-  }) 
+    axios.get("http://localhost:4000/onstep/cart/"+id).then(response=>
+      {
+        //console.log(response);
+        const cartData=response.data;
+        
+        const order ={
+          product:cartData.product._id,
+          seller:cartData.product.seller_id,
+          order_quantity:cartData.order_quantity,
+          customer:cartData.customer_id
+        };
+        //setnewOrder(order);
+        axios.post("http://localhost:4000/onstep/order/add/",order).catch(function(error){
+          console.log(error);
+      }) 
+      }
+    ).catch(err=>console.log(err));
+    //console.log(neworder);
+  
   }
-  const pro = product.map(function (products, index){
+  
+  
 
-return ( 
+  const pro = product.map(function (products, index){
+     // console.log(products.product.product_name);
+return (  
 <tr>
   <td>{products.product.product_name}</td>
-  <td>{products.product.product_seller}</td>
+  <td>{products.product.seller_name}</td>
   <td>{products.product.product_price}</td>
   <td>{products.order_quantity}</td>
   <td>{products.product.product_price*products.order_quantity}</td>
@@ -72,6 +102,7 @@ return (
 
       </tbody>
       </Table>
+      
     </div>
   );
 };

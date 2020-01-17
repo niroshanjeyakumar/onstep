@@ -3,23 +3,37 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.19.1",
     "body-parser": "^1.19.0",
+<<<<<<< HEAD
+=======
+    "bootstrap": "^4.4.1",
+    "cartjs": "0.0.1",
+>>>>>>> 40f540d96ba87dc04dce6178f82a2625130a58fc
+    "chart.js": "^2.9.3",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "history": "^4.10.1",
     "moment": "2.24.0",
-    "mongoose": "^5.7.10",
+    "mongoose": "^5.8.7",
     "node-sass": "4.12.0",
     "nouislider": "14.0.2",
+    "perfect-scrollbar": "^1.4.0",
     "react": "16.8.6",
     "react-bootstrap-switch": "15.5.3",
+    "react-chartjs-2": "^2.8.0",
     "react-datetime": "2.16.3",
     "react-dom": "16.8.6",
+    "react-google-maps": "^9.4.5",
+<<<<<<< HEAD
+=======
+    "react-notification-alert": "0.0.12",
+>>>>>>> 40f540d96ba87dc04dce6178f82a2625130a58fc
     "react-responsive-image": "^5.0.0",
     "react-router": "5.0.1",
     "react-router-dom": "5.0.1",
-    "react-scripts": "3.0.1",
+    "react-scripts": "^3.3.0",
     "reactstrap": "8.0.1"
   },
   "scripts": {
@@ -28,9 +42,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
-    "compile-sass": "node-sass src/assets/scss/now-ui-kit.scss src/assets/css/now-ui-kit.css",
-    "minify-sass": "node-sass src/assets/scss/now-ui-kit.scss src/assets/css/now-ui-kit.min.css --output-style compressed",
-    "map-sass": "node-sass src/assets/scss/now-ui-kit.scss src/assets/css/now-ui-kit.css --source-map true"
+    "compile-sass": "node-sass src/assets/scss/now-ui-kit.scss src/assets/css/now-ui-kit.css && node-sass src/assets/scss/now-ui-dashboard.scss src/assets/css/now-ui-dashboard.css",
+    "minify-sass": "node-sass src/assets/scss/now-ui-kit.scss src/assets/css/now-ui-kit.min.css --output-style compressed && node-sass src/assets/scss/now-ui-dashboard.scss src/assets/css/now-ui-dashboard.min.css --output-style compressed",
+    "map-sass": "node-sass src/assets/scss/now-ui-kit.scss src/assets/css/now-ui-kit.css --source-map true && node-sass src/assets/scss/now-ui-dashboard.scss src/assets/css/now-ui-dashboard.css --source-map true"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -48,6 +62,10 @@
     ]
   },
   "optionalDependencies": {
-    "typescript": "3.5.3"
+    "typescript": "3.5.3",
+    "@types/googlemaps": "3.36.2",
+    "@types/markerclustererplus": "2.1.33",
+    "@types/react": "16.8.19",
+    "jquery": "3.4.1"
   }
 }

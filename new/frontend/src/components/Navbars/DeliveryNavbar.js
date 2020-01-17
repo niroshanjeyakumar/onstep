@@ -99,6 +99,18 @@ function IndexNavbar() {
               </NavItem>
               <NavItem>
                 <NavLink
+                  to ="/activeorder" tag={Link}
+                  id="active-order"
+                >
+                  <i className="now-ui-icons shopping_bag-16"></i>
+                  <p className="d-lg-none d-xl-none">Orders</p>
+                </NavLink>
+                <UncontrolledTooltip target="#active-order">
+                 View Active orders
+                </UncontrolledTooltip>
+              </NavItem>
+              <NavItem>
+                <NavLink
                   to ="/completedorders" tag={Link}
                   id="completed"
                 >

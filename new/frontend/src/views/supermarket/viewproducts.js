@@ -24,7 +24,7 @@ function Products  () {
     };
   });
 
-  const user=localStorage.getItem('user');
+  const user=sessionStorage.getItem('user');
   const userData=JSON.parse(user);
   useEffect(()=>{
       axios.post('http://localhost:4000/onstep/product/supermarket',{seller:userData.details._id})

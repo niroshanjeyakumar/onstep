@@ -21,11 +21,11 @@ function Products  () {
 
       const [product, setproduct] = useState([]);
 
-      const del=sessionStorage.getItem('user');
-      const delivery =JSON.parse(del);
-      const id= delivery.details._id;
+     const user =sessionStorage.getItem('user');
+     const customer =JSON.parse(user);
+    const ID= customer.details._id;
       useEffect(()=>{
-          axios.get('http://localhost:4000/onstep/order/completed/'+id)
+          axios.get('http://localhost:4000/onstep/order/del/'+ID)
           .then(res=>{
             setproduct(res.data);
         })
@@ -55,7 +55,8 @@ function Products  () {
               <td>{products.product.product_price}</td>
               <td>{products.order_quantity}</td>
               <td>{products.product.product_price*products.order_quantity}</td>
-              <td></td>
+              <td>{products.customer.customer_address}</td>
+              <td>{products.customer.customer_number}</td>
               <td></td>
               <td></td>
               <td></td>
@@ -68,7 +69,7 @@ function Products  () {
       <>
     <IndexNavbar/>
     <IndexHeader/><br/>
-    <h1 align="center">Completed Orders</h1>
+    <h1 align="center">Active Orders</h1>
     <div className="row m-4">
       <Table hover>
     <thead>
@@ -79,6 +80,8 @@ function Products  () {
         <th>Unit price</th>
         <th>Order Quantity</th>
         <th>Total Price</th>
+        <th>Delivery Location</th>
+        <th>Contact No</th>
         <th></th>
         <th></th>
         <th></th>

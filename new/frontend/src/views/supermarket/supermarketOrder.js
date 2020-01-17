@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import axios from 'axios';
 import {
-  Table
+  Table,Button
 } from 'reactstrap';
 
 import IndexNavbar from "components/Navbars/DeliveryNavbar";
@@ -21,11 +21,11 @@ function Products  () {
 
       const [product, setproduct] = useState([]);
 
-      const del=sessionStorage.getItem('user');
-      const delivery =JSON.parse(del);
-      const id= delivery.details._id;
+     const user =sessionStorage.getItem('user');
+     const customer =JSON.parse(user);
+    const ID= customer.details._id;
       useEffect(()=>{
-          axios.get('http://localhost:4000/onstep/order/completed/'+id)
+          axios.get('http://localhost:4000/onstep/order/supermarket/'+ID)
           .then(res=>{
             setproduct(res.data);
         })
@@ -35,14 +35,18 @@ function Products  () {
       });
      // console.log(product);
      // var status;
+     function purchased(id){
+        axios.post("http://localhost:4000/onstep/order/purchased/"+id).catch(err=>{console.log(err);})
+      }
       const pro = product.map(function (products, index){
-        
-        // if (!products.order_accepted){
+        var disableButton=false;
+         //if (!products.order_accepted){
         //     status="Active";
         // }
-        // else if(!products.order_purchased){
-        //     status="In delivery";
-        // }
+        // else 
+        if(products.order_purchased){
+            disableButton=true;
+         }
         // else if(!products.order_delivered){
         //     status="Delivered";
         // }
@@ -55,8 +59,9 @@ function Products  () {
               <td>{products.product.product_price}</td>
               <td>{products.order_quantity}</td>
               <td>{products.product.product_price*products.order_quantity}</td>
-              <td></td>
-              <td></td>
+              <td>{products.delivery.delivery_name}</td>
+              <td>{products.delivery.delivery_number}</td>
+              <td><Button color="success" onClick={()=>purchased(products._id)} disabled={disableButton}>Purchased</Button></td>
               <td></td>
               <td></td>
               </tr>
@@ -68,7 +73,7 @@ function Products  () {
       <>
     <IndexNavbar/>
     <IndexHeader/><br/>
-    <h1 align="center">Completed Orders</h1>
+    <h1 align="center">Active Orders</h1>
     <div className="row m-4">
       <Table hover>
     <thead>
@@ -79,6 +84,8 @@ function Products  () {
         <th>Unit price</th>
         <th>Order Quantity</th>
         <th>Total Price</th>
+        <th>Delivery Location</th>
+        <th>Contact No</th>
         <th></th>
         <th></th>
         <th></th>

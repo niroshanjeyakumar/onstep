@@ -8,6 +8,12 @@ import "assets/css/bootstrap.min.css";
 import "assets/scss/now-ui-kit.scss";
 import "assets/demo/demo.css";
 import "assets/demo/nucleo-icons-page-styles.css";
+<<<<<<< HEAD
+
+=======
+import "bootstrap/dist/css/bootstrap.css";
+import "assets/scss/now-ui-dashboard.scss?v1.2.0";
+>>>>>>> 40f540d96ba87dc04dce6178f82a2625130a58fc
 // pages for this kit
 import Index from "views/Index.js";
 import NucleoIcons from "views/NucleoIcons.js";
@@ -26,16 +32,35 @@ import ViewProduct from './views/supermarket/viewproducts.js';
 import DelProfile from "views/delivery/ProfilePage";
 import Supermarket from "views/supermarket/supermarket_profile";
 import Completedorders from "views/delivery/completedorders.js";
-
+<<<<<<< HEAD
+import AciveOrder from "views/delivery/activeorders.js";
+import IncomingOrders from "views/supermarket/supermarketOrder.js";
+//import AdminLayout from "";
+import MyOrders from "views/customer/myorders.js";
+//import Logout from "views/logout.js"
+=======
+import AdminLayout from "layouts/Admin.jsx";
+import MyOrders from "views/customer/myorders.js";
+>>>>>>> 40f540d96ba87dc04dce6178f82a2625130a58fc
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Switch>
+
         <Route path="/index" render={props => <Index {...props} />} />
+        
         <Route
           path="/nucleo-icons"
           render={props => <NucleoIcons {...props} />}
         />
+<<<<<<< HEAD
+      {/* <Route path="/admin" render={props => <AdminLayout {...props} />} /> */}
+=======
+    
+    
+      <Route path="/admin" render={props => <AdminLayout {...props} />} />
+>>>>>>> 40f540d96ba87dc04dce6178f82a2625130a58fc
+   
         <Route
           path="/landing-page"
           render={props => <LandingPage {...props} />}
@@ -60,6 +85,10 @@ ReactDOM.render(
           path="/shopping_cart"
           render={props => <Cart {...props} />}
         />
+         <Route
+          path="/myorders"
+          render={props => <MyOrders {...props} />}
+        />
         <Route
           path="/addproduct"
           render={props => <AddProduct {...props} />}
@@ -67,6 +96,10 @@ ReactDOM.render(
         <Route
           path="/availableorder"
           render={props => <AvailableOrder {...props} />}
+        />
+        <Route
+          path="/activeorder"
+          render={props => <AciveOrder {...props} />}
         />
         <Route
           path="/view"
@@ -80,6 +113,10 @@ ReactDOM.render(
           path="/supermarkethome"
           render= {props => <Supermarket {...props}/>}
           />
+          <Route
+          path="/incomingorders"
+          render={props => <IncomingOrders {...props} />}
+        />
           <Route 
           path="/completedorders"
           render= {props => <Completedorders {...props}/>}

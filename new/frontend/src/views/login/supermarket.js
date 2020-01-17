@@ -32,7 +32,7 @@ function SupermarketLogin (){
     else if(res.data.email===true && res.data.password===true){
       setLoggedin(true);
       var user={type:'supermarket', details:res.data.details};
-            localStorage.setItem('user',JSON.stringify(user))
+            sessionStorage.setItem('user',JSON.stringify(user))
     }
   });
     }

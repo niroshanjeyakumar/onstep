@@ -11,9 +11,9 @@ function ProfilePageHeader() {
   React.useEffect(() => {
     if (window.innerWidth > 991) {
       const updateScroll = () => {
-        let windowScrollTop = window.pageYOffset / 3;
-        pageHeader.current.style.transform =
-          "translate3d(0," + windowScrollTop + "px,0)";
+        // let windowScrollTop = window.pageYOffset / 3;
+        // pageHeader.current.style.transform =
+        //   "translate3d(0," + windowScrollTop + "px,0)";
       };
       window.addEventListener("scroll", updateScroll);
       return function cleanup() {
@@ -22,7 +22,7 @@ function ProfilePageHeader() {
     }
   });
 
-  const user=localStorage.getItem('user');
+  const user=sessionStorage.getItem('user');
   const userData=JSON.parse(user);
 
   return (
