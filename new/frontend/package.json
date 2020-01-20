@@ -5,11 +5,8 @@
   "dependencies": {
     "axios": "^0.19.1",
     "body-parser": "^1.19.0",
-<<<<<<< HEAD
-=======
     "bootstrap": "^4.4.1",
     "cartjs": "0.0.1",
->>>>>>> 40f540d96ba87dc04dce6178f82a2625130a58fc
     "chart.js": "^2.9.3",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -26,10 +23,7 @@
     "react-datetime": "2.16.3",
     "react-dom": "16.8.6",
     "react-google-maps": "^9.4.5",
-<<<<<<< HEAD
-=======
     "react-notification-alert": "0.0.12",
->>>>>>> 40f540d96ba87dc04dce6178f82a2625130a58fc
     "react-responsive-image": "^5.0.0",
     "react-router": "5.0.1",
     "react-router-dom": "5.0.1",
