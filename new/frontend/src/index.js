@@ -28,7 +28,7 @@ import Supermarket from "views/supermarket/supermarket_profile";
 import Completedorders from "views/delivery/completedorders.js";
 import AciveOrder from "views/delivery/activeorders.js";
 import IncomingOrders from "views/supermarket/supermarketOrder.js";
-//import AdminLayout from "";
+import AdminLayout from "views/admin/adminlogin.js";
 import MyOrders from "views/customer/myorders.js";
 //import Logout from "views/logout.js"
 ReactDOM.render(
@@ -42,7 +42,7 @@ ReactDOM.render(
           path="/nucleo-icons"
           render={props => <NucleoIcons {...props} />}
         />
-      {/* <Route path="/admin" render={props => <AdminLayout {...props} />} /> */}
+       <Route path="/admin" render={props => <AdminLayout {...props} />} />
    
         <Route
           path="/landing-page"
