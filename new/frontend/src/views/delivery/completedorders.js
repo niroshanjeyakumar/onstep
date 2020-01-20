@@ -21,11 +21,7 @@ function Products  () {
 
       const [product, setproduct] = useState([]);
 
-<<<<<<< HEAD
       const del=sessionStorage.getItem('user');
-=======
-      const del=localStorage.getItem('user');
->>>>>>> 40f540d96ba87dc04dce6178f82a2625130a58fc
       const delivery =JSON.parse(del);
       const id= delivery.details._id;
       useEffect(()=>{
@@ -59,10 +55,6 @@ function Products  () {
               <td>{products.product.product_price}</td>
               <td>{products.order_quantity}</td>
               <td>{products.product.product_price*products.order_quantity}</td>
-<<<<<<< HEAD
-=======
-              <td>{products.customer.customer_address}</td>
->>>>>>> 40f540d96ba87dc04dce6178f82a2625130a58fc
               <td></td>
               <td></td>
               <td></td>
@@ -87,11 +79,6 @@ function Products  () {
         <th>Unit price</th>
         <th>Order Quantity</th>
         <th>Total Price</th>
-<<<<<<< HEAD
-=======
-        <th>Delivery Lcation</th>
-        <th>Contact No</th>
->>>>>>> 40f540d96ba87dc04dce6178f82a2625130a58fc
         <th></th>
         <th></th>
         <th></th>
