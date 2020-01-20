@@ -42,9 +42,8 @@ function Products  () {
         const cartData=response.data;
         
         const order ={
-          product:cartData.product._id,
+          productlist:{product:cartData.product.product_name, unit:cartData.product.product_unit,price:cartData.product.product_price, order_quantity:cartData.order_quantity},
           seller:cartData.product.seller_id,
-          order_quantity:cartData.order_quantity,
           customer:cartData.customer_id
         };
         //setnewOrder(order);
