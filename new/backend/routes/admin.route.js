@@ -19,3 +19,5 @@ Routes.route('/login').post(function(req,res){
           return res.json({loggedin:false});
         }
       });
+
+module.exports=Routes;

@@ -128,18 +128,18 @@ orderRoutes.route('/completed/:id').get(function (req, res) {
   });
 });
 orderRoutes.route('/supermarket/:id').get(function (req, res) {
-  Order.find({seller:req.params.id,order_accepted:true}).populate('product delivery').then(function(order, err){
+  Order.find({seller:req.params.id,order_accepted:true}).populate('delivery').then(function(order, err){
   if(err){
     console.log(err);
   }
   else {
     res.json(order);
   }
-});
+}).catch(err=>console.log(err));
 });
 
 orderRoutes.route('/del/:id').get(function (req, res) {
-  Order.find({delivery:req.params.id,order_accepted:true}).populate('product customer').then(function(order, err){
+  Order.find({delivery:req.params.id,order_accepted:true}).populate('seller customer').then(function(order, err){
   if(err){
     console.log(err);
   }
@@ -150,7 +150,7 @@ orderRoutes.route('/del/:id').get(function (req, res) {
 });
 
 orderRoutes.route('/del').get(function (req, res) {
-  Order.find({order_accepted:false}).populate('product customer').then(function(order, err){
+  Order.find({order_accepted:false}).populate('seller customer').then(function(order, err){
   if(err){
     console.log(err);
   }

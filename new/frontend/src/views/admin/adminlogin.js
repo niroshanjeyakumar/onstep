@@ -5,7 +5,7 @@ Container,InputGroup,Form,Input,Button,Col,Card,CardBody, CardFooter
 } from 'reactstrap'
 import {Redirect} from 'react-router-dom'
 import axios from 'axios';
-
+import TransparentFooter from "components/Footers/Footer1.js";
 
 function AdminLogin(){
 
@@ -22,7 +22,8 @@ function AdminLogin(){
                 password:password
             };
             axios.post("http://localhost:4000/onstep/admin/login",login).then(res=>{
-                if(res.data.loggedin===true){
+              console.log(res.data);    
+            if(res.data.loggedin===true){
                     console.log(res.data);
                     const user={type:'admin'};
                     sessionStorage.setItem('user',JSON.stringify(user));
@@ -34,7 +35,7 @@ function AdminLogin(){
 
         if(LoggedIn){
             return(
-              <Redirect to="/profile-page" />
+              <Redirect to="/administrator" />
             )
           }
           else{
@@ -42,16 +43,11 @@ function AdminLogin(){
             <>
         
         <div className="page-header clear-filter" filter-color="blue">
-        <div
-          className="page-header-image"
-          style={{
-            backgroundImage: "url(" + require("assets/img/onstepheader.jpg") + ")"
-          }}
-        ></div>
+        
             <div className="content">
             <Container>
-            <h1>ADMINISTRATOR</h1>
-            <Col className="ml-auto mr-auto" md="30">
+            <h1 >ADMINISTRATOR</h1>
+            <Col className="ml-auto mr-auto" md={5}>
             <Card className="card-login card-plain">
                 <CardBody>
                     <Form action="" className="form" method="post">
@@ -79,7 +75,7 @@ function AdminLogin(){
                       className="btn-round"
                       color=""
                       size="sml"
-                      onClick={()=>adminlogin}
+                      onClick={adminlogin}
                     >
                       Login
                     </Button>
@@ -102,6 +98,7 @@ function AdminLogin(){
             </Container>
             </div>
 </div>
+<TransparentFooter/>
             </>
         )
           }

@@ -14,7 +14,7 @@
     "history": "^4.10.1",
     "moment": "2.24.0",
     "mongoose": "^5.8.7",
-    "node-sass": "4.12.0",
+    "node-sass": "^4.13.1",
     "nouislider": "14.0.2",
     "perfect-scrollbar": "^1.4.0",
     "react": "16.8.6",
@@ -28,6 +28,7 @@
     "react-router": "5.0.1",
     "react-router-dom": "5.0.1",
     "react-scripts": "^3.3.0",
+    "react-sidenav": "^4.0.6",
     "reactstrap": "8.0.1"
   },
   "scripts": {
@@ -61,5 +62,8 @@
     "@types/markerclustererplus": "2.1.33",
     "@types/react": "16.8.19",
     "jquery": "3.4.1"
+  },
+  "devDependencies": {
+    "eslint-loader": "^3.0.3"
   }
 }
