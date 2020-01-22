@@ -25,9 +25,9 @@ import TransparentFooter from "components/Footers/Footer1.js";
 
 
 function AdminCust() {
-const [id,setid]=useState('');
-  useEffect(()=>{setid(useParams)})
-console.log(id);
+//const [id,setid]=useState('');
+  //useEffect(()=>{setid(useParams)})
+//console.log(id);
     React.useEffect(() => {
         document.body.classList.add("landing-page");
         document.body.classList.add("sidebar-collapse");

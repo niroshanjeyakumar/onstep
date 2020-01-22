@@ -8,11 +8,11 @@ function LandingPageHeader() {
   let pageHeader = React.createRef();
 
   React.useEffect(() => {
-    if (window.innerWidth > 991) {
+    if (window.innerWidth > 200) {
       const updateScroll = () => {
-        let windowScrollTop = window.pageYOffset / 3;
-        pageHeader.current.style.transform =
-          "translate3d(0," + windowScrollTop + "px,0)";
+        // let windowScrollTop = window.pageYOffset / 3;
+        //  pageHeader.current.style.transform =
+        //    "translate3d(0," + windowScrollTop + "px,0)";
       };
       window.addEventListener("scroll", updateScroll);
       return function cleanup() {
@@ -22,7 +22,7 @@ function LandingPageHeader() {
   });
   return (
     <>
-      <div className="admin-header clear-filter" filter-color="blue">
+      <div className="admin-header">
         <div
           className="admin-header-image"
           style={{

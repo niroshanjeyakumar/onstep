@@ -100,14 +100,12 @@ function IndexNavbar() {
                   </DropdownItem>
                   <DropdownItem
                     href="/administrator/supermarket"
-                    target="_blank"
                   >
                     <i className="now-ui-icons shopping_shop"></i>
                     Supermarkets
                   </DropdownItem>
                   <DropdownItem
                     href="/administrator/delivery"
-                    target="_blank"
                   >
                     <i className="now-ui-icons shopping_delivery-fast"></i>
                     Delivery Personnl
