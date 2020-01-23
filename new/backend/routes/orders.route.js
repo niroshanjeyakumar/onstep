@@ -4,15 +4,36 @@ const orderRoutes = express.Router();
 let Order = require('../models/orders.model.js');
 
 orderRoutes.route('/add').post(function (req, res) {
+    let order = req.body;
 
-  let order = new Order (req.body);
-  order.save()
-    .then(order => {
-      res.status(200).json({'order': 'order in added successfully'});
-    })
-    .catch(err => {
-    res.status(400).send("unable to save to database");
-    });
+
+  Order.findOne({customer:order.customer,seller:order.seller,order_accepted:false}).then(res=>{
+    //console.log(res)
+    //{product:order.productlist.product, order_quantity:order.productlist.order_quantity}
+    if(res==null){
+      const orderData={
+        productlist:[order.productlist],
+        seller:order.seller,
+        customer:order.customer,
+      }
+      //console.log(orderData)
+      const orderSave =new Order(orderData);
+      orderSave.save().catch(err=>console.log(err));
+    }
+    else{
+      res.productlist.push(order.productlist);
+      res.save();
+    }
+  }  
+    ).catch(err=>console.log(err));
+  
+    // order.save()
+  //   .then(order => {
+  //     res.status(200).json({'order': 'order in added successfully'});
+  //   })
+  //   .catch(err => {
+  //   res.status(400).send("unable to save to database");
+  //   });
 });
 orderRoutes.route('/accept').post(function (req, res) {
 
@@ -87,7 +108,7 @@ orderRoutes.route('/accept').post(function (req, res) {
       });
 
 orderRoutes.route('/customer/:id').get(function (req, res) {
-  Order.find({customer:req.params.id}).populate({path : 'product delivery'}).then(function(order, err){
+  Order.find({customer:req.params.id}).populate({path : 'delivery seller'}).then(function(order, err){
     if(err){
       console.log(err);
     }
@@ -107,18 +128,18 @@ orderRoutes.route('/completed/:id').get(function (req, res) {
   });
 });
 orderRoutes.route('/supermarket/:id').get(function (req, res) {
-  Order.find({seller:req.params.id,order_accepted:true}).populate('product delivery').then(function(order, err){
+  Order.find({seller:req.params.id,order_accepted:true}).populate('delivery').then(function(order, err){
   if(err){
     console.log(err);
   }
   else {
     res.json(order);
   }
-});
+}).catch(err=>console.log(err));
 });
 
 orderRoutes.route('/del/:id').get(function (req, res) {
-  Order.find({delivery:req.params.id,order_accepted:true}).populate('product customer').then(function(order, err){
+  Order.find({delivery:req.params.id,order_accepted:true}).populate('seller customer').then(function(order, err){
   if(err){
     console.log(err);
   }
@@ -129,7 +150,7 @@ orderRoutes.route('/del/:id').get(function (req, res) {
 });
 
 orderRoutes.route('/del').get(function (req, res) {
-  Order.find({order_accepted:false}).populate('product customer').then(function(order, err){
+  Order.find({order_accepted:false}).populate('seller customer').then(function(order, err){
   if(err){
     console.log(err);
   }

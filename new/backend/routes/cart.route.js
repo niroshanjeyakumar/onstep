@@ -33,26 +33,7 @@ cartRoutes.route('/').get(function (req, res) {
 });
 cartRoutes.route('/cust/:id').get(function (req, res) {
   let id = req.params.id;
-<<<<<<< HEAD
   Cart.find({customer_id:id, order_status:false})
-=======
-  Cart.find({customer_id:id})
-  .populate('product')
-  .then(function(cart, err){
-    
-  if(err){
-    console.log(err);
-  }
-  else {
-    
-    res.json(cart);
-  }
-});
-});
-cartRoutes.route('/:id').get(function (req, res) {
-  let id = req.params.id;
-  Cart.findById(id)
->>>>>>> 40f540d96ba87dc04dce6178f82a2625130a58fc
   .populate('product')
   .then(function(cart, err){
     

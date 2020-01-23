@@ -1,7 +1,9 @@
 import React, {useState,useEffect} from 'react';
 import axios from 'axios';
 import {
-  Table, Button
+  Table, Button,
+  Modal,ModalBody
+
 } from 'reactstrap';
 
 import IndexNavbar from "components/Navbars/DeliveryNavbar";
@@ -20,6 +22,8 @@ function Products  () {
       });
 
       const [product, setproduct] = useState([]);
+      const [modal, setmodal]=useState(false);
+      const [listID,setlistID]=useState([])
 
       const cust=sessionStorage.getItem('user');
       const customer =JSON.parse(cust);
@@ -44,7 +48,11 @@ function Products  () {
         }
         axios.post("http://localhost:4000/onstep/order/accept",orderAccept).catch(err=>{console.log(err);})
       }
-
+      function vieworder(id){
+        //setlistID(id);
+        setmodal(true);
+        console.log(id);
+      }
       const pro = product.map(function (products, index){
         
         // if (!products.order_accepted){
@@ -60,22 +68,28 @@ function Products  () {
           return (  
               <tr>
             <th>{index+1}</th>
-              <td>{products.product.product_name}</td>
-              <td>{products.product.seller_name}</td>
-              <td>{products.product.product_price}</td>
-              <td>{products.order_quantity}</td>
-              <td>{products.product.product_price*products.order_quantity}</td>
+              <td>{products.seller.supermarket_name}</td>
+              <td>{products.seller.supermarket_area}</td>
               <td>{products.customer.customer_address}</td>
-              <td>{products.customer.customer_number}</td>
+              <td><Button color="warning" onClick={()=>{setlistID(products.productlist); vieworder(products._id);}}>View Order</Button></td>
               <td><Button color="success" onClick={()=>acceptDelivery(products._id)}>Accept Delivery</Button></td>
-              <td></td>
-              <td></td>
               
               </tr>
           );
       
       });
-      
+      const order_list =listID.map(function (products, index){
+        return(
+          <tr>
+          <td>{index+1}</td>
+          <td>{products.product}</td>
+          <td>{products.price}</td>
+          <td>{products.unit}</td>
+          <td>x {products.order_quantity}</td>
+          <td>Rs. {products.order_quantity*products.price}</td>
+          </tr>
+        );
+      });
   return (
       <>
     <IndexNavbar/>
@@ -86,14 +100,9 @@ function Products  () {
     <thead>
       <tr>
         <th>#</th>
-        <th>Product</th>
         <th>Seller</th>
-        <th>Unit price</th>
-        <th>Order Quantity</th>
-        <th>Total Price</th>
-        <th>Delivery Lcation</th>
-        <th>Contact No</th>
-        <th></th>
+        <th>Seller Area</th>
+        <th>Delivery Address</th>
         <th></th>
         <th></th>
       </tr>
@@ -102,6 +111,38 @@ function Products  () {
       {pro}
     </tbody>
     </Table>
+    <Modal isOpen={modal} toggle={() => setmodal(false)}>
+                <div className="modal-header justify-content-center">
+                  <button
+                    className="close"
+                    type="button"
+                    onClick={() => setmodal(false)}
+                  >
+                    <i className="now-ui-icons ui-1_simple-remove"></i>
+                  </button>
+                  <h4 className="title title-up">Ordered Items</h4>
+                </div>
+                <ModalBody>
+                  <Table>
+                  <th>#</th>
+                  <th>Prodct</th>
+                  <th>Unit Price</th>
+                  <th>Unit Size</th>
+                  <th>Order Size</th>
+                  <th>Price</th>
+                  {order_list}
+                  </Table>
+                </ModalBody>
+                <div className="modal-footer">
+                  <Button
+                    color="danger"
+                    type="button"
+                    onClick={() => setmodal(false)}
+                  >
+                    Close
+                  </Button>
+                </div>
+              </Modal>
   </div>
     <DarkFooter/>
     </>

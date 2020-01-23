@@ -23,7 +23,7 @@ function LandingPageHeader() {
   });
   return (
     <>
-      <div className="page-header page-header-small">
+      <div className="page-header page-header-mini">
         <div
           className="page-header-image"
           style={{

@@ -4239,7 +4239,7 @@ img {
     margin-bottom: 50px; }
   .page-header.page-header-small {
     min-height: 60vh;
-    max-height: 440px; }
+    max-height: 200px; }
   .page-header:before {
     background-color: rgba(0, 0, 0, 0.3); }
   .page-header > .container {
@@ -5955,7 +5955,7 @@ td.rdtYear:hover {
 
 .page-header.page-header-small {
   min-height: 60vh;
-  max-height: 640px; }
+  max-height: 200px; }
 
 @media screen and (max-width: 991px) {
   .sidebar-collapse .navbar-collapse:before {
@@ -7759,7 +7759,7 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
     color: rgba(255, 255, 255, 0.8); }
   .page-header.page-header-small {
     min-height: 60vh;
-    max-height: 440px; }
+    max-height: 200px; }
   .page-header.page-header-mini {
     min-height: 40vh;
     max-height: 340px; }

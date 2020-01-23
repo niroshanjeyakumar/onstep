@@ -5,12 +5,25 @@ const customer = require('./user/customer.model.js');
 const delivery = require('./user/delivery.model.js');
 const product = require('./products.model.js');
 
-let order =new Schema({
+var order_item=new Schema({
     product:{
-        type:Schema.Types.ObjectId,
-        ref:'product',
-        required:true
+        type:String
     },
+    unit:{
+        type:String
+    },
+    price:{
+        type:String
+    },
+    order_quantity:{
+        type: String
+    }
+});
+
+
+
+let order =new Schema({
+    productlist:[order_item],
     seller:{
         type:Schema.Types.ObjectId,
         ref:'supermarket',
@@ -44,3 +57,4 @@ let order =new Schema({
 
 
 module.exports=mongoose.model('order',order);
+//module.exports=mongoose.model('order_item',order_item);

@@ -10,11 +10,7 @@ function Products  () {
  // const [modal, setModal] = useState(false);
   
   //const toggle = () => setModal(!modal);
-<<<<<<< HEAD
   const cust=sessionStorage.getItem('user');
-=======
-  const cust=localStorage.getItem('user');
->>>>>>> 40f540d96ba87dc04dce6178f82a2625130a58fc
   const customer =JSON.parse(cust);
   const ID= customer.details._id;
   useEffect(()=>{
@@ -46,9 +42,8 @@ function Products  () {
         const cartData=response.data;
         
         const order ={
-          product:cartData.product._id,
+          productlist:{product:cartData.product.product_name, unit:cartData.product.product_unit,price:cartData.product.product_price, order_quantity:cartData.order_quantity},
           seller:cartData.product.seller_id,
-          order_quantity:cartData.order_quantity,
           customer:cartData.customer_id
         };
         //setnewOrder(order);

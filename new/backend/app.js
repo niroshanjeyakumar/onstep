@@ -7,12 +7,13 @@ var session = require('express-session');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const MongoStore = require('connect-mongo')(session);
-const customerRoutes =require("./routes/user/customer.route")
-const deliveryRoutes =require("./routes/user/delivery.route")
-const supermarketRoutes =require("./routes/user/supermarket.route")
-const productRoutes =require("./routes/product.route")
-const cartRoutes =require("./routes/cart.route")
-const orderRoutes =require("./routes/orders.route.js")
+const customerRoutes =require("./routes/user/customer.route");
+const deliveryRoutes =require("./routes/user/delivery.route");
+const supermarketRoutes =require("./routes/user/supermarket.route");
+const productRoutes =require("./routes/product.route");
+const cartRoutes =require("./routes/cart.route");
+const orderRoutes =require("./routes/orders.route.js");
+const adminRoutes =require("./routes/admin.route.js");
 const PORT =  4000;
 
 app.use(cors());
@@ -40,6 +41,7 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
+app.use('/onstep/admin',adminRoutes);
 app.use('/onstep/user/customer',customerRoutes);
 app.use('/onstep/user/delivery',deliveryRoutes);
 app.use('/onstep/user/supermarket',supermarketRoutes);
