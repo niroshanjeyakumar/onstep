@@ -23,15 +23,15 @@ function IndexNavbar() {
   React.useEffect(() => {
     const updateNavbarColor = () => {
       if (
-        document.documentElement.scrollTop > 399 ||
-        document.body.scrollTop > 399
+        document.documentElement.scrollTop > 150 ||
+        document.body.scrollTop > 150
       ) {
         setNavbarColor("");
       } else if (
-        document.documentElement.scrollTop < 400 ||
-        document.body.scrollTop < 400
+        document.documentElement.scrollTop < 150 ||
+        document.body.scrollTop < 150
       ) {
-        setNavbarColor("navbar-transparent");
+        setNavbarColor("blue");
       }
     };
     window.addEventListener("scroll", updateNavbarColor);
@@ -50,7 +50,7 @@ function IndexNavbar() {
           }}
         />
       ) : null}
-      <Navbar className={"fixed-top " + navbarColor} expand="lg" color="info">
+      <Navbar className={"fixed-top "} expand="lg" color="info">
         <Container>
           <div className="navbar-translate">
             <button
@@ -141,6 +141,7 @@ function IndexNavbar() {
               <NavItem>
                 <NavLink
                   href="/"
+                  
                 >
                   <i className="now-ui-icons media-1_button-power"></i>
                   <p>Logout</p>

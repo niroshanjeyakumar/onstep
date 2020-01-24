@@ -65,7 +65,7 @@ const ComponentsStack = createStackNavigator(
     Components: {
       screen: Components,
       navigationOptions: ({ navigation }) => ({
-        header: <Header title="Components" navigation={navigation} />
+        header: <Header title="Available Orders" navigation={navigation} />
       })
     }
   },

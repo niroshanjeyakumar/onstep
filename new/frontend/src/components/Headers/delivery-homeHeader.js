@@ -47,8 +47,8 @@ function ProfilePageHeader() {
 
             <img alt="..." src={require("assets/img/prf.jpg")}></img>
           </div>
-          <h3 className="title">{userData.details.delivery_name}</h3>
-          <p className="category">Del-ID</p>
+          {/* <h3 className="title">{userData.details.delivery_name}</h3> */}
+      
 
         </Container>
       </div>

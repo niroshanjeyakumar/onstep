@@ -3,21 +3,23 @@ import React, { useState,useEffect } from "react";
 import ExamplesNavbar from "components/SideNav/adminNav";
 import AdminHead from "components/Headers/adminHeader";
 import TransparentFooter from "components/Footers/Footer1.js";
-import { Table,Button } from "reactstrap";
+import { Table,Button,Modal,ModalBody } from "reactstrap";
 import Axios from "axios";
+import "assets/css/admin.css";
 import { Redirect } from "react-router";
+import AdminSideNav from "components/SideNav/sidenav.js"
 
 
 function AdminMarket() {
-      const[customers,setCustomers]=useState([]);
-
-
+      const[supermarket,setSupermarket]=useState([]);
+      const[modal,setModal]=useState(false);
+      const[Delete,setDelete]=useState(false);
     useEffect(() => {
         document.body.classList.add("landing-page");
         document.body.classList.add("sidebar-collapse");
         document.documentElement.classList.remove("nav-open");
-        window.scrollTo(0, 0);
-        document.body.scrollTop = 0;
+        // window.scrollTo(0, 0);
+        // document.body.scrollTop = 0;
         return function cleanup() {
           document.body.classList.remove("landing-page");
           document.body.classList.remove("sidebar-collapse");
@@ -27,7 +29,7 @@ function AdminMarket() {
       useEffect(()=>{
         Axios.get('http://localhost:4000/onstep/user/supermarket/')
         .then(res=>{
-          setCustomers(res.data);
+          setSupermarket(res.data);
       })
       .catch(function(error){
           console.log(error);
@@ -39,14 +41,19 @@ function AdminMarket() {
         <Redirect to={`/administrator/supermarket/view/${id}`}/>
       )
     }
-
-const cust = customers.map(function(Customers,index){
+    function deleteCust(){
+      Axios.get("http://localhost:4000/onstep/user/supermarket/delete/"+Delete).catch(function(error){
+      console.log(error);
+    });
+  }
+const mkt = supermarket.map(function(Seller,index){
       return(
         <tr>
       <td>{index +1}</td>
-      <td>{Customers._id}</td>
-      <td>{Customers.supermarket_name}</td>
-      <td><Button color="info" onClick={()=> viewCust(Customers._id)}>Edit</Button></td>
+      <td>{Seller._id}</td>
+      <td>{Seller.supermarket_name}</td>
+      <td><Button color="info" onClick={()=> viewCust(Seller._id)}>View</Button></td>
+      <td><Button color="danger" onClick={()=> {setDelete(Seller._id);setModal(true)}}>Delete</Button></td>
       </tr>
       )
 })
@@ -54,9 +61,8 @@ const cust = customers.map(function(Customers,index){
   return (
     <>
       <ExamplesNavbar />
-      <AdminHead />
-        <div className="content">
-        <div>
+      <AdminSideNav />
+      <div className="admin-content">
           <h2 align="center">Supermarket</h2>
           <div className="container">
             <Table>
@@ -64,17 +70,45 @@ const cust = customers.map(function(Customers,index){
                 <th>#</th>
                 <th>ID</th>
                 <th>Name</th>
+                <th></th>
+                <th></th>
               </thead>
               <tbody>
-                {cust}
+                {mkt}
               </tbody>
             </Table>
-
+            <Modal
+                modalClassName="modal-mini modal-danger"
+                toggle={() => setModal(false)}
+                isOpen={modal}
+              >
+                <div className="modal-header justify-content-center">
+                  {/* <div className="modal-profile">
+                    <i className="now-ui-icons users_circle-08"></i>
+                  </div> */}
+                </div>
+                <ModalBody>
+                  <p>Confirm Deletetion</p>
+                </ModalBody>
+                <div className="modal-footer">
+                  <Button className="btn-neutral" color="link" type="button"
+                  onClick={()=>{deleteCust();setModal(false)}}>
+                    Delete Supermarket
+                  </Button>
+                  <Button
+                    className="btn-neutral"
+                    color="link"
+                    type="button"
+                    onClick={() => setModal(false)}
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              </Modal>
 
           </div>
-          </div>
-        </div>
         <TransparentFooter />
+        </div>
     </>
   );
 }

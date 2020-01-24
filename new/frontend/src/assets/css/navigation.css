@@ -1,0 +1,22 @@
+.sidenav {
+    padding-top: 70px;
+    height:90%;
+    width: 12%;
+    position:absolute;
+    z-index: 1;
+    top:0;
+    left: 0;
+    background-color: #2CA8FF;
+    overflow-x: hidden;
+    min-width: 100px;
+    min-height: 100vh;
+    align-content: center;
+}
+
+.sidenav a {
+    padding: 12px 14px 0px 10px;
+    font-size: 15px;
+    color: white;
+    display: block;
+    border-color: black;
+}
