@@ -141,7 +141,7 @@ function IndexNavbar() {
               </NavItem>
               <NavItem>
                 <NavLink
-                  to="/" tag={Link}
+                  to="/logout" tag={Link}
                   id="logout"
             
                 >

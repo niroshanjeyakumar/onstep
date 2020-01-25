@@ -3,6 +3,7 @@ import axios from 'axios';
 import {
   Button, Table
 } from 'reactstrap';
+import { ButtonGroup } from 'react-bootstrap';
 
 function Products  () {
   const [product, setproduct] = useState([]);
@@ -62,14 +63,19 @@ function Products  () {
      // console.log(products.product.product_name);
 return (  
 <tr>
+  <td>{index + 1}</td>
   <td>{products.product.product_name}</td>
-  <td>{products.product.seller_name}</td>
+  <td><a href="/">{products.product.seller_name}</a></td>
   <td>{products.product.product_price}</td>
   <td>{products.order_quantity}</td>
   <td>{products.product.product_price*products.order_quantity}</td>
-  <td><Button color="success" onClick={()=> makeorder(products._id)}>Order</Button></td>
-  <td><Button color="warning" onClick={()=> editcart(products._id)}>Edit</Button></td>
-  <td><Button color="danger" onClick={()=> deletefromcart(products._id)}>Delete</Button></td>
+ <td>
+    <ButtonGroup>
+    <Button color="success" onClick={()=> makeorder(products._id)}>Order</Button>
+  <Button color="warning" onClick={()=> editcart(products._id)}>Edit</Button>
+  <Button color="danger" onClick={()=> deletefromcart(products._id)}>Delete</Button>
+  </ButtonGroup>
+  </td>
 </tr>
 )
 
@@ -81,14 +87,14 @@ return (
         <Table hover>
       <thead>
         <tr>
+          <th>#</th>
           <th>Product</th>
           <th>Seller</th>
           <th>Unit price</th>
           <th>Order Quantity</th>
           <th>Total Price</th>
           <th></th>
-          <th></th>
-          <th></th>
+      
         </tr>
       </thead>
       <tbody>

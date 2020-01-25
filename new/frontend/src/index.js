@@ -41,6 +41,7 @@ import AdminDelivery from "views/admin/adminDelivery";
 import AdminDeliveryProfile from "views/admin/adminDeliveryView";
 import AdminUnread from "views/admin/adminUnread";
 import AdminRead from "views/admin/adminRead";
+import Logout from "views/logout"
 //import Logout from "views/logout.js"
 ReactDOM.render(
   <BrowserRouter>
@@ -48,6 +49,7 @@ ReactDOM.render(
       <Switch>
 
         <Route path="/index" render={props => <Index {...props} />} />
+        <Route path="/logout" render={props => <Logout {...props} />} />
         
         <Route
           path="/nucleo-icons"

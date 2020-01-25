@@ -5,7 +5,9 @@ import React from "react";
 // } from "reactstrap";
 
 // core components
-import IndexNavbar from "components/Navbars/Customernavbar";
+
+import CustNavbar from "components/Navbars/Customernavbar";
+import IndexNavbar from "components/Navbars/onstepNavbar";
 import IndexHeader from "components/Headers/onstepHeader.js";
 import DarkFooter from "components/Footers/onstepFooter.js";
 
@@ -27,11 +29,17 @@ function Onstep() {
       document.body.classList.remove("sidebar-collapse");
     };
   });
- // const user=sessionStorage.getItem('user');
- // const userData=JSON.parse(user);
+ 
+  const user=sessionStorage.getItem('user');
+  const userData=JSON.parse(user);
   return (
     <>
-      <IndexNavbar />
+    {userData ? (
+        <CustNavbar />
+      ) : (
+        <IndexNavbar />
+      )}
+      
       <div className="wrapper">
         <IndexHeader />
         <div className="main">

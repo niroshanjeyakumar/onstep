@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import axios from 'axios';
 import {
-  Table, Button,Modal,ModalBody
+  Table, Button,Modal,ModalBody,ButtonGroup
 } from 'reactstrap';
 
 import IndexNavbar from "components/Navbars/Customernavbar";
@@ -59,6 +59,7 @@ function Products  () {
 
         if (!products.order_accepted){
             status="Active";
+            remove=false;
         }
         else if (products.order_accepted && !products.order_purchased && !products.order_delivered){
           status="Accepted";
@@ -81,10 +82,13 @@ function Products  () {
               <td>{products.seller.supermarket_name}</td>
               <td>{products.order_accepted ? products.delivery.delivery_name : " "}</td>
               <td>{products.order_accepted ? products.delivery.delivery_number : " "}</td>
-              <td><Button color="warning" onClick={()=>{setlistID(products.productlist); vieworder(products._id);}}>View Order</Button></td>
-              <td><Button color="success" onClick={()=>recievedOrder(products._id)} disabled={recieved}>Recieved</Button></td>
-              <td><Button color="info" onClick={()=>trackOrder(products._id)} disabled={track}>Track Order</Button></td>
-              <td><Button color="danger" onClick={()=>removeOrder(products._id)} disabled={remove}>Delete</Button></td>
+              <td>
+              <ButtonGroup>
+              <Button color="warning" onClick={()=>{setlistID(products.productlist); vieworder(products._id);}}>View Order</Button>
+              <Button color="success" onClick={()=>recievedOrder(products._id)} disabled={recieved}>Recieved</Button>
+              <Button color="info" onClick={()=>trackOrder(products._id)} disabled={track}>Track Order</Button>
+              <Button color="danger" onClick={()=>removeOrder(products._id)} disabled={remove}>Delete</Button>
+              </ButtonGroup></td>
               </tr>
           );
       
@@ -118,9 +122,6 @@ const order_list =listID.map(function (products, index){
         <th>Seller</th>
         <th>Delivery Person Name</th>
         <th>Contact No</th>
-        <th></th>
-        <th></th>
-        <th></th>
         <th></th>
       </tr>
     </thead>
