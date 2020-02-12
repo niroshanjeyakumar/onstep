@@ -18,7 +18,7 @@ import OnStep from "views/onstep.js";
 import Login from "views/login.js";
 import SignUp from "views/signup.js";
 import Cart from "views/customer/Cart.js";
-import CustomerProfile from "views/customer/profilePage.js";
+import CustomerProfile from "views/customer/CustomerPage.js";
 import AddProduct from "views/supermarket/addproduct.js";
 import HomePage from './components/Homepage/HomePage';
 import Profile from './components/profile/Profile';
@@ -57,7 +57,7 @@ ReactDOM.render(
           render={props => <SignUp {...props} />}
         />
          <Route
-          path="/customer-profile"
+          path="/customer-page"
           render={props => <CustomerProfile {...props} />}
         />
         <Route
