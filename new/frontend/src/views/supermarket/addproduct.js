@@ -126,6 +126,7 @@ useEffect(()=>{
                         onChange={e=> setcategory(e.target.value)}
                         onFocus={() => setcategoryFocus(true)}
                         onBlur={() => setcategoryFocus(false)}>
+                        <option>Select category</option>
                         {categoryList}
                       </Input>
                     </InputGroup>

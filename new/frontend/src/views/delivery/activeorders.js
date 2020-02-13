@@ -61,6 +61,7 @@ function Products  () {
               <td>{products.seller.supermarket_area}</td>
               <td>{products.customer.customer_address}</td>
               <td>{products.customer.customer_number}</td>
+              <td>Rs. {products.total}</td>
               <td><Button color="warning" onClick={()=>{setlistID(products.productlist); vieworder(products._id);}}>View Order</Button></td>
               <td></td>
               <td></td>
@@ -94,6 +95,7 @@ function Products  () {
         <th>Seller Area</th>
         <th>Delivery Location</th>
         <th>Contact No</th>
+        <th>Total</th>
         <th></th>
         <th></th>
         <th></th>

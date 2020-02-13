@@ -50,12 +50,8 @@ function Products  () {
           return (  
               <tr>
             <th>{index+1}</th>
-              <td>{products.product.product_name}</td>
-              <td>{products.product.seller_name}</td>
-              <td>{products.product.product_price}</td>
-              <td>{products.order_quantity}</td>
-              <td>{products.product.product_price*products.order_quantity}</td>
-              <td></td>
+              <td>{products.seller.supermarket_name}</td>
+              <td>Rs.{products.total}</td>
               <td></td>
               <td></td>
               <td></td>
@@ -74,10 +70,7 @@ function Products  () {
     <thead>
       <tr>
         <th>#</th>
-        <th>Product</th>
         <th>Seller</th>
-        <th>Unit price</th>
-        <th>Order Quantity</th>
         <th>Total Price</th>
         <th></th>
         <th></th>

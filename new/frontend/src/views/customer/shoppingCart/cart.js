@@ -7,6 +7,7 @@ import { ButtonGroup } from 'react-bootstrap';
 
 function Products  () {
   const [product, setproduct] = useState([]);
+  const [totVal,settotalVal]=useState(0);
   //const [neworder, setnewOrder]=useState([]);
  // const [modal, setModal] = useState(false);
   
@@ -17,6 +18,7 @@ function Products  () {
   useEffect(()=>{
       axios.get('http://localhost:4000/onstep/cart/cust/'+ID)
       .then(res=>{
+        console.log(res.data);
         setproduct(res.data);
     })
     .catch(function(error){
@@ -41,12 +43,15 @@ function Products  () {
       {
         //console.log(response);
         const cartData=response.data;
-        
+        let total=cartData.product.product_price * cartData.order_quantity;
+        //alert(total);
         const order ={
           productlist:{product:cartData.product.product_name, unit:cartData.product.product_unit,price:cartData.product.product_price, order_quantity:cartData.order_quantity},
           seller:cartData.product.seller_id,
-          customer:cartData.customer_id
+          customer:cartData.customer_id,
+          total:total
         };
+        //alert(order.total);
         //setnewOrder(order);
         axios.post("http://localhost:4000/onstep/order/add/",order).catch(function(error){
           console.log(error);
@@ -61,6 +66,8 @@ function Products  () {
 
   const pro = product.map(function (products, index){
      // console.log(products.product.product_name);
+let total=products.product.product_price*products.order_quantity;
+
 return (  
 <tr>
   <td>{index + 1}</td>
@@ -68,10 +75,11 @@ return (
   <td><a href="/">{products.product.seller_name}</a></td>
   <td>{products.product.product_price}</td>
   <td>{products.order_quantity}</td>
-  <td>{products.product.product_price*products.order_quantity}</td>
+  <td>{total}</td>
  <td>
     <ButtonGroup>
-    <Button color="success" onClick={()=> makeorder(products._id)}>Order</Button>
+    <Button color="success" onClick={()=> {makeorder(products._id); }}>Order</Button>
+    
   <Button color="warning" onClick={()=> editcart(products._id)}>Edit</Button>
   <Button color="danger" onClick={()=> deletefromcart(products._id)}>Delete</Button>
   </ButtonGroup>

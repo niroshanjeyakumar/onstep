@@ -66,6 +66,7 @@ function Products  () {
             <th>{index+1}</th>
               <td>{products.delivery.delivery_name}</td>
               <td>{products.delivery.delivery_number}</td>
+              <td>Rs. {products.total}</td>
               <td><Button color="warning" onClick={()=>{setlistID(products.productlist); vieworder(products._id);}}>View Order</Button></td>
               <td><Button color="success" onClick={()=>purchased(products._id)} disabled={disableButton}>Purchased</Button></td>
               <td></td>
@@ -101,6 +102,7 @@ function Products  () {
         <th>#</th>
         <th>Delivery Person Name</th>
         <th>Contact No</th>
+        <th>Total Price</th>
         <th></th>
         <th></th>
         <th></th>

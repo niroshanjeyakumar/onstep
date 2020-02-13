@@ -41,6 +41,9 @@ let order =new Schema({
         type:Schema.Types.ObjectId,
         ref:'delivery'
     },
+    total:{
+        type:String,
+    },
     order_accepted:{
         type:Boolean,
         default:false

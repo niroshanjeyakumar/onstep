@@ -71,6 +71,7 @@ function Products  () {
               <td>{products.seller.supermarket_name}</td>
               <td>{products.seller.supermarket_area}</td>
               <td>{products.customer.customer_address}</td>
+              <td>{products.total}</td>
               <td><Button color="warning" onClick={()=>{setlistID(products.productlist); vieworder(products._id);}}>View Order</Button></td>
               <td><Button color="success" onClick={()=>acceptDelivery(products._id)}>Accept Delivery</Button></td>
               
@@ -103,6 +104,7 @@ function Products  () {
         <th>Seller</th>
         <th>Seller Area</th>
         <th>Delivery Address</th>
+        <th>Total</th>
         <th></th>
         <th></th>
       </tr>

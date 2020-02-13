@@ -15,13 +15,15 @@ orderRoutes.route('/add').post(function (req, res) {
         productlist:[order.productlist],
         seller:order.seller,
         customer:order.customer,
+        total:order.total
       }
-      //console.log(orderData)
+      console.log(orderData)
       const orderSave =new Order(orderData);
       orderSave.save().catch(err=>console.log(err));
     }
     else{
       res.productlist.push(order.productlist);
+      res.total=+res.total+ +order.total;
       res.save();
     }
   }  
@@ -118,7 +120,7 @@ orderRoutes.route('/customer/:id').get(function (req, res) {
   });
 });
 orderRoutes.route('/completed/:id').get(function (req, res) {
-  Order.find({delivery:req.params.id,order_complete:true}).populate({path : 'product'}).then(function(order, err){
+  Order.find({delivery:req.params.id,order_complete:true}).populate({path : 'customer seller'}).then(function(order, err){
     if(err){
       console.log(err);
     }

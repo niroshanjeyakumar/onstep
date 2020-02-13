@@ -82,6 +82,7 @@ function Products  () {
               <td>{products.seller.supermarket_name}</td>
               <td>{products.order_accepted ? products.delivery.delivery_name : " "}</td>
               <td>{products.order_accepted ? products.delivery.delivery_number : " "}</td>
+              <td>Rs.{products.total}</td>
               <td>
               <ButtonGroup>
               <Button color="warning" onClick={()=>{setlistID(products.productlist); vieworder(products._id);}}>View Order</Button>
@@ -122,6 +123,7 @@ const order_list =listID.map(function (products, index){
         <th>Seller</th>
         <th>Delivery Person Name</th>
         <th>Contact No</th>
+        <th>Total</th>
         <th></th>
       </tr>
     </thead>
