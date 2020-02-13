@@ -1,25 +1,25 @@
 import React from "react";
 
 // reactstrap components
-import { Button, Container } from "reactstrap";
+import { Container } from "reactstrap";
 // core components
 import "assets/css/admin.css";
 function LandingPageHeader() {
   let pageHeader = React.createRef();
 
-  React.useEffect(() => {
-    if (window.innerWidth > 200) {
-      const updateScroll = () => {
-        // let windowScrollTop = window.pageYOffset / 3;
-        //  pageHeader.current.style.transform =
-        //    "translate3d(0," + windowScrollTop + "px,0)";
-      };
-      window.addEventListener("scroll", updateScroll);
-      return function cleanup() {
-        window.removeEventListener("scroll", updateScroll);
-      };
-    }
-  });
+  // React.useEffect(() => {
+  //   if (window.innerWidth > 200) {
+  //     const updateScroll = () => {
+  //       let windowScrollTop = window.pageYOffset / 3;
+  //         pageHeader.current.style.transform =
+  //           "translate3d(0," + windowScrollTop + "px,0)";
+  //     };
+  //     window.addEventListener("scroll", updateScroll);
+  //     return function cleanup() {
+  //       window.removeEventListener("scroll", updateScroll);
+  //     };
+  //   }
+  // });
   return (
     <>
       <div className="admin-header">

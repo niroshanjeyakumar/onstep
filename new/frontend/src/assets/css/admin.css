@@ -1,4 +1,11 @@
 
+.admin-content{
+  padding-top: 20px;
+  padding-left: 17%;
+
+}
+
+
 .admin-header {
   min-height: 25vh;
   max-height: 200px;

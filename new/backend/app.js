@@ -13,6 +13,7 @@ const supermarketRoutes =require("./routes/user/supermarket.route");
 const productRoutes =require("./routes/product.route");
 const cartRoutes =require("./routes/cart.route");
 const orderRoutes =require("./routes/orders.route.js");
+const categoryRoutes =require("./routes/category.route.js");
 const adminRoutes =require("./routes/admin.route.js");
 const PORT =  4000;
 
@@ -48,7 +49,7 @@ app.use('/onstep/user/supermarket',supermarketRoutes);
 app.use('/onstep/product',productRoutes);
 app.use('/onstep/cart',cartRoutes);
 app.use('/onstep/order',orderRoutes);
-
+app.use('/onstep/category',categoryRoutes);
 app.listen(PORT,function(){
     console.log("Server is running on Port: " + PORT)
 });

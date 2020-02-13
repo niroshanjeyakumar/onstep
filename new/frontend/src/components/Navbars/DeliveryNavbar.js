@@ -3,10 +3,6 @@ import { Link } from "react-router-dom";
 // reactstrap components
 import {
   Collapse,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
   NavbarBrand,
   Navbar,
   NavItem,
@@ -135,7 +131,7 @@ function IndexNavbar() {
               </NavItem>
               <NavItem>
                 <NavLink
-                  to="/" tag={Link}
+                  to="/logout" tag={Link}
                   id="logout"
                 >
                   <i className="now-ui-icons media-1_button-power"></i>

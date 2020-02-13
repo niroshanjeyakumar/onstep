@@ -22,6 +22,7 @@ import Navbar from "components/Navbars/SupermarketNavbar";
 import TransparentFooter from "components/Footers/loginfooter";
 
 function LoginPage() {
+  const [CatList,setCatList]=useState([])
   const [nameFocus, setnameFocus] = useState(false);
   const [categoryFocus, setcategoryFocus] = useState("");
   const [priceFocus, setpriceFocus] = useState(false);
@@ -42,9 +43,16 @@ function LoginPage() {
       document.body.classList.remove("sidebar-collapse");
     };
   });
-
+useEffect(()=>{
+  axios.get('http://localhost:4000/onstep/category/').then(res=>{setCatList(res.data)}).catch(err=>console.log(err))
+})
   const user=sessionStorage.getItem('user');
   const userData=JSON.parse(user);
+  const categoryList=CatList.map(function(Cat,index){
+    return(
+    <option value={Cat._id}>{Cat.category_name}</option>
+    )
+  })
   function saveProduct(){
     
     console.log(userData.details._id);
@@ -114,18 +122,11 @@ function LoginPage() {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input type="select" 
-                        placeholder="Category"
                         name="category"
-                        value={category}
                         onChange={e=> setcategory(e.target.value)}
                         onFocus={() => setcategoryFocus(true)}
                         onBlur={() => setcategoryFocus(false)}>
-                        <option>Select Category</option>
-                        <option>Dry Goods</option>
-                        <option>Fruits</option>
-                        <option>Sanitary Goods</option>
-                        <option>Biscuits</option>
-                        <option>Drinks</option>
+                        {categoryList}
                       </Input>
                     </InputGroup>
                     <InputGroup

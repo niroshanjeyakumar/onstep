@@ -1,8 +1,8 @@
 import React, {useState,useEffect} from 'react';
 import axios from 'axios';
 import {
-  Card, CardText, CardBody,CardFooter,Button,
-  CardTitle, CardSubtitle, Form
+  Card, CardText, CardBody,Button,
+  CardTitle, CardSubtitle, Form, Modal,ModalBody
 } from 'reactstrap';
 //import AddtoCart from "views/product-functions/addtoCart.js";
 
@@ -12,7 +12,8 @@ function Products  () {
   //const [order,setOrder] = useState("")
   //const [productid,setProductid] = useState("");
   const [ordersize,setOrdersize] = useState("");
-  
+  const [modal1, setModal1] = React.useState(false);
+  const [cartProduct,setcartProduct]=useState([]);
 
   useEffect(()=>{
       axios.get('http://localhost:4000/onstep/product/')
@@ -23,47 +24,7 @@ function Products  () {
         console.log(error);
     }) 
   });
- /* function addproduct(cart){
-    console.log(cart.product_name);
-    console.log(modal);
-      return (
-      
-      <>
-      <div>
-      <Modal isOpen={modal} toggle={() => setModal(false)}>
-      
-      <div className="modal-header justify-content-center">
-        <button
-          className="close"
-          type="button"
-          onClick={() => setModal(false)}
-        >
-          <i className="now-ui-icons ui-1_simple-remove"></i>
-        </button>
-  <h4 className="title title-up">Title={cart.product_name}</h4>
-      </div>
-
-      <ModalBody>
-        <p>
-          Far far away
-        </p>
-      </ModalBody>
-      <div className="modal-footer">
-        <Button color="default" type="button">
-          Nice Button
-        </Button>
-        <Button
-          color="danger"
-          type="button"
-          onClick={() => setModal(false)}
-        >
-          Close
-        </Button>
-      </div>
-    </Modal>
-    </div>
-    </>)
-  }*/
+ 
     function saveCart(product) {
       //console.log(product);
       //setProductid(product);
@@ -82,14 +43,15 @@ function Products  () {
 return <div className="col-sm-2 col-md-2">
         <Card>
         <CardBody>
-        <CardTitle>Item Name ={products.product_name}</CardTitle>
-        <CardSubtitle>Seller={products.seller_name}</CardSubtitle>
-        <CardText>Unit Price={products.product_price} <br/> Units ={products.product_unit}</CardText>
-        </CardBody>
-        <CardFooter center><Form action="" className="form" method="post">
+        <CardTitle>{products.product_name}</CardTitle>
+        <CardSubtitle>{products.seller_name}</CardSubtitle>
+        <CardText>Rs. {products.product_price} / {products.product_unit}</CardText>
+        <Form action="" className="form" method="post">
       
-      <input type="number" name="order_size" onChange={e=>setOrdersize(e.target.value)} required/>
-      <Button color="success" onClick={()=>saveCart(products._id)}>Add to Cart</Button></Form></CardFooter>
+      {/* <input type="number" name="order_size" min="1" onChange={e=>setOrdersize(e.target.value)} required/> */}
+      <Button color="success" onClick={()=>{setcartProduct(products);setModal1(true)}}>Add to Cart</Button></Form>
+        </CardBody>
+        
 </Card>
 
 </div>
@@ -99,7 +61,42 @@ return <div className="col-sm-2 col-md-2">
 
     <div className="row m-4">
         {pro}
-
+        <Modal isOpen={modal1} toggle={() => setModal1(false)}>
+        <Form action="" className="form" method="post">
+                <div className="modal-header justify-content-center">
+                  <button
+                    className="close"
+                    type="button"
+                    onClick={() => setModal1(false)}
+                  >
+                    <i className="now-ui-icons ui-1_simple-remove"></i>
+                  </button>
+                  <h4 className="title title-up">Add to Cart</h4>
+                </div>
+                <ModalBody>
+                  Product : {cartProduct.product_name}<br/>
+                  Seller : {cartProduct.seller_name}<br/>
+                  Price : Rs.{cartProduct.product_price} per {cartProduct.product_unit}<br/>
+                  
+      Order size: 
+       <input type="number" name="order_size" min="1" onChange={e=>setOrdersize(e.target.value)} required/> 
+      {/* <Button color="success" >Add to Cart</Button> */}<br/>
+      Total price:Rs.{ordersize*cartProduct.product_price}
+                </ModalBody>
+                <div className="modal-footer">
+                  <Button color="success" type="button" onClick={()=>{saveCart(cartProduct._id);setModal1(false)}}>
+                    Add to cart
+                  </Button>
+                  <Button
+                    color="danger"
+                    type="button"
+                    onClick={() => setModal1(false)}
+                  >
+                    Close
+                  </Button>
+                </div>
+                </Form>
+              </Modal>
       
     </div>
   );

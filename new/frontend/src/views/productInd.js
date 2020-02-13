@@ -15,6 +15,7 @@ import DarkFooter from "components/Footers/onstepFooter.js";
 
 import Carousel from "./product-functions/carousal.js";
 import Productlist from "./product-functions/products.js";
+import { useParams } from "react-router";
 
 
 function Onstep() {
@@ -29,7 +30,7 @@ function Onstep() {
       document.body.classList.remove("sidebar-collapse");
     };
   });
- 
+ let{type}=useParams()
   const user=sessionStorage.getItem('user');
   const userData=JSON.parse(user);
   return (
@@ -43,7 +44,9 @@ function Onstep() {
       <div className="wrapper">
         <IndexHeader />
         <div className="main">
+      
           <Carousel />
+          <h2>type {type}</h2>
           <Productlist />
         </div>
         <DarkFooter />

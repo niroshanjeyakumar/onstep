@@ -99,7 +99,11 @@ function IndexNavbar() {
                     <i className="now-ui-icons shopping_basket"></i>
                     All Products
                   </DropdownItem>
-                  
+                  <DropdownItem to="/products/dry_goods" tag={Link}>
+                    <i className="now-ui-icons shopping_basket"></i>
+                    Dry Goods
+                  </DropdownItem>
+
                 </DropdownMenu>
               </UncontrolledDropdown>
              

@@ -141,8 +141,9 @@ function IndexNavbar() {
               </NavItem>
               <NavItem>
                 <NavLink
-                  to="/" tag={Link}
+                  to="/logout" tag={Link}
                   id="logout"
+            
                 >
                   <i className="now-ui-icons media-1_button-power"></i>
                   <p className="d-lg-none d-xl-none">Logout</p>
