@@ -1,0 +1,40 @@
+.aboutback {
+    min-height: calc(100vh - 76px);
+    background: url("/images/aboutus.jpg");
+    background-position: left;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+  }
+
+  .about-text {
+    color:#013220;
+    font-size: 20px;
+    text-align: center;
+    padding-top: 150px;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-bottom: 50px;
+    
+  }
+
+  .aboutback2 {
+    min-height: calc(100vh - 76px);
+    background: url("/images/aboutus2.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    background-attachment: fixed;
+  }
+
+  .about-text2 {
+    color: #000000;
+    font-size: 20px;
+    text-align: center;
+    padding-top: 200px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 50px;
+    
+  }

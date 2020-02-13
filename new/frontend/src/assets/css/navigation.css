@@ -1,0 +1,25 @@
+
+.sidenav {
+    height:100%;
+   
+    width: 15%;
+    position: fixed;
+    z-index: 1;
+    top:0;
+    left: 0;
+    background-color: #888888; 
+    overflow-x: hidden;
+    min-width: 100px;
+    min-height: 100vh;
+    align-content: center;
+}
+.sidenav .sideNavItem{
+    font-size: 14px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.sidenav h5{
+     border-bottom:2px solid black;
+
+}
