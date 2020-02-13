@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 // core components
 import ExamplesNavbar from "components/SideNav/adminNav";
-import AdminHead from "components/Headers/adminHeader";
+//import AdminHead from "components/Headers/adminHeader";
 import TransparentFooter from "components/Footers/Footer1.js";
 import { Table,Button,Modal,ModalBody } from "reactstrap";
 import Axios from "axios";
@@ -13,6 +13,7 @@ function AdminMarket() {
       const[delivery,setDelivery]=useState([]);
       const[modal,setModal]=useState(false);
       const[Delete,setDelete]=useState(false);
+      const [viewDel,setViewDel]=useState("");
     useEffect(() => {
         document.body.classList.add("landing-page");
         document.body.classList.add("sidebar-collapse");
@@ -35,11 +36,9 @@ function AdminMarket() {
       })
     });
 
-    function viewDel(id){
-      return(
-        <Redirect to={`/administrator/delivery/view/${id}`}/>
-      )
-    }
+    
+        
+  
     function deleteDel(){
       Axios.get("http://localhost:4000/onstep/user/delivery/delete/"+Delete).catch(function(error){
       console.log(error);
@@ -51,12 +50,15 @@ const del = delivery.map(function(Del,index){
       <td>{index +1}</td>
       <td>{Del._id}</td>
       <td>{Del.delivery_name}</td>
-      <td><Button color="info" onClick={()=> viewDel(Del._id)}>View</Button></td>
+      <td><Button color="info" onClick={()=> {setViewDel(Del._id)}}>View</Button></td>
       <td><Button color="danger" onClick={()=> {setDelete(Del._id);setModal(true)}}>Delete</Button></td>
       </tr>
       )
 })
-
+if(viewDel){
+  return(<Redirect to={`/administrator/delivery/${viewDel}`}/>)
+}
+else{
   return (
     <>
       <ExamplesNavbar />
@@ -109,7 +111,7 @@ const del = delivery.map(function(Del,index){
         <TransparentFooter />
         </div>
     </>
-  );
+  );}
 }
 
 export default AdminMarket;

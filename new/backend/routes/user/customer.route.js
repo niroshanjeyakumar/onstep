@@ -44,6 +44,7 @@ customerRoutes.route('/').get(function (req, res) {
     }
   });
 });
+
 customerRoutes.route('/login').post(function(req,res){
   const email = req.body.email;
   const password = req.body.password;
@@ -67,11 +68,11 @@ customerRoutes.route('/login').post(function(req,res){
   })
 });
 
-customerRoutes.route('/edit/:id').get(function (req, res) {
+customerRoutes.route('/:id').get(function (req, res) {
   let id = req.params.id;
   Customer.findById(id, function (err, customer){
       res.json(customer);
-  });
+  }).catch(err=>console.log(err));
 });
 
 //  Defined update route
@@ -116,12 +117,6 @@ customerRoutes.route('/delete/:id').get(function (req, res) {
   });
 });*/
 
-customerRoutes.route('/edit/:id').get(function (req, res) {
-  let id = req.params.id;
-  customer.findById(id, function (err, customer){
-      res.json(customer);
-  });
-});
 
 customerRoutes.route('/edit/:id').post(function (req, res) {
   customer.findById(req.params.id, function(err, customer) {
@@ -144,16 +139,16 @@ customerRoutes.route('/edit/:id').post(function (req, res) {
 });
 });
   
-function checkAuthenticated(req,res, next){
-  if(req.isAuthenticated()){
-    return next()
-  }
-}
-function checkNotAuthenticated(req,res,next){
-  if(req.isAuthenticated()){
-    return res.redirect ('/')
-  }
-}
+// function checkAuthenticated(req,res, next){
+//   if(req.isAuthenticated()){
+//     return next()
+//   }
+// }
+// function checkNotAuthenticated(req,res,next){
+//   if(req.isAuthenticated()){
+//     return res.redirect ('/')
+//   }
+// }
 
 
 

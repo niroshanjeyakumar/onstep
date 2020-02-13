@@ -51,7 +51,7 @@ function Products  () {
             return (
               <tr>
                 <td>{products.product_name}</td>
-                <td>{products.product_category}</td>
+                <td>{products.product_category.category_name}</td>
                 <td>{products.product_unit}</td>
                 <td>{products.product_price}</td>
                 <td><Button color="warning" onClick={()=> editproduct(products._id)}>Edit</Button></td>

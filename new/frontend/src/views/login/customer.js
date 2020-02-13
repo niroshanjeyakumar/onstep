@@ -43,7 +43,7 @@ function Customerlogin (){
     
 if(loggedin){
   return(
-    <Redirect to="/onstep" />
+    <Redirect to="/products" />
   )
 }
 else{

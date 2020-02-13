@@ -66,11 +66,11 @@ supermarketRoutes.route('/login').post(function(req,res){
   })
 });
 
-supermarketRoutes.route('/edit/:id').get(function (req, res) {
+supermarketRoutes.route('/:id').get(function (req, res) {
   let id = req.params.id;
   Supermarket.findById(id, function (err, supermarket){
       res.json(supermarket);
-  });
+  }).catch(err=>console.log(err))
 });
 
 //  Defined update route

@@ -7,8 +7,8 @@ let product =new Schema({
         type:String
     },
     product_category:{
-        type:String,
-        default:"general"
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'category'
     },
     seller_id:{
         type:mongoose.Schema.Types.ObjectId,

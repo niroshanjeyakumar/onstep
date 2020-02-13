@@ -3,7 +3,8 @@ import React, { useState,useEffect } from "react";
 import ExamplesNavbar from "components/SideNav/adminNav";
 //import AdminHead from "components/Headers/adminHeader";
 import TransparentFooter from "components/Footers/Footer1.js";
-import { Table,Button,Modal,ModalBody } from "reactstrap";
+import { Table,Button,Modal,ModalBody,
+Form,Input } from "reactstrap";
 import Axios from "axios";
 import "assets/css/admin.css";
 // import { Redirect } from "react-router";
@@ -11,10 +12,10 @@ import {Link, Redirect} from 'react-router-dom';
 import AdminSideNav from "components/SideNav/sidenav.js";
 
 function AdminMarket() {
-      const[customer,setCustomer]=useState([]);
+      const[category,setCategory]=useState([]);
       const[modal,setModal]=useState(false);
-      const[Delete,setDelete]=useState(false);
-      const [viewCust,setViewCust]=useState("");
+      const[Cat,setCat]=useState("");
+      const [viewMarket,setViewMarket]=useState("");
     useEffect(() => {
         document.body.classList.add("landing-page");
         document.body.classList.add("sidebar-collapse");
@@ -28,83 +29,88 @@ function AdminMarket() {
       });
 
       useEffect(()=>{
-        Axios.get('http://localhost:4000/onstep/user/customer/')
+        Axios.get('http://localhost:4000/onstep/category/')
         .then(res=>{
-          setCustomer(res.data);
+          setCategory(res.data);
       })
       .catch(function(error){
           console.log(error);
       })
     });
 
-    function deleteCust(){
-      Axios.get("http://localhost:4000/onstep/user/customer/delete/"+Delete).catch(function(error){
-      console.log(error);
-    });
-  }
-const cust = customer.map(function(Cust,index){
+    // function deleteMarket(){
+    //   Axios.get("http://localhost:4000/onstep/catego/"+Delete).catch(function(error){
+    //   console.log(error);
+    // });
+ // }
+
+function AddCat(){
+
+  Axios.post('http://localhost:4000/onstep/category/add',{category_name:Cat} ).then(res=>console.log(res)).catch(err=>console.log(err))
+}
+
+const cat = category.map(function(Cat,index){
       return(
         <tr>
       <td>{index +1}</td>
-      <td>{Cust._id}</td>
-      <td>{Cust.customer_name}</td>
-      <td><Button color="info" onClick={()=>{setViewCust(Cust._id)}}>View</Button></td>
-      <td><Button color="danger" onClick={()=> {setDelete(Cust._id);setModal(true)}}>Delete</Button></td>
+      <td>{Cat.category_name}</td>
       </tr>
       )
 })
-if(viewCust){
-return(
-  <Redirect to={`/administrator/customer/${viewCust}`}/>
-)}
-else{
+
   return (
     <>
         <ExamplesNavbar />
         <AdminSideNav />
       <div className="admin-content">
-          <h2 align="center">Customer</h2>
+          <h2 align="center">Product Categories</h2>
           <div className="container">
           
             <Table>
               <thead>
                 <th>#</th>
-                <th>ID</th>
-                <th>Name</th>
-                <th></th>
-                <th></th>
+                <th>Category</th>
               </thead>
               <tbody>
-                {cust}
+                {cat}
               </tbody>
             </Table>
+            <Button className="" color="default" type="button"
+                  onClick={()=>{setModal(true)}}>
+                   Add new Category
+                  </Button>
             <Modal
-                modalClassName="modal-mini modal-danger"
+                
                 toggle={() => setModal(false)}
                 isOpen={modal}
               >
+                  <Form className="form">
                 <div className="modal-header justify-content-center">
-                  {/* <div className="modal-profile">
-                    <i className="now-ui-icons users_circle-08"></i>
-                  </div> */}
+                   <div className="modal-profile">
+                    Add New Category
+                  </div> 
                 </div>
-                <ModalBody>
-                  <p>Confirm Deletetion</p>
+                <ModalBody align="center">
+                  
+                      <Input type="text" placeholder="New Category"
+                      value={Cat}
+                      onChange={e=> setCat(e.target.value)}/>
+                  
                 </ModalBody>
                 <div className="modal-footer">
-                  <Button className="btn-neutral" color="link" type="button"
-                  onClick={()=>{deleteCust();setModal(false)}}>
-                    Delete Customer
+                  <Button color="success" type="submit"
+                  onClick={AddCat}>
+                    Add Category
                   </Button>
                   <Button
-                    className="btn-neutral"
-                    color="link"
+                    color="danger"
                     type="button"
                     onClick={() => setModal(false)}
                   >
                     Cancel
                   </Button>
                 </div>
+                </Form>
               </Modal>
 
           </div>
@@ -113,7 +119,7 @@ else{
         </div>
     </>
   );
-                }
+                
 }
 
 export default AdminMarket;

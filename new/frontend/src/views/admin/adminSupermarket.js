@@ -1,19 +1,20 @@
 import React, { useState,useEffect } from "react";
 // core components
 import ExamplesNavbar from "components/SideNav/adminNav";
-import AdminHead from "components/Headers/adminHeader";
+//import AdminHead from "components/Headers/adminHeader";
 import TransparentFooter from "components/Footers/Footer1.js";
 import { Table,Button,Modal,ModalBody } from "reactstrap";
 import Axios from "axios";
 import "assets/css/admin.css";
-import { Redirect } from "react-router";
-import AdminSideNav from "components/SideNav/sidenav.js"
-
+// import { Redirect } from "react-router";
+import {Link, Redirect} from 'react-router-dom';
+import AdminSideNav from "components/SideNav/sidenav.js";
 
 function AdminMarket() {
       const[supermarket,setSupermarket]=useState([]);
       const[modal,setModal]=useState(false);
       const[Delete,setDelete]=useState(false);
+      const [viewMarket,setViewMarket]=useState("");
     useEffect(() => {
         document.body.classList.add("landing-page");
         document.body.classList.add("sidebar-collapse");
@@ -36,35 +37,35 @@ function AdminMarket() {
       })
     });
 
-    function viewCust(id){
-      return(
-        <Redirect to={`/administrator/supermarket/view/${id}`}/>
-      )
-    }
-    function deleteCust(){
+    function deleteMarket(){
       Axios.get("http://localhost:4000/onstep/user/supermarket/delete/"+Delete).catch(function(error){
       console.log(error);
     });
   }
-const mkt = supermarket.map(function(Seller,index){
+const cust = supermarket.map(function(Market,index){
       return(
         <tr>
       <td>{index +1}</td>
-      <td>{Seller._id}</td>
-      <td>{Seller.supermarket_name}</td>
-      <td><Button color="info" onClick={()=> viewCust(Seller._id)}>View</Button></td>
-      <td><Button color="danger" onClick={()=> {setDelete(Seller._id);setModal(true)}}>Delete</Button></td>
+      <td>{Market._id}</td>
+      <td>{Market.supermarket_name}</td>
+      <td><Button color="info" onClick={()=>{setViewMarket(Market._id)}}>View</Button></td>
+      <td><Button color="danger" onClick={()=> {setDelete(Market._id);setModal(true)}}>Delete</Button></td>
       </tr>
       )
 })
-
+if(viewMarket){
+return(
+  <Redirect to={`/administrator/supermarket/${viewMarket}`}/>
+)}
+else{
   return (
     <>
-      <ExamplesNavbar />
-      <AdminSideNav />
+        <ExamplesNavbar />
+        <AdminSideNav />
       <div className="admin-content">
           <h2 align="center">Supermarket</h2>
           <div className="container">
+          
             <Table>
               <thead>
                 <th>#</th>
@@ -74,7 +75,7 @@ const mkt = supermarket.map(function(Seller,index){
                 <th></th>
               </thead>
               <tbody>
-                {mkt}
+                {cust}
               </tbody>
             </Table>
             <Modal
@@ -92,7 +93,7 @@ const mkt = supermarket.map(function(Seller,index){
                 </ModalBody>
                 <div className="modal-footer">
                   <Button className="btn-neutral" color="link" type="button"
-                  onClick={()=>{deleteCust();setModal(false)}}>
+                  onClick={()=>{deleteMarket();setModal(false)}}>
                     Delete Supermarket
                   </Button>
                   <Button
@@ -107,10 +108,12 @@ const mkt = supermarket.map(function(Seller,index){
               </Modal>
 
           </div>
+          
         <TransparentFooter />
         </div>
     </>
   );
+                }
 }
 
 export default AdminMarket;

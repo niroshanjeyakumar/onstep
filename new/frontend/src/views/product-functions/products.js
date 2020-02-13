@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react';
 import axios from 'axios';
 import {
-  Card, CardText, CardBody,CardFooter,Button,
+  Card, CardText, CardBody,Button,
   CardTitle, CardSubtitle, Form, Modal,ModalBody
 } from 'reactstrap';
 //import AddtoCart from "views/product-functions/addtoCart.js";
@@ -46,11 +46,12 @@ return <div className="col-sm-2 col-md-2">
         <CardTitle>{products.product_name}</CardTitle>
         <CardSubtitle>{products.seller_name}</CardSubtitle>
         <CardText>Rs. {products.product_price} / {products.product_unit}</CardText>
-        </CardBody>
-        <CardFooter center><Form action="" className="form" method="post">
+        <Form action="" className="form" method="post">
       
       {/* <input type="number" name="order_size" min="1" onChange={e=>setOrdersize(e.target.value)} required/> */}
-      <Button color="success" onClick={()=>{setcartProduct(products);setModal1(true)}}>Add to Cart</Button></Form></CardFooter>
+      <Button color="success" onClick={()=>{setcartProduct(products);setModal1(true)}}>Add to Cart</Button></Form>
+        </CardBody>
+        
 </Card>
 
 </div>

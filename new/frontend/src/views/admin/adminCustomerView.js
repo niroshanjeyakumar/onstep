@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
-import { useParams } from "react-router";
-import { Route, Switch, Link } from "react-router-dom";
+// import { useParams } from "react-router";
+import { Route, Switch, Link,useParams} from "react-router-dom";
+import AdminSideNav from "components/SideNav/sidenav.js";
+import "assets/css/admin.css";
 
 //reactstrap components
 // import {
@@ -21,6 +23,7 @@ import { Route, Switch, Link } from "react-router-dom";
 import ExamplesNavbar from "components/SideNav/adminNav";
 import AdminHead from "components/Headers/adminHeader";
 import TransparentFooter from "components/Footers/Footer1.js";
+import Axios from "axios";
 
 
 
@@ -28,6 +31,9 @@ function AdminCust() {
 //const [id,setid]=useState('');
   //useEffect(()=>{setid(useParams)})
 //console.log(id);
+
+      const [customer,setCutomer]=useState([]);
+
     React.useEffect(() => {
         document.body.classList.add("landing-page");
         document.body.classList.add("sidebar-collapse");
@@ -39,16 +45,26 @@ function AdminCust() {
           document.body.classList.remove("sidebar-collapse");
         };
       });
+
+      let {id}=useParams();
+      console.log(id);
+      useEffect(()=>{
+        Axios.get('http://localhost:4000/onstep/user/customer/'+id).then(res=>setCutomer(res.data))
+        .catch(err=>console.log(err))
+      })
+      
   return (
     <>
       <ExamplesNavbar />
-      <AdminHead />
-        <div className="content">
+      <AdminSideNav />
+        <div className="admin-content">
         <div>
-          <h2 align="center">Dashboard</h2>
+          <h2 align="center">{customer.customer_name}</h2>
+          <span></span>
           </div>
-        </div>
+        
         <TransparentFooter />
+        </div>
     </>
   );
 }

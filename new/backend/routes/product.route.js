@@ -20,19 +20,19 @@ productRoutes.route('/add').post(function (req, res) {
 
 
 productRoutes.route('/').get(function (req, res) {
-    Product.find(function(err, product){
-    if(err){
-      console.log(err);
-    }
-    else {
-      res.json(product);
-    }
-  });
+    Product.find().populate({path:'product_category'}).then(product => {
+      if(!product){
+        console.log("error");
+      }
+      else {
+        res.json(product);
+      }
+    });
 });
 
 productRoutes.route('/supermarket').post(function (req, res) {
   const seller=req.body.seller;
-  Product.find({seller_id:seller}).then(product => {
+  Product.find({seller_id:seller}).populate('product_category').then(product => {
   if(!product){
     console.log("error");
   }

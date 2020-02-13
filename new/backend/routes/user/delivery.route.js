@@ -47,6 +47,7 @@ deliveryRoutes.route('/').get(function (req, res) {
 deliveryRoutes.route('/login').post(function(req,res){
   const email = req.body.email;
   const password = req.body.password;
+  console.log("Login attempt");
   Delivery.findOne({ delivery_email: email }, ).then(user => {
     if (!user) {
       return res.json({ email: false, password:false });  
@@ -66,11 +67,11 @@ deliveryRoutes.route('/login').post(function(req,res){
   })
 });
 
-deliveryRoutes.route('/edit/:id').get(function (req, res) {
+deliveryRoutes.route('/:id').get(function (req, res) {
   let id = req.params.id;
   Delivery.findById(id, function (err, delivery){
       res.json(delivery);
-  });
+  }).catch(err=>console.log(err));
 });
 
 //  Defined update route
