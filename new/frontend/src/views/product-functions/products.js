@@ -38,7 +38,11 @@ function Products  () {
     axios.post('http://localhost:4000/onstep/cart/add',newcart)
     .then(res => console.log(res.data)); }
     
-  const pro = product.map(function (products){
+  const pro = [].concat(product).sort(function(a, b){
+    if(a.seller_name < b.seller_name) { return -1; }
+    if(a.seller_name > b.seller_name) { return 1; }
+    return 0;
+}).map(function (products){
 //<input type="hidden" name="id" value={this.products._id} on={e=>setProductid(e.target.value)}/>
 return <div className="col-sm-2 col-md-2">
         <Card>
