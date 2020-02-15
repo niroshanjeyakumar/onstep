@@ -1,0 +1,11 @@
+input[type="radio"]{
+    display: none;
+}
+.star{
+    cursor: pointer;
+    transition: color 200ms;
+}
+
+.ratevalue{
+    font-size: xxx-large;
+}

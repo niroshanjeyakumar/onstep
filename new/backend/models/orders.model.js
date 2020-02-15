@@ -55,6 +55,38 @@ let order =new Schema({
     order_complete:{
         type:Boolean,
         default:false
+    },
+    CustomerRating:{
+        type:Boolean,
+        default:false
+    },
+    CustDelRating:{
+        type:Number,
+    },
+    CustDelReview:{
+        type:String,
+    },
+    CustSupRating:{
+        type:Number,
+    },
+    CustSupReview:{
+        type:String,
+    },
+    DeliveryRating:{
+        type:Boolean,
+        default:false
+    },
+    DelCustRating:{
+        type:Number,
+    },
+    DelCustReview:{
+        type:String,
+    },
+    DelSupRating:{
+        type:Number,
+    },
+    DelSupReview:{
+        type:String,
     }
 });
 
