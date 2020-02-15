@@ -1,4 +1,6 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import Axios from 'axios';
+//import {useParams} from "react-router-dom";
 
 // reactstrap components
 import {
@@ -9,7 +11,8 @@ import {
   Card,
   CardBody,
   CardText,
-  CardLink
+  CardLink,
+  Table
 } from "reactstrap";
 
 // core components
@@ -17,8 +20,12 @@ import ExamplesNavbar from "components/Navbars/DeliveryNavbar";
 import ProfilePageHeader from "components/Headers/delivery-homeHeader";
 import DefaultFooter from "components/Footers/DefaultFooter.js";
 
+
+
+
 function ProfilePage() {
-  const [pills, setPills] = React.useState("2");
+  //const [pills, setPills] = React.useState("2");
+  const [delivery,setDelivery]=useState([]);
   React.useEffect(() => {
     document.body.classList.add("profile-page");
     document.body.classList.add("sidebar-collapse");
@@ -28,8 +35,31 @@ function ProfilePage() {
       document.body.classList.remove("sidebar-collapse");
     };
   });
+
+     useEffect(()=>{
+        Axios.get('http://localhost:4000/onstep/user/delivery/')
+        .then(res=>{
+          setDelivery(res.data);
+      })
+      .catch(function(error){
+          console.log(error);
+      })
+    });
+
+    const del = delivery.map(function(Del,index){
+      return(
+        <tr>
+      <td>{Del._id}</td>
+      <td>{Del.delivery_name}</td>
+      <td>{Del.delivery_number}</td>
+      <td>{Del.delivery_email}</td>
+      </tr>
+      )
+})
   return (
     <>
+      
+
       <ExamplesNavbar />
       <div className="wrapper">
         <ProfilePageHeader />
@@ -54,26 +84,22 @@ function ProfilePage() {
                 Delivery Status
                 </Button>
               </div>
-            <h3 className="title">My Information</h3>
+            <h3 className="title">My Profile</h3>
             <h4>
               <Card align="center" >
                 <CardBody >
                   <CardText align="crenter">
-                    <dl class="row" align="center">
-                      <dt class="col-sm-3">Name</dt>
-                        <dd class="col-sm-9">Mr. ABC</dd>
-
-                      <dt class="col-sm-3">Phone Number</dt>
-                        <dd class="col-sm-9">01234567890</dd>
-
-                      <dt class="col-sm-3">E-mail</dt>
-                        <dd class="col-sm-9">abc@123.com</dd>
-
-                       <dt class="col-sm-3">Address</dt>
-                       <dd class="col-sm-9">Piliyandala</dd>
-                     </dl>
+                  <Table>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Telephone</th>
+                <th>email</th>
+              <tbody>
+                {del}
+              </tbody>
+            </Table>
                    </CardText>
-                  <CardLink href="#pablo" onClick={e => e.preventDefault()}>
+                  <CardLink href="/editdelp.js" onClick={e => e.preventDefault()}>
                     Edit
                    </CardLink>
                  </CardBody>

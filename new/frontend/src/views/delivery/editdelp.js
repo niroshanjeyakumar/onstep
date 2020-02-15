@@ -30,16 +30,19 @@ class editdelp extends React.Component {
       month: this.props.expense.month,
       year: this.props.expense.year,
     });
-  }openModal() {
+  }
+  openModal() {
     this.setState({
       modalIsOpen: true
     });
-  }closeModal() {
+  }
+  closeModal() {
     this.setState({
       modalIsOpen: false,
       messageFromServer: ''
     });
-  }handleSelectChange(e) {
+  }
+  handleSelectChange(e) {
     if (e.target.name == "month") {
       this.setState({
         month: e.target.value
@@ -50,7 +53,8 @@ class editdelp extends React.Component {
         year: e.target.value
       });
     }
-  }handleTextChange(e) {
+  }
+  handleTextChange(e) {
     if (e.target.name == "description") {
       this.setState({
         description: e.target.value
@@ -60,9 +64,11 @@ class editdelp extends React.Component {
         amount: e.target.value
       });
     }
-  }onClick(e) {
+  }
+  onClick(e) {
     this.update(this);
-  }update(e) {
+  }
+  update(e) {
     axios.post('/update',
       querystring.stringify({
         _id: e.state.id,
@@ -78,7 +84,8 @@ class editdelp extends React.Component {
       e.setState({
         messageFromServer: response.data
       });});
-  }render() {
+  }
+  render() {
     if(this.state.messageFromServer == ''){
       return (
         <div>
