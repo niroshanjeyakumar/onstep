@@ -10,7 +10,7 @@ import {
 
 // core components
 import ExamplesNavbar from "components/Navbars/Customernavbar.js";
-import Header from "components/Headers/customerhomeHeader";
+import Header from "components/Headers/CustomerHeader";
 import TransparentFooter from "components/Footers/Footer1.js";
 import Axios from "axios";
 import {HorizontalBar} from 'react-chartjs-2';

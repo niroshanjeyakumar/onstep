@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from "react";
 import axios from 'axios';
 import '../../assets/css/custom.css'
+import fileUpload from './fileUpload';
 // reactstrap components
 import {
   Button,
@@ -97,7 +98,7 @@ useEffect(()=>{
                     >
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                          <i className="now-ui-icons shopping_box"></i>
+                          <i className="now-ui-icons users_single-02"></i>
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
@@ -135,7 +136,30 @@ useEffect(()=>{
                         "no-border input-lg" +
                         (unitFocus ? " input-group-focus" : "")
                       }
+                    > 
+                  
+                       <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="now-ui-icons media-1_album"></i>
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input
+                        placeholder="Image"
+                        type="image"
+                        name="image"
+                        value={Image}
+                        onChange={e=> setunit(e.target.value)}
+                        onFocus={() => setunitFocus(true)}
+                        onBlur={() => setunitFocus(false)}
+                      ></Input>
+                    </InputGroup>
+                    <InputGroup
+                      className={
+                        "no-border input-lg" +
+                        (priceFocus ? " input-group-focus" : "")
+                      }
                     >
+                      
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
                           <i className="now-ui-icons shopping_basket"></i>
