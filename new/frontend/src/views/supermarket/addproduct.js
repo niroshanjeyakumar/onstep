@@ -1,7 +1,8 @@
 import React, {useState,useEffect} from "react";
 import axios from 'axios';
 import '../../assets/css/custom.css'
-import fileUpload from './fileUpload';
+import fileUpload from '../../components/fileUpload';
+
 // reactstrap components
 import {
   Button,
@@ -71,6 +72,7 @@ useEffect(()=>{
 
   return (
     <>
+    <fileUpload/>
       <Navbar />
       
       <div className="page-header clear-filter" filter-color="blue">
@@ -137,11 +139,12 @@ useEffect(()=>{
                         (unitFocus ? " input-group-focus" : "")
                       }
                     > 
-                  
+                  {/*image upload*/}
                        <InputGroupAddon addonType="prepend">
                         <InputGroupText>
                           <i className="now-ui-icons media-1_album"></i>
                         </InputGroupText>
+                        
                       </InputGroupAddon>
                       <Input
                         placeholder="Image"
@@ -150,8 +153,8 @@ useEffect(()=>{
                         value={Image}
                         onChange={e=> setunit(e.target.value)}
                         onFocus={() => setunitFocus(true)}
-                        onBlur={() => setunitFocus(false)}
-                      ></Input>
+                        onBlur={() => setunitFocus(false)} 
+                      >  <fileUpload/></Input>
                     </InputGroup>
                     <InputGroup
                       className={
