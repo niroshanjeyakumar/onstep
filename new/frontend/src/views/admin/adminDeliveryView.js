@@ -3,6 +3,9 @@ import React, {useEffect, useState} from "react";
 import { Route, Switch, Link,useParams} from "react-router-dom";
 import AdminSideNav from "components/SideNav/sidenav.js";
 import "assets/css/admin.css";
+import {
+  Table
+} from 'reactstrap';
 
 //reactstrap components
 // import {
@@ -33,6 +36,9 @@ function AdminCust() {
 //console.log(id);
 
       const [delivery,setDelivery]=useState([]);
+      const [product, setproduct] = useState([]);
+      const [Order, setOrder] = useState([]);
+
 
     React.useEffect(() => {
         document.body.classList.add("landing-page");
@@ -51,8 +57,77 @@ function AdminCust() {
       useEffect(()=>{
         Axios.get('http://localhost:4000/onstep/user/delivery/'+id).then(res=>setDelivery(res.data))
         .catch(err=>console.log(err))
-      })
+      });
+      useEffect(()=>{
+          Axios.get('http://localhost:4000/onstep/order/del/'+id)
+          .then(res=>{
+            setproduct(res.data);
+        })
+        .catch(function(error){
+            console.log(error);
+        }) 
+      });
+       useEffect(()=>{
+          Axios.get('http://localhost:4000/onstep/order/completed/'+id)
+          .then(res=>{
+            setOrder(res.data);
+        })
+        .catch(function(error){
+            console.log(error);
+        }) 
+      });
       
+const pro = product.map(function (products, index){
+        
+        // if (!products.order_accepted){
+        //     status="Active";
+        // }
+        // else if(!products.order_purchased){
+        //     status="In delivery";
+        // }
+        // else if(!products.order_delivered){
+        //     status="Delivered";
+        // }
+        
+          return (  
+              <tr>
+            <th>{index+1}</th>
+              <td>{products.seller.supermarket_name}</td>
+              <td>{products.seller.supermarket_area}</td>
+              <td>{products.customer.customer_address}</td>
+              <td>{products.customer.customer_number}</td>
+              <td>Rs. {products.total}</td>
+              <td></td>
+              <td></td>
+              </tr>
+          );
+      
+      });
+      const completed = Order.map(function (products, index){
+        
+        // if (!products.order_accepted){
+        //     status="Active";
+        // }
+        // else if(!products.order_purchased){
+        //     status="In delivery";
+        // }
+        // else if(!products.order_delivered){
+        //     status="Delivered";
+        // }
+        
+          return (  
+              <tr>
+            <th>{index+1}</th>
+              <td>{products.seller.supermarket_name}</td>
+              <td>Rs.{products.total}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              </tr>
+          );
+      
+      });
+
   return (
     <>
       <ExamplesNavbar />
@@ -61,6 +136,41 @@ function AdminCust() {
         <div>
           <h2 align="center">{delivery.delivery_name}</h2>
           <span></span>
+          <h4>Active Orders</h4>
+          <Table hover>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Seller</th>
+              <th>Seller Area</th>
+              <th>Delivery Location</th>
+              <th>Contact No</th>
+              <th>Total</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {pro}
+          </tbody>
+          </Table>
+          <h4>Completed Orders</h4>
+          <Table hover>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Seller</th>
+        <th>Total Price</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {completed}
+    </tbody>
+    </Table>
           </div>
         
         <TransparentFooter />

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button, TextInput,KeyboardAvoidingView } from 'react-native';
 import axios from "axios";
+import {path} from "../util/backend.js"
+const url=path;
+console.log(url);
 export default function Login() {
   const [Outtext,setOuttext]=useState("Who are you?");
   const [delEmail,setdelEmail]=useState("");
@@ -8,7 +11,7 @@ export default function Login() {
 
 function LoginAuth(){
     console.log("Function" + delEmail + delPass);
-    axios.post('http://192.168.1.4:4000/onstep/user/delivery/login',{email:delEmail, password:delPass})
+    axios.post(url+'/onstep/user/delivery/login',{email:delEmail, password:delPass})
       .then(res => {
 
         if (res.data.email===false){
@@ -31,15 +34,16 @@ function LoginAuth(){
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
        <Text>Delivery Person Login</Text>
+       <View style={styles.credentials}>
       <TextInput  placeholder="Email" 
-                  style={{borderBottomColor:'black', borderBottomWidth:2, padding:20}}
+                  style={{borderBottomColor:'black', borderBottomWidth:2, padding:10}}
                   value={delEmail}
                   onChangeText={(value)=>setdelEmail(value)}/>
       <TextInput  placeholder="Password" 
-                  style={{borderBottomColor:'black', borderBottomWidth:2, padding:20}}
+                  style={{borderBottomColor:'black', borderBottomWidth:2, padding:10}}
                   value={delPass}
                   onChangeText={(value)=>setdelPass(value)}/>
-     
+     </View>
       <Button title="LOGIN" onPress={()=>LoginAuth()} style={{padding:40}}/>
 
       <Text>{Outtext}</Text>
@@ -54,4 +58,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  credentials:{
+    paddingTop:10,
+    paddingBottom:20
+  }
 });

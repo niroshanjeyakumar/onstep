@@ -61,7 +61,11 @@ function Products  () {
     //console.log(neworder);
   
   }
-  
+  function orderAll(){
+        product.map(function (products, index){
+          makeorder(products._id);
+          });
+  }
   
 
   const pro = product.map(function (products, index){
@@ -72,16 +76,15 @@ return (
 <tr>
   <td>{index + 1}</td>
   <td>{products.product.product_name}</td>
-  <td><a href="/">{products.product.seller_name}</a></td>
+  <td><a href={`/seller/view/${products.product.seller_id}`}>{products.product.seller_name}</a></td>
   <td>{products.product.product_price}</td>
   <td>{products.order_quantity}</td>
   <td>{total}</td>
  <td>
     <ButtonGroup>
     <Button color="success" onClick={()=> {makeorder(products._id); }}>Order</Button>
-    
-  <Button color="warning" onClick={()=> editcart(products._id)}>Edit</Button>
-  <Button color="danger" onClick={()=> deletefromcart(products._id)}>Delete</Button>
+    <Button color="warning" onClick={()=> editcart(products._id)}>Edit</Button>
+    <Button color="danger" onClick={()=> deletefromcart(products._id)}>Delete</Button>
   </ButtonGroup>
   </td>
 </tr>
@@ -111,7 +114,8 @@ return (
 
       </tbody>
       </Table>
-      
+      <Button color="success" size="lg"onClick={()=> {orderAll()}}>Order All</Button>
+    
     </div>
   );
 };

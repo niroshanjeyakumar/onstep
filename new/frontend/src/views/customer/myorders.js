@@ -1,9 +1,10 @@
 import React, {useState,useEffect} from 'react';
 import axios from 'axios';
 import {
-  Table, Button,Modal,ModalBody,ButtonGroup
+  Table, Button,Modal,ModalBody,ButtonGroup,Form,Input
 } from 'reactstrap';
-
+import 'assets/css/rating.css'
+import {FaStar} from 'react-icons/fa';
 import IndexNavbar from "components/Navbars/Customernavbar";
 import IndexHeader from "components/Headers/CustomerHeader";
 import DarkFooter from "components/Footers/Footer1";
@@ -21,8 +22,15 @@ function Products  () {
 
       const [product, setproduct] = useState([]);
       const [modal, setmodal]=useState(false);
-      const [listID,setlistID]=useState([])
-
+      const [listID,setlistID]=useState([]);
+      const [Recieved, setRecieved]=useState("");
+      const [modalRec, setmodalRec]=useState(false);
+      const [RateDel,setRateDel]=useState(null);
+      const [DelHover,setDelHover]=useState(null);
+      const [DelComment,setDelComment]=useState("");
+      const [RateSup,setRateSup]=useState(null);
+      const [SupHover,setSupHover]=useState(null);
+      const [SupComment,setSupComment]=useState("");
 
       const cust=sessionStorage.getItem('user');
       const customer =JSON.parse(cust);
@@ -50,8 +58,19 @@ function Products  () {
     }
     function recievedOrder(id){
       axios.post("http://localhost:4000/onstep/order/recieved/"+id).catch(err=>{console.log(err);})
-    }
+      setRecieved(id);
+      setmodalRec(true);
 
+    }
+function submitReview(){
+  const review={
+      CustDelRating:RateDel,
+      CustDelReview:DelComment,
+      CustSupRating:RateSup,
+      CustSupReview:SupComment
+  };
+      axios.post("http://localhost:4000/onstep/order/cust/rating/"+Recieved,review).catch(err=>{console.log(err);})
+}
       const pro = product.map(function (products, index){
         var remove=true;
         var track=true;
@@ -71,23 +90,26 @@ function Products  () {
         }
         else if(products.order_complete){
             status="Delivered";
+            recieved=false;
             remove=false;
         }
-
+        
         
           return (  
               <tr>
               <td>{index+1}</td>
               <td>{status}</td>
-              <td>{products.seller.supermarket_name}</td>
-              <td>{products.order_accepted ? products.delivery.delivery_name : " "}</td>
+              <td><a href={`/seller/view/${products.seller._id}`}>{products.seller.supermarket_name}</a></td>
+              {/* <td>{products.order_accepted ? products.delivery.delivery_name : " "}</td> */}
+              <td>{products.order_accepted ?<a href={`/delivery/view/${products.delivery._id}`}> {products.delivery.delivery_name} </a> : " "}</td>
+
               <td>{products.order_accepted ? products.delivery.delivery_number : " "}</td>
               <td>Rs.{products.total}</td>
               <td>
               <ButtonGroup>
               <Button color="warning" onClick={()=>{setlistID(products.productlist); vieworder(products._id);}}>View Order</Button>
-              <Button color="success" onClick={()=>recievedOrder(products._id)} disabled={recieved}>Recieved</Button>
               <Button color="info" onClick={()=>trackOrder(products._id)} disabled={track}>Track Order</Button>
+              <Button color="success" onClick={()=>recievedOrder(products._id)} disabled={recieved}>Recieved</Button>
               <Button color="danger" onClick={()=>removeOrder(products._id)} disabled={remove}>Delete</Button>
               </ButtonGroup></td>
               </tr>
@@ -131,7 +153,7 @@ const order_list =listID.map(function (products, index){
       {pro}
     </tbody>
     </Table>
-    <Modal isOpen={modal} toggle={() => setmodal(false)}>
+              <Modal isOpen={modal} toggle={() => setmodal(false)}>
                 <div className="modal-header justify-content-center">
                   <button
                     className="close"
@@ -158,6 +180,72 @@ const order_list =listID.map(function (products, index){
                     color="danger"
                     type="button"
                     onClick={() => setmodal(false)}
+                  >
+                    Close
+                  </Button>
+                </div>
+              </Modal>
+              <Modal isOpen={modalRec} toggle={() => setmodalRec(false)}>
+                <div className="modal-header justify-content-center">
+                  <button
+                    className="close"
+                    type="button"
+                    onClick={() => setmodalRec(false)}
+                  >
+                    <i className="now-ui-icons ui-1_simple-remove"></i>
+                  </button>
+                  <h4 className="title title-up">Rate and Review</h4>
+                </div>
+                <ModalBody>
+                <Form>
+                  <h4>Delivery Person</h4>
+                  <h5>Rating</h5>
+                  {[...Array(5)].map((star,i)=>{
+                    const rateVal=i+1;
+                    return (
+                      <label>
+                      <input type='radio' name='ratingDel'value={rateVal} onClick={()=>setRateDel(rateVal)}/>
+                      <FaStar className='star' color={rateVal<=(DelHover||RateDel) ? "#ffc107" :"#e4e5e9" } 
+                            size={30}
+                            onMouseEnter={()=>setDelHover(rateVal)}
+                            onMouseLeave={()=>setDelHover(null)}/>
+                      </label>
+                      )
+                  })}
+                  <h5>Comments</h5>
+                    <Input type="textarea" placeholder="Any other comments..."  value={DelComment} onChange={e=> setDelComment(e.target.value)}/> 
+                
+                  <h4>Supermarket</h4>
+                  <h5>Rating</h5>
+                  {[...Array(5)].map((star,i)=>{
+                    const rateVal=i+1;
+                    return (
+                      <label>
+                      <input type='radio' name='ratingDel'value={RateSup} onClick={()=>setRateSup(rateVal)}/>
+                      <FaStar className='star' color={rateVal<=(SupHover||RateSup) ? "#ffc107" :"#e4e5e9" } 
+                            size={30}
+                            onMouseEnter={()=>setSupHover(rateVal)}
+                            onMouseLeave={()=>setSupHover(null)}/>
+                      </label>
+                      )
+                  })}
+                  
+                  <h5>Comments</h5>
+                    <Input type="textarea" placeholder="Any other comments..."  value={SupComment} onChange={e=> setSupComment(e.target.value)}/>
+                </Form>
+                </ModalBody>
+                <div className="modal-footer">
+                <Button
+                    color="success"
+                    type="submit"
+                    onClick={() => {submitReview()}}
+                  >
+                    Submit Review
+                  </Button>
+                  <Button
+                    color="danger"
+                    type="button"
+                    onClick={() => setmodalRec(false)}
                   >
                     Close
                   </Button>
