@@ -37,6 +37,7 @@ function ProfilePage() {
       document.body.classList.remove("sidebar-collapse");
     };
   });
+  
   const [emailFocus, setemailFocus] = useState(false);
   const [nameFocus, setnameFocus] = useState(false);
   const [addressFocus, setaddressFocus] = useState(false);
@@ -53,8 +54,7 @@ function ProfilePage() {
 
   
      function CustLogin(){
-          
-    axios.post('http://localhost:4000/onstep/user/customer/edit',{email:customer_email,name:customer_name,address:customer_address,number:customer_number,password:customer_password} )
+    axios.get('http://localhost:4000/onstep/user/customer/edit',{email:customer_email,name:customer_name,address:customer_address,number:customer_number,password:customer_password} )
     .then(res => setresponse(res.data));
           if(customer_password===respose.customer_password){ 
               console.log("move to customer home")
@@ -91,6 +91,7 @@ function ProfilePage() {
             id="exampleInputName1"
             placeholder="Enter name"
             type="names"
+           
           ></Input>
         </FormGroup>
         <FormGroup>
@@ -99,6 +100,7 @@ function ProfilePage() {
             id="exampleInputAddress1"
             placeholder="Enter Address"
             type="names"
+           
           ></Input>
         </FormGroup>
         <FormGroup>
@@ -125,7 +127,7 @@ function ProfilePage() {
           </Label>
         </FormGroup>
         <Button color="primary" type="submit">
-          Update details
+          Update details 
         </Button>
       </Form>
             </h5>

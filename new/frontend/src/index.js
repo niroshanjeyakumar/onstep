@@ -14,7 +14,7 @@ import Index from "views/Index.js";
 import NucleoIcons from "views/NucleoIcons.js";
 import LoginPage from "views/examples/LoginPage.js";
 import LandingPage from "views/examples/LandingPage.js";
-import ProfilePage from "views/customer/ProfilePage.js";
+import CustomerPage from "views/customer/CustomerPage";
 import OnStep from "views/onstep.js";
 import Product from "views/productInd.js";
 import Login from "views/login.js"
@@ -78,7 +78,7 @@ ReactDOM.render(
         />
         <Route
           path="/profile-page"
-          render={props => <ProfilePage {...props} />}
+          render={props => <CustomerPage {...props} />}
         />
          <Route exact
           path="/products"
