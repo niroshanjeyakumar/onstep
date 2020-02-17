@@ -44,17 +44,29 @@ let order =new Schema({
     total:{
         type:String,
     },
+    orderTime:{
+        type:String
+    },
     order_accepted:{
         type:Boolean,
         default:false
+    },
+    acceptedTime:{
+        type:String
     },
     order_purchased:{
         type:Boolean,
         default:false
     },
+    purchasedTime:{
+        type:String
+    },
     order_complete:{
         type:Boolean,
         default:false
+    },
+    recievedTime:{
+        type:String
     },
     CustomerRating:{
         type:Boolean,

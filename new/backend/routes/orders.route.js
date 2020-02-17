@@ -15,7 +15,8 @@ orderRoutes.route('/add').post(function (req, res) {
         productlist:[order.productlist],
         seller:order.seller,
         customer:order.customer,
-        total:order.total
+        total:order.total,
+        orderTime:order.orderTime
       }
       console.log(orderData)
       const orderSave =new Order(orderData);
@@ -49,6 +50,7 @@ orderRoutes.route('/accept').post(function (req, res) {
   }
   else {
     order.delivery=req.body.delivery;
+    order.acceptedTime=req.body.acceptedTime;
     order.order_accepted=true;
     order.save(function (err,Order){
       if(err){
@@ -74,6 +76,7 @@ orderRoutes.route('/accept').post(function (req, res) {
     }
     else {
       order.order_purchased=true;
+      order.purchasedTime=req.body.purchasedTime;
       order.save(function (err,Order){
         if(err){
           console.log(err);
@@ -98,6 +101,7 @@ orderRoutes.route('/accept').post(function (req, res) {
       }
       else {
         order.order_complete=true;
+        order.recievedTime=req.body.recievedTime;
         order.save(function (err,Order){
           if(err){
             console.log(err);
