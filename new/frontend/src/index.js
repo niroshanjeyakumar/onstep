@@ -71,7 +71,7 @@ ReactDOM.render(
        <Route exact path="/administrator/delivery" render={props => <AdminDelivery {...props} />} />
        <Route path="/administrator/delivery/:id" render={props => <AdminDeliveryProfile {...props} />} />
        <Route path="/administrator/unread_messages" render={props => <AdminUnread {...props} />} />
-       <Route path="/administrator/read_messaages" render={props => <AdminRead {...props} />} />
+       <Route path="/administrator/read_messages" render={props => <AdminRead {...props} />} />
        <Route path="/administrator/category" render={props => <AdminCat {...props} />} />
 
 
