@@ -1,5 +1,6 @@
-import React,{useState} from "react";
-import axios from 'axios'
+import React, {useEffect, useState} from "react";
+import Axios from 'axios';
+import '../../../src/assets/css'
 
 // reactstrap components
 import {
@@ -16,7 +17,12 @@ import {
   FormGroup,
   Input,
   FormText,
+  Card,
+  CardBody,
+  CardText,
+  CardLink,
   Label,
+  Table,
   UncontrolledTooltip
 } from "reactstrap";
 
@@ -27,7 +33,7 @@ import DefaultFooter from "components/Footers/DefaultFooter.js";
 
 
 function ProfilePage() {
-  const [pills, setPills] = React.useState("2");
+  const [customer, setCustomer] = React.useState([]);
   React.useEffect(() => {
     document.body.classList.add("profile-page");
     document.body.classList.add("sidebar-collapse");
@@ -37,8 +43,29 @@ function ProfilePage() {
       document.body.classList.remove("sidebar-collapse");
     };
   });
+
+  useEffect(()=>{
+    Axios.get('http://localhost:4000/onstep/user/customer/')
+    .then(res=>{
+      setCustomer(res.data);
+  })
+  .catch(function(error){
+      console.log(error);
+  })
+});
+
+const cus = customer.map(function(Cus,index){
+  return(
+    <tr>
+  <td>{Cus._id}</td>
+  <td>{Cus.customer_name}</td>
+  <td>{Cus.customer_number}</td>
+  <td>{Cus.customer_email}</td>
+  </tr>
+  )
+})
   
-  const [emailFocus, setemailFocus] = useState(false);
+ {/* const [emailFocus, setemailFocus] = useState(false);
   const [nameFocus, setnameFocus] = useState(false);
   const [addressFocus, setaddressFocus] = useState(false);
   const [numberFocus, setnumberFocus] = useState(false);
@@ -62,9 +89,9 @@ function ProfilePage() {
           else{
             console.log("error")
           }
-  }
+  }*/}
   
-  return (
+ {/* return (
     <>
       <Customernavbar />
       <div className="wrapper">
@@ -84,7 +111,7 @@ function ProfilePage() {
             placeholder="Enter email"
             type="email"
           ></Input>
-        </FormGroup>
+         {cus}</FormGroup>
         <FormGroup>
           <label htmlFor="exampleInputName1">Name</label>
           <Input
@@ -93,7 +120,7 @@ function ProfilePage() {
             type="names"
            
           ></Input>
-        </FormGroup>
+         {cus}</FormGroup>
         <FormGroup>
           <label htmlFor="exampleAddress1">Address</label>
           <Input
@@ -110,7 +137,7 @@ function ProfilePage() {
             placeholder="Enter contact number"
             type="names"
           ></Input>
-        </FormGroup>
+         {cus}</FormGroup>
         <FormGroup>
           <label htmlFor="exampleInputPassword1">Password</label>
           <Input
@@ -118,7 +145,7 @@ function ProfilePage() {
             placeholder="Password"
             type="password"
           ></Input>
-        </FormGroup>
+         {cus}</FormGroup>
         <FormGroup check>
           <Label check>
             <Input type="checkbox"></Input>
@@ -130,14 +157,45 @@ function ProfilePage() {
           Update details 
         </Button>
       </Form>
-            </h5>
-        
-   </Container>
-        </div>
-        <DefaultFooter />
-      </div>
-    </>
-  );
-}
+        </h5>*/}
+        return (
+          <>
+             <Customernavbar />
+              <ProfilePageHeader />
+              <div className="section">
+                <Container>      
+                  <h3 className="title">My Profile</h3>
+                  <h4>
+                    <Card align="center" >
+                      <CardBody >
+                        <CardText align="crenter">
+                        <Table>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Telephone</th>
+                      <th>email</th>
+                    <tbody>
+                      {cus}
+                    </tbody>
+                  </Table>
+                         </CardText>
+                        <CardLink href="/Editcustomer.js" onClick={e => e.preventDefault()}>
+                          Edit
+                         </CardLink>
+                       </CardBody>
+                     </Card></h4>
+                  <Row>
+                    
+                  </Row>
+                 </Container>
+                </div>
+              <DefaultFooter />
+            
+            </>
+          );
+      }
+      
+
+
 
 export default ProfilePage;
