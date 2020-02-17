@@ -6,7 +6,7 @@ import {
 import 'assets/css/rating.css'
 import {FaStar} from 'react-icons/fa';
 import IndexNavbar from "components/Navbars/Customernavbar";
-import IndexHeader from "components/Headers/customerhomeHeader";
+import IndexHeader from "components/Headers/CustomerHeader";
 import DarkFooter from "components/Footers/Footer1";
 
 function Products  () {

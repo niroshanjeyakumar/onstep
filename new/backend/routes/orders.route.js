@@ -190,7 +190,7 @@ orderRoutes.route('/supermarket/:id').get(function (req, res) {
 });
 
 orderRoutes.route('/del/:id').get(function (req, res) {
-  Order.find({delivery:req.params.id,order_accepted:true}).populate('seller customer').then(function(order, err){
+  Order.find({delivery:req.params.id,order_accepted:true,order_complete:false}).populate('seller customer').then(function(order, err){
   if(err){
     console.log(err);
   }

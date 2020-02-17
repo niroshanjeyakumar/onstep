@@ -1,21 +1,14 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
-import Login from './src/login.js'
+import React from 'react';
+import OnStep from './src/OnStep.js';
+import store from './src/store'
+import {Provider} from 'react-redux'
 
-export default function App() {
-  const [Outtext,setOuttext]=useState("");
-  const [delEmail,setdelEmail]=useState("");
-  const [delPass,setdelPass]=useState("");
-  return (
-    <Login />
-  );
+export default function App(){
+    
+    return(
+      <Provider store={store}>
+          <OnStep/>
+      </Provider>
+        
+    )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor:'#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
