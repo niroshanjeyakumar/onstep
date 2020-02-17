@@ -14,7 +14,7 @@ import Index from "views/Index.js";
 import NucleoIcons from "views/NucleoIcons.js";
 import LoginPage from "views/examples/LoginPage.js";
 import LandingPage from "views/examples/LandingPage.js";
-import ProfilePage from "views/customer/ProfilePage.js";
+import CustomerPage from "views/customer/CustomerPage";
 import OnStep from "views/onstep.js";
 import Product from "views/productInd.js";
 import Login from "views/login.js"
@@ -31,6 +31,9 @@ import Completedorders from "views/delivery/completedorders.js";
 import AciveOrder from "views/delivery/activeorders.js";
 import IncomingOrders from "views/supermarket/supermarketOrder.js";
 import MyOrders from "views/customer/myorders.js";
+import Seller from "views/customer/supermarketprofile.js";
+import CustomerDel from "views/customer/deliveryPersonprofile.js";
+
 //admin
 import AdminLogin from "views/admin/adminlogin.js";
 import AdminHome from "views/admin/administrator.js";
@@ -76,9 +79,10 @@ ReactDOM.render(
           path="/landing-page"
           render={props => <LandingPage {...props} />}
         />
+
         <Route
           path="/profile-page"
-          render={props => <ProfilePage {...props} />}
+          render={props => <CustomerPage {...props} />}
         />
          <Route exact
           path="/products"
@@ -141,7 +145,8 @@ ReactDOM.render(
           path="/sm/vege"
           render={props => <Vege {...props} />}
         /> */}
-
+        <Route path="/delivery/view/:id" render={props => <CustomerDel {...props} />} />
+        <Route path="/seller/view/:id" render={props => <Seller {...props} />} />
         <Route path="/login-page" render={props => <LoginPage {...props} />} />
         <Route path="/onstep" render={props =><HomePage {...props}/>} />
         <Route path="/profile" render={props => <Profile {...props} />} />

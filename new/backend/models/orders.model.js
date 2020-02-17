@@ -41,6 +41,9 @@ let order =new Schema({
         type:Schema.Types.ObjectId,
         ref:'delivery'
     },
+    total:{
+        type:String,
+    },
     order_accepted:{
         type:Boolean,
         default:false
@@ -52,6 +55,38 @@ let order =new Schema({
     order_complete:{
         type:Boolean,
         default:false
+    },
+    CustomerRating:{
+        type:Boolean,
+        default:false
+    },
+    CustDelRating:{
+        type:Number,
+    },
+    CustDelReview:{
+        type:String,
+    },
+    CustSupRating:{
+        type:Number,
+    },
+    CustSupReview:{
+        type:String,
+    },
+    DeliveryRating:{
+        type:Boolean,
+        default:false
+    },
+    DelCustRating:{
+        type:Number,
+    },
+    DelCustReview:{
+        type:String,
+    },
+    DelSupRating:{
+        type:Number,
+    },
+    DelSupReview:{
+        type:String,
     }
 });
 

@@ -15,13 +15,15 @@ orderRoutes.route('/add').post(function (req, res) {
         productlist:[order.productlist],
         seller:order.seller,
         customer:order.customer,
+        total:order.total
       }
-      //console.log(orderData)
+      console.log(orderData)
       const orderSave =new Order(orderData);
       orderSave.save().catch(err=>console.log(err));
     }
     else{
       res.productlist.push(order.productlist);
+      res.total=+res.total+ +order.total;
       res.save();
     }
   }  
@@ -106,6 +108,55 @@ orderRoutes.route('/accept').post(function (req, res) {
         })
     }}).catch(err=>{console.log(err);})
       });
+//rating functions
+      orderRoutes.route('/cust/rating/:id').post(function (req, res) {
+
+        let id = req.params.id;
+        
+        Order.findById(id)
+        .then(function(order, err){
+          
+        if(err){
+          console.log(err);
+        }
+        else {
+          order.CustomerRating=true;
+          order.CustDelRating=req.body.CustDelRating;
+          order.CustDelReview=req.body.CustDelReview;
+          order.CustSupRating=req.body.CustSupRating;
+          order.CustSupReview=req.body.CustSupReview;
+          order.save(function (err,Order){
+            if(err){
+              console.log(err);
+            }
+            else{
+              res.json(Order);
+            }
+          })
+      }}).catch(err=>{console.log(err);})
+        });
+
+orderRoutes.route('/delRating/:id').get(function (req, res) {
+          Order.find({delivery:req.params.id, CustomerRating:true }).populate({path : 'customer'}).then(function(order, err){
+            if(err){
+              console.log(err);
+            }
+            else {
+              res.json(order);
+            }
+          });
+        });
+
+orderRoutes.route('/supRating/:id').get(function (req, res) {
+          Order.find({seller:req.params.id, CustomerRating:true }).populate({path : 'customer'}).then(function(order, err){
+            if(err){
+              console.log(err);
+            }
+            else {
+              res.json(order);
+            }
+          });
+        });
 
 orderRoutes.route('/customer/:id').get(function (req, res) {
   Order.find({customer:req.params.id}).populate({path : 'delivery seller'}).then(function(order, err){
@@ -118,7 +169,7 @@ orderRoutes.route('/customer/:id').get(function (req, res) {
   });
 });
 orderRoutes.route('/completed/:id').get(function (req, res) {
-  Order.find({delivery:req.params.id,order_complete:true}).populate({path : 'product'}).then(function(order, err){
+  Order.find({delivery:req.params.id,order_complete:true}).populate({path : 'customer seller'}).then(function(order, err){
     if(err){
       console.log(err);
     }

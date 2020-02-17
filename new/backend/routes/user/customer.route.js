@@ -118,7 +118,7 @@ customerRoutes.route('/delete/:id').get(function (req, res) {
 });*/
 
 
-customerRoutes.route('/edit/:id').post(function (req, res) {
+customerRoutes.route('/edit/:id').get(function (req, res) {
   customer.findById(req.params.id, function(err, customer) {
   if (!customer)
     res.status(404).send("data is not found");
@@ -128,7 +128,7 @@ customerRoutes.route('/edit/:id').post(function (req, res) {
       customer.customer_address= req.body.customer_address;
       customer.customer_number= req.body.customer_number;
       customer.customer_password= req.body.customer_password;
-
+      customer.profile_picture = req.body.profile_picture;
       customer.save().then(customer => {
         res.json('Update complete');
     })
