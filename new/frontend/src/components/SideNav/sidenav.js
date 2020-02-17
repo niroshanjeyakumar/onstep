@@ -13,18 +13,18 @@ function SideNav(){
         <h4 align='center'>OnStep</h4>
           <h5 align='center'>Administrator</h5>
           <Nav navbar>
-            <Button className="sideNavItem" color="default" href='/administrator'> <i className="now-ui-icons ui-2_settings-90"></i> Dashboard</Button>
+            <Button className="sideNavItem" color="info" href='/administrator'> <i className="now-ui-icons ui-2_settings-90"></i> Dashboard</Button>
         
            <h5 align="center">Users</h5>
-           <Button className="sideNavItem" color="default" href='/administrator/customer'> <i className="now-ui-icons users_single-02"></i> Customer Dashboard</Button>
-           <Button className="sideNavItem" color="default" href='/administrator/supermarket'> <i className="now-ui-icons shopping_shop"></i> Supermarket Dashboard</Button>
-           <Button className="sideNavItem" color="default" href='/administrator/delivery'> <i className="now-ui-icons shopping_delivery-fast"></i>Delivery Dashboard</Button>
+           <Button className="sideNavItem" color="info" href='/administrator/customer'> <i className="now-ui-icons users_single-02"></i> Customer Dashboard</Button>
+           <Button className="sideNavItem" color="info" href='/administrator/supermarket'> <i className="now-ui-icons shopping_shop"></i> Supermarket Dashboard</Button>
+           <Button className="sideNavItem" color="info" href='/administrator/delivery'> <i className="now-ui-icons shopping_delivery-fast"></i>Delivery Dashboard</Button>
            
            
            <h5 align="center">Messages</h5>
-           <Button className="sideNavItem" color="default" href='/administrator/unread_messages'> <i className="now-ui-icons ui-2_chat-round"></i> Unread Messages</Button>
-           <Button className="sideNavItem" color="default" href='/administrator/read_messages'> <i className="now-ui-icons ui-2_chat-round"></i> Read Messages</Button>
-        
+           <Button className="sideNavItem" color="info" href='/administrator/unread_messages'> <i className="now-ui-icons ui-2_chat-round"></i> Unread Messages</Button>
+           <Button className="sideNavItem" color="info" href='/administrator/read_messages'> <i className="now-ui-icons ui-2_chat-round"></i> Read Messages</Button>
+          
             
               {/* <UncontrolledDropdown nav>
                 <DropdownToggle

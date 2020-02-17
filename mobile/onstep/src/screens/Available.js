@@ -28,9 +28,9 @@ export default function Available({navigation}) {
       .catch(function(error){
           console.log(error);
       }) 
-    },[]);
+    });
     // const val=Result._id;
-    const val="5e292cc3b406e533c020db37";
+    const val=global.ID;
     function acceptDelivery(id){
       const orderAccept={ 
         order_id:id,

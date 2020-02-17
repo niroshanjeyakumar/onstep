@@ -2,12 +2,10 @@ import React, { useState,useEffect } from 'react';
 import { StyleSheet, Text, View, Button, TextInput,FlatList, TouchableOpacity,AsyncStorage } from 'react-native'
 import axios from 'axios'
 import {path} from '../util/backend.js';
-import {useSelector} from 'react-redux';
-
-
 const url=path;
-export default function Active({navigation}) {
 
+export default function Active({navigation}) {
+  const ID=global.ID;
     const [product, setproduct] = useState([]);
     // const [Result,setresult]=useState([]);
     
@@ -20,11 +18,10 @@ export default function Active({navigation}) {
   //   useEffect(()=>{
   //           this.initAuth();
   //   },[])
-  const val="5e292cc3b406e533c020db37";
-    // const val=Result._id;
+      // const val=Result._id;
     //console.log(val);
     useEffect(()=>{
-        axios.get(url+'/onstep/order/del/'+val)
+        axios.get(url+'/onstep/order/del/'+ID)
         .then(res=>{
           setproduct(res.data);
       })

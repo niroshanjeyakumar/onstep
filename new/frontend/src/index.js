@@ -89,7 +89,7 @@ ReactDOM.render(
           render={props => <OnStep {...props} />}
         />
         <Route
-          path="/products/:type"
+          path="/products/:id"
           render={props => <Product {...props} />}
         />
            <Route

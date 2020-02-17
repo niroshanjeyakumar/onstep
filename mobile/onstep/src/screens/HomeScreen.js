@@ -20,8 +20,7 @@ export default function Home({navigation}) {
     navigation.navigate('Auth');
 }
 
-const dispatch=useDispatch();
-dispatch(loggedIn(Result._id));
+global.ID=Result._id;
     return (
       <View style={styles.container}>
           <Text>HOME</Text>

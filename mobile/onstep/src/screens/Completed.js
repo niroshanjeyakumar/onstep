@@ -20,7 +20,7 @@ export default function Completed({navigation}) {
   //   },[])
 
     //const ID=Result._id;
-    const ID="5e292cc3b406e533c020db37";
+    const ID=global.ID;
     useEffect(()=>{
         axios.get(url+'/onstep/order/completed/'+ID)
         .then(res=>{
