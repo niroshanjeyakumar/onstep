@@ -33,7 +33,7 @@ const FileUpload = () => {
           );
 
           // Clear percentage
-          setTimeout(() => setUploadPercentage(0), 10000);
+          // setTimeout(() => setUploadPercentage(0), 10000);
         }
       });
 

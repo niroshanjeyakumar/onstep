@@ -39,10 +39,11 @@ function ProfilePageHeader() {
           }}
           ref={pageHeader}
         ></div>
+        
+       
         <Container>
           <div className="photo-container">
-
-           <FileUpload/>
+          <FileUpload/>
 
           </div>
           <h3 className="title">{/*userData.details.customer_name*/}</h3>
