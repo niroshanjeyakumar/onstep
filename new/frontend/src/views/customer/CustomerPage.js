@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Axios from 'axios';
-import '../../../src/assets/css'
+
 
 // reactstrap components
 import {
@@ -179,7 +179,7 @@ const cus = customer.map(function(Cus,index){
                     </tbody>
                   </Table>
                          </CardText>
-                        <CardLink href="/Editcustomer.js" onClick={e => e.preventDefault()}>
+                        <CardLink href="/edit-customer" onClick={e => e.preventDefault()}>
                           Edit
                          </CardLink>
                        </CardBody>
