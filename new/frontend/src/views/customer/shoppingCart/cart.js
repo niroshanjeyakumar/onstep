@@ -3,13 +3,13 @@ import axios from 'axios';
 import {
   Button, Table
 } from 'reactstrap';
-import { ButtonGroup } from 'react-bootstrap';
+import { 
+  ButtonGroup 
+} from 'react-bootstrap';
 
 function Products  () {
   const [product, setproduct] = useState([]);
   const [totVal,settotalVal]=useState(0);
-  //const [neworder, setnewOrder]=useState([]);
- // const [modal, setModal] = useState(false);
   
   //const toggle = () => setModal(!modal);
   const cust=sessionStorage.getItem('user');
