@@ -32,9 +32,12 @@ export default function Available({navigation}) {
     // const val=Result._id;
     const val=global.ID;
     function acceptDelivery(id){
+      var now=moment().format('LLLL');
+      const acceptedTime=JSON.stringify(now);
       const orderAccept={ 
         order_id:id,
-        delivery:val
+        delivery:val,
+        acceptedTime:acceptedTime
       }
       axios.post(url+"/onstep/order/accept",orderAccept).catch(err=>{console.log(err);})
     }

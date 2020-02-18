@@ -6,6 +6,7 @@ import Available from '../screens/Available.js';
 import Active from '../screens/Active.js';
 import Completed from '../screens/Completed.js';
 import OrderDetails from '../screens/OrderDetails.js';
+import Map from '../screens/mapscreen.js';
 
 
 const OrderTab = createMaterialTopTabNavigator({
@@ -27,8 +28,14 @@ const OrderTab = createMaterialTopTabNavigator({
       navigationOptions:{
         title:"Order Details"
     },
-        
+  },
+    Map:{
+      screen:Map,
+      navigationOptions:{
+        title:"Map"
     },
+    },
+      
   });
 
   export default OrderStack;

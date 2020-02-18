@@ -1,5 +1,5 @@
-const LoggedIn =(state=false,action)=>{
-    switch(action.type){
+const LoggedIn =(state=false,{type,payload})=>{
+    switch(type){
         case 'LOGIN':
             return !state
 
