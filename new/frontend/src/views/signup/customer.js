@@ -22,7 +22,7 @@ function CustomerRegistration (){
     const [emailAlert, setemailAlert] = React.useState(false);
     const [passwordAlert, setpasswordAlert] = React.useState(false);
 
-
+  
     function saveCustomer(){
       setemailAlert(false);
       setpasswordAlert(false);

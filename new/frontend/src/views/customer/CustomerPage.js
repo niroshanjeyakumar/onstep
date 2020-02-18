@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
-import Axios from 'axios';
-import '../../../src/assets/css'
+import axios from 'axios';
+import FileUpload from "views/customer/FileUpload";
+
 
 // reactstrap components
 import {
@@ -31,6 +32,8 @@ import Customernavbar from "components/Navbars/Customernavbar.js";
 import ProfilePageHeader from "components/Headers/CustomerHeader.js";
 import DefaultFooter from "components/Footers/DefaultFooter.js";
 
+const user=sessionStorage.getItem('user');
+const userData=JSON.parse(user);
 
 function ProfilePage() {
   const [customer, setCustomer] = React.useState([]);
@@ -40,14 +43,15 @@ function ProfilePage() {
     document.documentElement.classList.remove("nav-open");
     return function cleanup() {
       document.body.classList.remove("profile-page");
-      document.body.classList.remove("sidebar-collapse");
+      document.body.classList.remove("sidebar-collapse"); 
     };
   });
-
+  
   useEffect(()=>{
-    Axios.get('http://localhost:4000/onstep/user/customer/')
+    axios.get('http://localhost:4000/onstep/user/customer/test/'+userData.details._id)
     .then(res=>{
-      setCustomer(res.data);
+      console.log(res);
+      //setCustomer(res.data);
   })
   .catch(function(error){
       console.log(error);
@@ -91,7 +95,7 @@ const cus = customer.map(function(Cus,index){
           }
   }*/}
   
- {/* return (
+  return (
     <>
       <Customernavbar />
       <div className="wrapper">
@@ -111,7 +115,7 @@ const cus = customer.map(function(Cus,index){
             placeholder="Enter email"
             type="email"
           ></Input>
-         {cus}</FormGroup>
+         </FormGroup>
         <FormGroup>
           <label htmlFor="exampleInputName1">Name</label>
           <Input
@@ -120,7 +124,7 @@ const cus = customer.map(function(Cus,index){
             type="names"
            
           ></Input>
-         {cus}</FormGroup>
+         </FormGroup>
         <FormGroup>
           <label htmlFor="exampleAddress1">Address</label>
           <Input
@@ -137,7 +141,7 @@ const cus = customer.map(function(Cus,index){
             placeholder="Enter contact number"
             type="names"
           ></Input>
-         {cus}</FormGroup>
+         </FormGroup>
         <FormGroup>
           <label htmlFor="exampleInputPassword1">Password</label>
           <Input
@@ -145,7 +149,7 @@ const cus = customer.map(function(Cus,index){
             placeholder="Password"
             type="password"
           ></Input>
-         {cus}</FormGroup>
+         </FormGroup>
         <FormGroup check>
           <Label check>
             <Input type="checkbox"></Input>
@@ -157,44 +161,15 @@ const cus = customer.map(function(Cus,index){
           Update details 
         </Button>
       </Form>
-        </h5>*/}
-        return (
-          <>
-             <Customernavbar />
-              <ProfilePageHeader />
-              <div className="section">
-                <Container>      
-                  <h3 className="title">My Profile</h3>
-                  <h4>
-                    <Card align="center" >
-                      <CardBody >
-                        <CardText align="crenter">
-                        <Table>
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Telephone</th>
-                      <th>email</th>
-                    <tbody>
-                      {cus}
-                    </tbody>
-                  </Table>
-                         </CardText>
-                        <CardLink href="/Editcustomer.js" onClick={e => e.preventDefault()}>
-                          Edit
-                         </CardLink>
-                       </CardBody>
-                     </Card></h4>
-                  <Row>
-                    
-                  </Row>
-                 </Container>
-                </div>
-              <DefaultFooter />
-            
-            </>
-          );
-      }
-      
+      </h5>
+        
+        </Container>
+             </div>
+             <DefaultFooter />
+           </div>
+         </>
+       );
+     }
 
 
 
