@@ -17,7 +17,7 @@ function DefaultFooter() {
                 <a
                   to="/onstep" tag={Link}
                 >
-                  Onstep
+                  OnStep
                 </a>
               </li>
               <li>

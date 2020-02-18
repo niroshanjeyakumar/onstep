@@ -23,7 +23,7 @@ function Products  () {
       const [modal, setmodal]=useState(false);
       const [listID,setlistID]=useState([]);
 
-     const user =sessionStorage.getItem('user');
+     const user =sessionStorage.getItem('user'); 
      const customer =JSON.parse(user);
     const ID= customer.details._id;
       useEffect(()=>{
@@ -47,7 +47,7 @@ function Products  () {
         setmodal(true);
         console.log(id);
       }
-
+ 
       const pro = product.map(function (products, index){
         var disableButton=false;
          //if (!products.order_accepted){
