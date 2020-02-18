@@ -11,9 +11,6 @@ import {
 function Products  () {
   const [product, setproduct] = useState([]);
   const [totVal,settotalVal]=useState(0);
-  
-  //const toggle = () => setModal(!modal);
-  
 
   const cust=sessionStorage.getItem('user');
   const customer =JSON.parse(cust);
@@ -28,7 +25,7 @@ function Products  () {
         console.log(error);
     }) 
   });
- // console.log(product);
+
   function deletefromcart (id){
     axios.get("http://localhost:4000/onstep/cart/delete/"+id).catch(function(error){
       console.log(error);

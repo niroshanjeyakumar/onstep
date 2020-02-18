@@ -8,9 +8,7 @@ import {
 
 function Products  () {
   const [product, setproduct] = useState([]);
-  //const [modal,setModal]=useState(true);
-  //const [order,setOrder] = useState("")
-  //const [productid,setProductid] = useState("");
+
   const [ordersize,setOrdersize] = useState("");
   const [modal1, setModal1] = React.useState(false);
   const [cartProduct,setcartProduct]=useState([]);
@@ -26,8 +24,7 @@ function Products  () {
   });
  
     function saveCart(product) {
-      //console.log(product);
-      //setProductid(product);
+    
       const cust=sessionStorage.getItem('user');
       const customer =JSON.parse(cust);
       var newcart={
@@ -43,7 +40,7 @@ function Products  () {
     if(a.seller_name > b.seller_name) { return 1; }
     return 0;
 }).map(function (products){
-//<input type="hidden" name="id" value={this.products._id} on={e=>setProductid(e.target.value)}/>
+
 return <div className="col-sm-2 col-md-2">
         <Card>
         <CardBody>
@@ -52,7 +49,7 @@ return <div className="col-sm-2 col-md-2">
         <CardText>Rs. {products.product_price} / {products.product_unit}</CardText>
         <Form action="" className="form" method="post">
       
-      {/* <input type="number" name="order_size" min="1" onChange={e=>setOrdersize(e.target.value)} required/> */}
+     
       <Button color="success" onClick={()=>{setcartProduct(products);setModal1(true)}}>Add to Cart</Button></Form>
         </CardBody>
         

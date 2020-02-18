@@ -1,13 +1,11 @@
 import React, { useState,useEffect } from "react";
 // core components
 import ExamplesNavbar from "components/SideNav/adminNav";
-//import AdminHead from "components/Headers/adminHeader";
 import TransparentFooter from "components/Footers/Footer1.js";
 import { Table,Button,Modal,ModalBody } from "reactstrap";
 import Axios from "axios";
 import "assets/css/admin.css";
-// import { Redirect } from "react-router";
-import {Link, Redirect} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import AdminSideNav from "components/SideNav/sidenav.js";
 
 function AdminMarket() {
@@ -19,8 +17,6 @@ function AdminMarket() {
         document.body.classList.add("landing-page");
         document.body.classList.add("sidebar-collapse");
         document.documentElement.classList.remove("nav-open");
-        // window.scrollTo(0, 0);
-        // document.body.scrollTop = 0;
         return function cleanup() {
           document.body.classList.remove("landing-page");
           document.body.classList.remove("sidebar-collapse");

@@ -119,7 +119,7 @@ function IndexNavbar() {
               </NavItem>
               <NavItem>
                 <NavLink
-                  to="/delivery-home" tag={Link}
+                  to="/delivery-home/:id" tag={Link}
                   id="myprofile"
                 >
                   <i className="now-ui-icons shopping_delivery-fast"></i>

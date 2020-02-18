@@ -33,20 +33,9 @@ function Products  () {
             console.log(error);
         }) 
       });
-     // console.log(product);
-     // var status;
+     
       const pro = product.map(function (products, index){
-        
-        // if (!products.order_accepted){
-        //     status="Active";
-        // }
-        // else if(!products.order_purchased){
-        //     status="In delivery";
-        // }
-        // else if(!products.order_delivered){
-        //     status="Delivered";
-        // }
-        
+    
           return (  
               <tr>
             <th>{index+1}</th>

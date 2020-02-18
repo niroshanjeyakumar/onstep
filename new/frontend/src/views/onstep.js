@@ -1,9 +1,4 @@
 import React from "react";
-
-// reactstrap components
-// import {
-// } from "reactstrap";
-
 // core components
 
 import CustNavbar from "components/Navbars/Customernavbar";
