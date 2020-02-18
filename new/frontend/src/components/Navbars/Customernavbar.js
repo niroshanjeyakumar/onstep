@@ -45,10 +45,10 @@ function CustomerNavBar() {
 useEffect(()=>{
   Axios.get('http://localhost:4000/onstep/category/').then(res=>{setCat(res.data)}).catch(err=>{console.log(err)})
 })
-console.log(Cat);
+//console.log(Cat);
 
 const dropdown=Cat.map(function(category,index){
-  console.log(category.category_name);
+  //console.log(category.category_name);
   return(
 
     <DropdownItem to={`/products/${category._id}`} tag={Link} key={index}>

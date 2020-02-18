@@ -79,24 +79,24 @@ cartRoutes.route('/:id').get(function (req, res) {
 // });
 
 //  Defined update route
-// cartRoutes.route('/update/:id').post(function (req, res) {
-//     Cart.findById(req.params.id, function(err, cart) {
-//     if (!cart)
-//       res.status(404).send("data is not found");
-//     else {
-//         cart.person_name = req.body.person_name;
-//         cart.cart_name = req.body.cart_name;
-//         cart.cart_gst_number = req.body.cart_gst_number;
+  cartRoutes.route('/update/:id').post(function (req, res) { console.log(req.params.id)
+     Cart.findByIdAndUpdate({_id: req.params.id}, function(err, cart) {
+     if (!cart)
+        res.status(404).send("data is not found");
+      else {
+          cart.order_quantity = req.body.order_quantity;
+         cart.customer_id = req.body. customer_id;
+         cart.order_status = req.body.order_status;
 
-//         cart.save().then(cart => {
-//           res.json('Update complete');
-//       })
-//       .catch(err => {
-//             res.status(400).send("unable to update the database");
-//       });
-//     }
-//   });
-// });
+         cart.save().then(cart => {
+            res.json('Update complete');
+        })
+        .catch(err => {
+              res.status(400).send("unable to update the database");
+        });
+      }
+    });
+  });
 
 cartRoutes.route('/delete/:id').get(function (req, res) {
     Cart.findByIdAndRemove({_id: req.params.id}, function(err, cart){
@@ -104,5 +104,35 @@ cartRoutes.route('/delete/:id').get(function (req, res) {
         else res.json('Successfully removed');
     });
 });
+
+
+// cartRoutes.get('/:id/edit', async (req, res) => {
+//   try {
+//     const author = await Author.findById(req.params.id)
+//     res.render('authors/edit', { author: author })
+//   } catch {
+//     res.redirect('/authors')
+//   }
+// })
+
+// router.put('/:id', async (req, res) => {
+//   let author
+//   try {
+//     author = await Author.findById(req.params.id)
+//     author.name = req.body.name
+//     await author.save()
+//     res.redirect(`/authors/${author.id}`)
+//   } catch {
+//     if (author == null) {
+//       res.redirect('/')
+//     } else {
+//       res.render('authors/edit', {
+//         author: author,
+//         errorMessage: 'Error updating Author'
+//       })
+//     }
+//   }
+// })
+
 
 module.exports = cartRoutes;
