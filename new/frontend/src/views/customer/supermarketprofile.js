@@ -82,7 +82,7 @@ function AdminCust() {
     useEffect(()=>{
       Axios.get('http://localhost:4000/onstep/order/supRating/'+id).then(res=>setorders(res.data))
         .catch(err=>console.log(err))
-      },[])
+      });
       
       //const arrAvg =  arr.reduce((a,b) => a + b, 0) / arr.length;
       let sum=0;

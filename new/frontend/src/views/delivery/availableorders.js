@@ -38,8 +38,7 @@ function Products  () {
             console.log(error);
         }) 
       });
-     // console.log(product);
-     // var status;
+     
 
       function acceptDelivery(id){
         const orderAccept={ 

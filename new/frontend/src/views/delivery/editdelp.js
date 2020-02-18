@@ -1,9 +1,22 @@
 import React from 'react';
 import Modal from 'react-modal';
-import axios from 'axios';
-import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
+import {
+  Button,
+  Container,
+  Row,
+  UncontrolledTooltip,
+  Card,
+  CardBody,
+  CardText,
+  Table
+} from "reactstrap";
+
+
 var querystring = require('querystring');
+
 
 class editdelp extends React.Component {
   constructor() {

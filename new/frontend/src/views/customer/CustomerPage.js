@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Axios from 'axios';
-import '../../../src/assets/css'
+import '../../../src/assets/css/custom.css'
 
 // reactstrap components
 import {
