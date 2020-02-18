@@ -1,14 +1,16 @@
 import React, {useState,useEffect} from 'react';
 import axios from 'axios';
+//react components
 import {
   Table
 } from 'reactstrap';
-
+//core components
 import IndexNavbar from "components/Navbars/DeliveryNavbar";
 import IndexHeader from "components/Headers/delivery-homeHeader";
 import DarkFooter from "components/Footers/Footer1";
 
 function Products  () {
+//add navbar
     useEffect(() => {
         document.body.classList.add("profile-page");
         document.body.classList.add("sidebar-collapse");
@@ -18,9 +20,9 @@ function Products  () {
           document.body.classList.remove("sidebar-collapse");
         };
       });
-
+//declair product
       const [product, setproduct] = useState([]);
-
+//get completed delivery details using id
       const del=sessionStorage.getItem('user');
       const delivery =JSON.parse(del);
       const id= delivery.details._id;
@@ -29,13 +31,13 @@ function Products  () {
           .then(res=>{
             setproduct(res.data);
         })
-        .catch(function(error){
+        .catch(function(error){//error handeling
             console.log(error);
         }) 
       });
-     
+ //map products to pro    
       const pro = product.map(function (products, index){
-    
+//table header row    
           return (  
               <tr>
             <th>{index+1}</th>
@@ -66,6 +68,7 @@ function Products  () {
         <th></th>
       </tr>
     </thead>
+{/*add pro to table*/}
     <tbody>
       {pro}
     </tbody>

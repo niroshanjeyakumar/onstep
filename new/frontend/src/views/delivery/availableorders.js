@@ -1,17 +1,19 @@
 import React, {useState,useEffect} from 'react';
 import axios from 'axios';
+//reactstrap components
 import {
   Table, Button,
   Modal,ModalBody
 
 } from 'reactstrap';
 import moment from 'moment';
-
+//core components
 import IndexNavbar from "components/Navbars/DeliveryNavbar";
 import IndexHeader from "components/Headers/delivery-homeHeader";
 import DarkFooter from "components/Footers/Footer1";
 
 function Products  () {
+//add nav bar
     useEffect(() => {
         document.body.classList.add("profile-page");
         document.body.classList.add("sidebar-collapse");
@@ -22,10 +24,11 @@ function Products  () {
         };
       });
 
+   //declair,product,modal,listID
       const [product, setproduct] = useState([]);
       const [modal, setmodal]=useState(false);
       const [listID,setlistID]=useState([])
-
+//get cistomer details from order
       const cust=sessionStorage.getItem('user');
       const customer =JSON.parse(cust);
       const ID= customer.details._id;
@@ -35,7 +38,7 @@ function Products  () {
           .then(res=>{
             setproduct(res.data);
         })
-        .catch(function(error){
+        .catch(function(error){//error handeling
             console.log(error);
         }) 
       });
@@ -55,6 +58,7 @@ function Products  () {
         setmodal(true);
         console.log(id);
       }
+//get product details which is to be delivered to pro
       const pro = product.map(function (products, index){
     
           return (  
@@ -64,13 +68,17 @@ function Products  () {
               <td>{products.seller.supermarket_area}</td>
               <td>{products.customer.customer_address}</td>
               <td>{products.total}</td>
-              <td><Button color="warning" onClick={()=>{setlistID(products.productlist); vieworder(products._id);}}>View Order</Button></td>
+              <td>
+{/*view order button*/}
+	<Button color="warning" onClick={()=>{setlistID(products.productlist); vieworder(products._id);}}>View Order</Button></td>
+{/*accept delivery button*/}
               <td><Button color="success" onClick={()=>acceptDelivery(products._id)}>Accept Delivery</Button></td>
               
               </tr>
           );
       
       });
+//retriev product details to order_list
       const order_list =listID.map(function (products, index){
         return(
           <tr>
@@ -114,6 +122,7 @@ function Products  () {
                   >
                     <i className="now-ui-icons ui-1_simple-remove"></i>
                   </button>
+{/*ordered items*/}
                   <h4 className="title title-up">Ordered Items</h4>
                 </div>
                 <ModalBody>

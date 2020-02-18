@@ -101,7 +101,6 @@ ReactDOM.render(
         />
         <Route
           path="/products/:type"
-          path="/products/:id"
           render={props => <Product {...props} />}
         />
         <Route
@@ -135,7 +134,7 @@ ReactDOM.render(
         <Route
           path="/view"
           render={props => <ViewProduct {...props} />}
-        />
+        /> 
         <Route
           path="/delivery-home/:id"
           render={props => <DelProfile {...props} />}
