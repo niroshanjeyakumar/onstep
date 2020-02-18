@@ -19,7 +19,7 @@ let supermarket_model =new Schema({
     },
     supermarket_password:{
         type:String
-    }
+    },   
 });
 
 

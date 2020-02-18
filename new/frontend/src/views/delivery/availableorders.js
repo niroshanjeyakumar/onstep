@@ -5,6 +5,7 @@ import {
   Modal,ModalBody
 
 } from 'reactstrap';
+import moment from 'moment';
 
 import IndexNavbar from "components/Navbars/DeliveryNavbar";
 import IndexHeader from "components/Headers/delivery-homeHeader";
@@ -41,9 +42,12 @@ function Products  () {
      
 
       function acceptDelivery(id){
+        var now=moment().format('LLLL');
+      const acceptedTime=JSON.stringify(now);
         const orderAccept={ 
           order_id:id,
-          delivery:ID
+          delivery:ID,
+          acceptedTime:acceptedTime
         }
         axios.post("http://localhost:4000/onstep/order/accept",orderAccept).catch(err=>{console.log(err);})
       }

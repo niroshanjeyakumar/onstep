@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from "react";
 import Axios from 'axios';
+
 import '../../../src/assets/css/custom.css'
 import {useParams} from "react-router-dom";
+
 
 // reactstrap components
 import {
@@ -32,39 +34,35 @@ import Customernavbar from "components/Navbars/Customernavbar.js";
 import ProfilePageHeader from "components/Headers/CustomerHeader.js";
 import DefaultFooter from "components/Footers/DefaultFooter.js";
 
+//const user=sessionStorage.getItem('user');
+//const userData=JSON.parse(user);
 
 function ProfilePage() {
-  const [customer, setCustomer] = React.useState([]);
-  React.useEffect(() => {
+  
+  useEffect(() => {
     document.body.classList.add("profile-page");
     document.body.classList.add("sidebar-collapse");
     document.documentElement.classList.remove("nav-open");
     return function cleanup() {
       document.body.classList.remove("profile-page");
-      document.body.classList.remove("sidebar-collapse");
+      document.body.classList.remove("sidebar-collapse"); 
     };
   });
+  const [customer, setCustomer] = React.useState([]);
 
+  const {id}= useParams();
   useEffect(()=>{
-    Axios.get('http://localhost:4000/onstep/user/customer/')
+    Axios.get('http://localhost:4000/onstep/user/customer/test/'+id)
     .then(res=>{
-      setCustomer(res.data);
+      console.log(res);
+      //setCustomer(res.data);
   })
   .catch(function(error){
       console.log(error);
   })
 });
 
-const cus = customer.map(function(Cus,index){
-  return(
-    <tr>
-  <td>{Cus._id}</td>
-  <td>{Cus.customer_name}</td>
-  <td>{Cus.customer_number}</td>
-  <td>{Cus.customer_email}</td>
-  </tr>
-  )
-})
+
   
  {/* const [emailFocus, setemailFocus] = useState(false);
   const [nameFocus, setnameFocus] = useState(false);
@@ -92,9 +90,9 @@ const cus = customer.map(function(Cus,index){
           }
   }*/}
   
- {/* return (
+  {/*return (
     <>
-      <Customernavbar />
+     <Customernavbar />
       <div className="wrapper">
         <ProfilePageHeader />
         <div className="section">
@@ -112,7 +110,7 @@ const cus = customer.map(function(Cus,index){
             placeholder="Enter email"
             type="email"
           ></Input>
-         {cus}</FormGroup>
+         </FormGroup>
         <FormGroup>
           <label htmlFor="exampleInputName1">Name</label>
           <Input
@@ -121,7 +119,7 @@ const cus = customer.map(function(Cus,index){
             type="names"
            
           ></Input>
-         {cus}</FormGroup>
+         </FormGroup>
         <FormGroup>
           <label htmlFor="exampleAddress1">Address</label>
           <Input
@@ -138,7 +136,7 @@ const cus = customer.map(function(Cus,index){
             placeholder="Enter contact number"
             type="names"
           ></Input>
-         {cus}</FormGroup>
+         </FormGroup>
         <FormGroup>
           <label htmlFor="exampleInputPassword1">Password</label>
           <Input
@@ -146,7 +144,7 @@ const cus = customer.map(function(Cus,index){
             placeholder="Password"
             type="password"
           ></Input>
-         {cus}</FormGroup>
+         </FormGroup>
         <FormGroup check>
           <Label check>
             <Input type="checkbox"></Input>
@@ -157,8 +155,8 @@ const cus = customer.map(function(Cus,index){
         <Button color="primary" type="submit">
           Update details 
         </Button>
-      </Form>
-        </h5>*/}
+      </Form> */}
+      
         return (
           <>
              <Customernavbar />
@@ -176,26 +174,29 @@ const cus = customer.map(function(Cus,index){
                       <th>Telephone</th>
                       <th>email</th>
                     <tbody>
-                      {cus}
+                    <tr>
+                 <td>{customer._id}</td>
+                <td>{customer.customer_name}</td>
+                <td>{customer.customer_number}</td>
+                <td>{customer.customer_email}</td>
+                </tr>
                     </tbody>
                   </Table>
                          </CardText>
-                        <CardLink href="/Editcustomer.js" onClick={e => e.preventDefault()}>
+                        <CardLink href="/edit-customer" onClick={e => e.preventDefault()}>
                           Edit
                          </CardLink>
                        </CardBody>
                      </Card></h4>
-                  <Row>
-                    
-                  </Row>
-                 </Container>
-                </div>
-              <DefaultFooter />
-            
-            </>
-          );
-      }
-      
+         
+  
+        </Container>
+             </div>
+             <DefaultFooter />
+           
+         </>
+       );
+     }
 
 
 

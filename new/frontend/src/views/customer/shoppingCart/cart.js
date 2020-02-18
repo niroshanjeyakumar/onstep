@@ -3,19 +3,22 @@ import axios from 'axios';
 import {
   Button, Table
 } from 'reactstrap';
-import { ButtonGroup } from 'react-bootstrap';
+import moment from 'moment';
+import { 
+  ButtonGroup 
+} from 'react-bootstrap';
 
 function Products  () {
   const [product, setproduct] = useState([]);
   const [totVal,settotalVal]=useState(0);
- 
+
   const cust=sessionStorage.getItem('user');
   const customer =JSON.parse(cust);
   const ID= customer.details._id;
   useEffect(()=>{
       axios.get('http://localhost:4000/onstep/cart/cust/'+ID)
       .then(res=>{
-        console.log(res.data);
+        //console.log(res.data);
         setproduct(res.data);
     })
     .catch(function(error){
@@ -42,11 +45,15 @@ function Products  () {
         const cartData=response.data;
         let total=cartData.product.product_price * cartData.order_quantity;
         //alert(total);
+        var now=moment().format('LLLL');
+        const orderTime=JSON.stringify(now);
+       // alert(orderTime);
         const order ={
           productlist:{product:cartData.product.product_name, unit:cartData.product.product_unit,price:cartData.product.product_price, order_quantity:cartData.order_quantity},
           seller:cartData.product.seller_id,
           customer:cartData.customer_id,
-          total:total
+          total:total,
+          orderTime:orderTime
         };
         //alert(order.total);
         //setnewOrder(order);

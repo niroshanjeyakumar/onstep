@@ -21,7 +21,10 @@ import DefaultFooter from "components/Footers/DefaultFooter.js";
 function ProfilePage() {
 
 
+
   useEffect(() => {
+
+  React.useEffect(() => {
     document.body.classList.add("profile-page");
     document.body.classList.add("sidebar-collapse");
     document.documentElement.classList.remove("nav-open");
