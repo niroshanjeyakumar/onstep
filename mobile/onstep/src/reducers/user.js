@@ -1,9 +1,9 @@
-const user=(state={},action)=>{
-    switch(action.type){
+const user=(state={},{type,payload})=>{
+    switch(type){
         case 'LOGGED_IN':
             state={
                 isloggedin:true,
-                details:action.payload
+                details:payload
             }
             return state;
             break;

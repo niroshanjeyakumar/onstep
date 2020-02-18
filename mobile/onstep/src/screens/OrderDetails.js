@@ -6,7 +6,9 @@ export default function OrderDetails({navigation}) {
 
     const order = navigation.state.params;
 
-
+    function onLearnMore(item) {
+      navigation.navigate('Map', { ...item });
+    };
    
     return (
       <View style={styles.container}>
@@ -24,6 +26,7 @@ export default function OrderDetails({navigation}) {
           />
           <Text style={styles.item}>Total</Text> 
           <Text style={styles.price}>Rs.{order.total}</Text>
+          <TouchableOpacity style={styles.button1}><Text  style={styles.buttonText} onPress={() =>onLearnMore(order._id)}>View Order</Text></TouchableOpacity>
           
       </View>
     );

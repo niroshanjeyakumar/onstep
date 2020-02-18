@@ -1,7 +1,8 @@
 import React, { useState,useEffect } from 'react';
-import { StyleSheet, Text, View, Button, TextInput,AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput,AsyncStorage,Dimensions } from 'react-native';
 import {useDispatch} from 'react-redux'
 import {loggedIn} from '../actions'
+import MapView from 'react-native-maps';
 
 export default function Home({navigation}) {
     const [Result,setresult]=useState([]);
@@ -29,6 +30,8 @@ global.ID=Result._id;
     <Text>Hello {Result.delivery_number}</Text>
     <Text>{Result._id}</Text>
     <Button title="Logout" onPress={()=>logout()}/>
+   
+        <MapView style={styles.mapStyle} />
       </View>
     );
   }
@@ -44,6 +47,10 @@ global.ID=Result._id;
     credentials:{
       paddingTop:10,
       paddingBottom:20
+    },
+    mapStyle: {
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height/2,
     },
   
     input:{
