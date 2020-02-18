@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Axios from 'axios';
 import {useParams} from "react-router-dom";
-import editdelp from './editdelp'
+import editdelp from "./editdelp";
 
 // reactstrap components
 import {
@@ -23,8 +23,6 @@ function ProfilePage() {
 
 
   useEffect(() => {
-
-  React.useEffect(() => {
     document.body.classList.add("profile-page");
     document.body.classList.add("sidebar-collapse");
     document.documentElement.classList.remove("nav-open");
@@ -88,6 +86,6 @@ function ProfilePage() {
         </div>
       </>
     );
-}
+};
 
 export default ProfilePage;
