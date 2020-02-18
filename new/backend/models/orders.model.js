@@ -41,6 +41,14 @@ let order =new Schema({
         type:Schema.Types.ObjectId,
         ref:'delivery'
     },
+    deliveryAddress:{
+        type:String
+    },
+    deliveryCoords:{
+        lat:{type:Number},
+        lng:{type:Number}
+    },
+    
     total:{
         type:String,
     },

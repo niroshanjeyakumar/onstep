@@ -33,7 +33,9 @@ export default function Active({navigation}) {
     function onLearnMore(item) {
       navigation.navigate('OrderDetails', { ...item });
     };
- 
+    function Openmap(item) {
+      navigation.navigate('Map', { ...item });
+    };
     return (
       <View style={styles.container}>
           <FlatList
@@ -41,9 +43,12 @@ export default function Active({navigation}) {
             renderItem={({item}) => (
             <View>
                 <Text style={styles.item}>{item.seller.supermarket_name}</Text>
+                
                 <Text style={styles.price}>Rs.{item.total}</Text>
+                <View style={{flexDirection: "row",alignSelf:'flex-end'}}>
+                <TouchableOpacity style={styles.button2}><Text  style={styles.buttonText} onPress={() =>Openmap(item)}>Map</Text></TouchableOpacity>
                 <TouchableOpacity style={styles.button1}><Text  style={styles.buttonText} onPress={() =>onLearnMore(item)}>View Order</Text></TouchableOpacity>
-
+              </View>
                
             </View>
             
@@ -75,10 +80,17 @@ export default function Active({navigation}) {
     button1:{
       alignSelf:'flex-end',
       backgroundColor:'rgba(0,0,0,0.4)',
-      borderRadius:25, 
-      width:200,
+      //borderRadius:25, 
+      width:150,
       paddingVertical:5
   },
+  button2:{
+    alignSelf:'flex-start',
+    backgroundColor:'rgba(0,255,0,0.4)',
+    //borderRadius:25, 
+    width:100,
+    paddingVertical:5
+},
   buttonText:{
     fontSize:16,
     fontWeight:'500',

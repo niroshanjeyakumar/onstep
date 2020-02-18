@@ -16,7 +16,9 @@ orderRoutes.route('/add').post(function (req, res) {
         seller:order.seller,
         customer:order.customer,
         total:order.total,
-        orderTime:order.orderTime
+        orderTime:order.orderTime,
+        deliveryAddress:order.deliveryAddress,
+        deliveryCoords:order.deliveryCoords
       }
       console.log(orderData)
       const orderSave =new Order(orderData);

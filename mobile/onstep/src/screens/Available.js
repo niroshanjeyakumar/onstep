@@ -2,6 +2,7 @@ import React, { useState,useEffect } from 'react';
 import { StyleSheet, Text, View, Button, TextInput,FlatList, TouchableOpacity,AsyncStorage } from 'react-native'
 import axios from 'axios'
 import {path} from '../util/backend.js';
+import moment from 'moment'
 
 const url=path;
 export default function Available({navigation}) {
@@ -53,10 +54,11 @@ export default function Available({navigation}) {
             <View style={styles.order}>
                 <Text style={styles.item}>{item.seller.supermarket_name}</Text>
                 <Text style={styles.price}>Rs.{item.total}</Text>
+                <View style={{flexDirection: "row",alignSelf:'flex-end'}}>
                 <TouchableOpacity style={styles.button1}><Text  style={styles.buttonText} onPress={() =>onLearnMore(item)}>View Order</Text></TouchableOpacity>
                 <TouchableOpacity  style={styles.button2}><Text style={styles.buttonText} onPress={() =>acceptDelivery(item._id)}>Accept</Text></TouchableOpacity>
             </View>
-            
+            </View>
             )}
             keyExtractor={(item, index) => index.toString()}
             
@@ -87,15 +89,15 @@ export default function Available({navigation}) {
     button1:{
           alignSelf:'flex-start',
           backgroundColor:'rgba(0,0,0,0.4)',
-          borderRadius:25, 
-          width:200,
+        //  borderRadius:25, 
+          width:150,
           paddingVertical:5
       },
       button2:{
         alignSelf:'flex-end',
           backgroundColor:'rgba(0,0,0,0.4)',
-          borderRadius:25, 
-          width:200,
+         // borderRadius:25, 
+          width:150,
           paddingVertical:5
     },
     buttonText:{

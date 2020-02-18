@@ -9,6 +9,7 @@ import {FaStar} from 'react-icons/fa';
 import IndexNavbar from "components/Navbars/Customernavbar";
 import IndexHeader from "components/Headers/CustomerHeader";
 import DarkFooter from "components/Footers/Footer1";
+import Map from '../map.js'
 
 function Products  () {
     useEffect(() => {
@@ -33,6 +34,7 @@ function Products  () {
       const [RateSup,setRateSup]=useState(null);
       const [SupHover,setSupHover]=useState(null);
       const [SupComment,setSupComment]=useState("");
+      const [ModalTrack, setModalTrack]=useState(false);
 
       const cust=sessionStorage.getItem('user');
       const customer =JSON.parse(cust);
@@ -50,8 +52,9 @@ function Products  () {
      function removeOrder(id){
        console.log(id);
      }
-     function trackOrder(id){
-      console.log(id);
+     function trackOrder(){
+      setModalTrack(true);
+      console.log("tracking");
     }
     function vieworder(id){
       //setlistID(id);
@@ -74,6 +77,8 @@ function submitReview(){
       CustSupReview:SupComment
   };
       axios.post("http://localhost:4000/onstep/order/cust/rating/"+Recieved,review).catch(err=>{console.log(err);})
+
+      setmodalRec(false);
 }
       const pro = product.map(function (products, index){
         var remove=true;
@@ -112,7 +117,7 @@ function submitReview(){
               <td>
               <ButtonGroup>
               <Button color="warning" onClick={()=>{setlistID(products.productlist); vieworder(products._id);}}>View Order</Button>
-              <Button color="info" onClick={()=>trackOrder(products._id)} disabled={track}>Track Order</Button>
+              <Button color="info" onClick={()=>trackOrder()} disabled={track}>Track Order</Button>
               <Button color="success" onClick={()=>recievedOrder(products._id)} disabled={recieved}>Recieved</Button>
               <Button color="danger" onClick={()=>removeOrder(products._id)} disabled={remove}>Delete</Button>
               </ButtonGroup></td>
@@ -255,6 +260,36 @@ const order_list =listID.map(function (products, index){
                   </Button>
                 </div>
               </Modal>
+              <Modal isOpen={ModalTrack} toggle={() => setModalTrack(false)}>
+                <div className="modal-header justify-content-center">
+                  <button
+                    className="close"
+                    type="button"
+                    onClick={() => setModalTrack(false)}
+                  >
+                    <i className="now-ui-icons ui-1_simple-remove"></i>
+                  </button>
+                  <h4 className="title title-up">Track</h4>
+                </div>
+                <ModalBody>
+                  <div style={{ height: '100%', width: '100%' }}>
+                <Map googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCV4b6OJIuL6b1HtVabtN-8v0XuJ1o4T_I"
+                    loadingElement={<div style={{ height:'100%' }} />}
+                    containerElement={<div style={{ height: `400px` }} />}
+                    mapElement={<div style={{ height: `100%` }} />}/>
+          </div>
+                </ModalBody>
+                <div className="modal-footer">
+                  <Button
+                    color="danger"
+                    type="button"
+                    onClick={() => setModalTrack(false)}
+                  >
+                    Close
+                  </Button>
+                </div>
+              </Modal>
+
   </div>
     <DarkFooter/>
     </>

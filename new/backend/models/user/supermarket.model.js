@@ -12,7 +12,11 @@ let supermarket_model =new Schema({
         type:String
     },
     supermarket_area:{
-        type: String
+        type:String
+    },
+    supermarket_coods:{
+        lat:{type: Number},
+        lng:{type:Number}
     },
     supermarket_address:{
         type: String

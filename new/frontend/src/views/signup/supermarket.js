@@ -4,7 +4,9 @@ import {
 Form, Alert, Container,
 InputGroup, InputGroupAddon,InputGroupText, Input,Button
 } from "reactstrap";
-
+import PlacesAutocomplete,{
+  geocodeByAddress,getLatLng
+} from 'react-places-autocomplete'
 
 function SupermarketRegistration (){
     const [emailFocus, setemailFocus] = useState(false);
@@ -23,7 +25,18 @@ function SupermarketRegistration (){
     const [supermarket_confirmpassword, setsupermarket_confirmpassword]= useState("");
     const [emailAlert, setemailAlert] = React.useState(false);
     const [passwordAlert, setpasswordAlert] = React.useState(false);
-  
+    const [coordinates,setcoordinates]=useState({
+      lat:null,
+      lng:null
+    })
+    const handleselect = async(value)=>{
+      const results = await geocodeByAddress(value);
+      const latlng =await getLatLng(results[0]);
+      console.log(latlng);
+      //console.log(address);
+      setcoordinates(latlng);
+    }
+
     function saveSupermarket(){
       setemailAlert(false);
       setpasswordAlert(false);
@@ -36,6 +49,10 @@ function SupermarketRegistration (){
         supermarket_email:supermarket_email,
         supermarket_number:supermarket_number,
         supermarket_area:supermarket_area,
+        supermarket_coods:{
+            lat:coordinates.lat,
+            lng:coordinates.lng
+        },
         supermarket_address:supermarket_address,
         supermarket_password:supermarket_password
     }
@@ -152,28 +169,47 @@ return(
                         onBlur={() => setareaFocus(false)}
                       ></Input>
                     </InputGroup>
-                    <InputGroup
+                    
+
+                      
+                      <div>
+                  <PlacesAutocomplete value={supermarket_address} onChange={setsupermarket_address} onSelect={handleselect}>
+                        {({ getInputProps, suggestions, getSuggestionItemProps, loading })=>(
+                        <div> 
+                          <InputGroup
                       className={
                         "no-border input-lg" +
                         (addressFocus ? " input-group-focus" : "")
                       }
                     >
-
-                      <InputGroupAddon addonType="prepend">
+                          <InputGroupAddon addonType="prepend">
                         <InputGroupText>
                           <i className="now-ui-icons location_pin"></i>
                         </InputGroupText>
                       </InputGroupAddon>
-                      <Input
-                        placeholder="Address"
-                        type="text"
-                        name="supermarket_address"
-                        value={supermarket_address}
-                        onChange={e=> setsupermarket_address(e.target.value)}
-                        onFocus={() => setaddressFocus(true)}
-                        onBlur={() => setaddressFocus(false)}
-                      ></Input>
-                    </InputGroup>
+                          <Input {...getInputProps({placeholder:"Enter Address"})} onFocus={() => setaddressFocus(true)}
+                        onBlur={() => setaddressFocus(false)}></Input>
+                          <div>
+                            {loading ? <div>...loading</div>: null}
+                            {suggestions.map((suggestion)=>{
+
+                              const style={
+                                backgroundColor:suggestion.active ? '#eee': "#fff"
+                              }
+                              return(
+                              <div {...getSuggestionItemProps(suggestion,{style})}>{suggestion.description}</div>
+                              )
+                            })}
+                          </div>
+                        
+                          </InputGroup>
+                        </div>
+                        
+                        )}
+
+                  </PlacesAutocomplete>
+                  </div>
+                    
                     <InputGroup
                       className={
                         "no-border input-lg" +
