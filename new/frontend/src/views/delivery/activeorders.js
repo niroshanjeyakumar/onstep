@@ -36,23 +36,10 @@ function Products  () {
         }) 
       });
       function vieworder(id){
-        //setlistID(id);
         setmodal(true);
         console.log(id);
       }
-     // console.log(product);
-     // var status;
       const pro = product.map(function (products, index){
-        
-        // if (!products.order_accepted){
-        //     status="Active";
-        // }
-        // else if(!products.order_purchased){
-        //     status="In delivery";
-        // }
-        // else if(!products.order_delivered){
-        //     status="Delivered";
-        // }
         
           return (  
               <tr>

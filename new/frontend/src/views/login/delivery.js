@@ -12,6 +12,7 @@ function DeliveryLogin (){
     const [passwordFocus, setpasswordFocus] = useState(false);
     const [delivery_email, setdelivery_email]= useState(" ");
     const [delivery_password, setdelivery_password]= useState("");
+    const [Del,setDel] = useState("");
    // const [response, setresponse] =useState([]);
     const [loggedin,setLoggedin] = useState(false);
     const [loginfailAlert, setloginfailAlert] = React.useState(false);
@@ -31,16 +32,18 @@ function DeliveryLogin (){
           setloginfailAlert(true);
         }
         else if(res.data.email===true && res.data.password===true){
-          setLoggedin(true);
+          
+          setDel(res.data.details._id)
           var user={type:'delivery', details:res.data.details};
-            sessionStorage.setItem('user',JSON.stringify(user))
+          sessionStorage.setItem('user',JSON.stringify(user))
+          setLoggedin(true);
         }
       });
     }
 
     if(loggedin){
       return(
-        <Redirect to="/delivery-home" />
+        <Redirect to={`/delivery-home/${Del}`} />
       )
     }
     else{

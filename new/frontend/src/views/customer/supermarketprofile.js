@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 // import { useParams } from "react-router";
-import { Route, Switch, Link,useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import axios from 'axios';
 import {FaStar,FaStarHalf} from 'react-icons/fa';
 import "assets/css/rating.css"
@@ -9,13 +9,10 @@ import "assets/css/rating.css"
 import {
   Card,
   CardTitle,
-  CardSubtitle,
   Form,
   Button,
   CardText,
-  CardHeader,
   CardBody,
-  CardFooter,
   Modal,
   ModalBody,
 
@@ -39,9 +36,7 @@ function AdminCust() {
           document.body.classList.remove("sidebar-collapse");
         };
       });
-//const [id,setid]=useState('');
-  //useEffect(()=>{setid(useParams)})
-//console.log(id);
+
 
       const [supermarket,setSupermarket]=useState([]);
       const [product, setproduct] = useState([]);
@@ -55,8 +50,7 @@ function AdminCust() {
         document.body.classList.add("landing-page");
         document.body.classList.add("sidebar-collapse");
         document.documentElement.classList.remove("nav-open");
-       // window.scrollTo(0, 0);
-        //document.body.scrollTop = 0;
+    
         return function cleanup() {
           document.body.classList.remove("landing-page");
           document.body.classList.remove("sidebar-collapse");
@@ -82,7 +76,7 @@ function AdminCust() {
     useEffect(()=>{
       Axios.get('http://localhost:4000/onstep/order/supRating/'+id).then(res=>setorders(res.data))
         .catch(err=>console.log(err))
-      },[])
+      });
       
       //const arrAvg =  arr.reduce((a,b) => a + b, 0) / arr.length;
       let sum=0;
@@ -152,7 +146,7 @@ console.log(StarValue[5]);
     axios.post('http://localhost:4000/onstep/cart/add',newcart)
     .then(res => console.log(res.data)); }
   const pro = product.map(function (products){
-//<input type="hidden" name="id" value={this.products._id} on={e=>setProductid(e.target.value)}/>
+
 return <div className="col-sm-2 col-md-2">
         <Card>
         <CardBody>
@@ -160,7 +154,7 @@ return <div className="col-sm-2 col-md-2">
         <CardText>Rs. {products.product_price} / {products.product_unit}</CardText>
         <Form action="" className="form" method="post">
       
-      {/* <input type="number" name="order_size" min="1" onChange={e=>setOrdersize(e.target.value)} required/> */}
+      
       <Button color="success" onClick={()=>{setcartProduct(products);setModal1(true)}}>Add to Cart</Button></Form>
     </CardBody>
         

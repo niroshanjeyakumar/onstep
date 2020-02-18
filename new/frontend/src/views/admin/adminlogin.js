@@ -35,7 +35,7 @@ function AdminLogin(){
 
         if(LoggedIn){
             return(
-              <Redirect to="/administrator" />
+              <Redirect to="/administrator/home" />
             )
           }
           else{

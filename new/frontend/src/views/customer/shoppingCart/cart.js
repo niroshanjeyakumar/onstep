@@ -43,7 +43,7 @@ function Products  () {
         console.log(error);
     }) 
   });
- // console.log(product);
+
   function deletefromcart (id){
     axios.get("http://localhost:4000/onstep/cart/delete/"+id).catch(function(error){
       console.log(error);

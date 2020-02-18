@@ -1,9 +1,16 @@
 import React from 'react';
 import Modal from 'react-modal';
-import axios from 'axios';
-import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
+import {
+  Button
+ 
+} from "reactstrap";
+
+
 var querystring = require('querystring');
+
 
 class editdelp extends React.Component {
   constructor() {
@@ -43,23 +50,23 @@ class editdelp extends React.Component {
     });
   }
   handleSelectChange(e) {
-    if (e.target.name == "month") {
+    if (e.target.name === "month") {
       this.setState({
         month: e.target.value
       });
     }
-    if (e.target.name == "year") {
+    if (e.target.name === "year") {
       this.setState({
         year: e.target.value
       });
     }
   }
   handleTextChange(e) {
-    if (e.target.name == "description") {
+    if (e.target.name === "description") {
       this.setState({
         description: e.target.value
       });
-    }if (e.target.name == "amount") {
+    }if (e.target.name === "amount") {
       this.setState({
         amount: e.target.value
       });
@@ -86,7 +93,7 @@ class editdelp extends React.Component {
       });});
   }
   render() {
-    if(this.state.messageFromServer == ''){
+    if(this.state.messageFromServer === ''){
       return (
         <div>
           <Button bsStyle="warning" bsSize="small" onClick={this.openModal}><span className="glyphicon glyphicon-edit"></span></Button>
