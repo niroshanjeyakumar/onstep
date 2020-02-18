@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Axios from 'axios';
+import {useParams} from "react-router-dom";
 
 
 // reactstrap components
@@ -31,12 +32,12 @@ import Customernavbar from "components/Navbars/Customernavbar.js";
 import ProfilePageHeader from "components/Headers/CustomerHeader.js";
 import DefaultFooter from "components/Footers/DefaultFooter.js";
 
-const user=sessionStorage.getItem('user');
-const userData=JSON.parse(user);
+//const user=sessionStorage.getItem('user');
+//const userData=JSON.parse(user);
 
 function ProfilePage() {
-  const [customer, setCustomer] = React.useState([]);
-  React.useEffect(() => {
+  
+  useEffect(() => {
     document.body.classList.add("profile-page");
     document.body.classList.add("sidebar-collapse");
     document.documentElement.classList.remove("nav-open");
@@ -45,9 +46,11 @@ function ProfilePage() {
       document.body.classList.remove("sidebar-collapse"); 
     };
   });
-  
+  const [customer, setCustomer] = React.useState([]);
+
+  const {id}= useParams();
   useEffect(()=>{
-    Axios.get('http://localhost:4000/onstep/user/customer/test/'+userData.details._id)
+    Axios.get('http://localhost:4000/onstep/user/customer/test/'+id)
     .then(res=>{
       console.log(res);
       //setCustomer(res.data);
@@ -57,16 +60,7 @@ function ProfilePage() {
   })
 });
 
-const cus = customer.map(function(Cus,index){
-  return(
-    <tr>
-  <td>{Cus._id}</td>
-  <td>{Cus.customer_name}</td>
-  <td>{Cus.customer_number}</td>
-  <td>{Cus.customer_email}</td>
-  </tr>
-  )
-})
+
   
  {/* const [emailFocus, setemailFocus] = useState(false);
   const [nameFocus, setnameFocus] = useState(false);
@@ -94,9 +88,9 @@ const cus = customer.map(function(Cus,index){
           }
   }*/}
   
-  return (
+  {/*return (
     <>
-      <Customernavbar />
+     <Customernavbar />
       <div className="wrapper">
         <ProfilePageHeader />
         <div className="section">
@@ -159,9 +153,9 @@ const cus = customer.map(function(Cus,index){
         <Button color="primary" type="submit">
           Update details 
         </Button>
-      </Form>
+      </Form> */}
       
-       {/* return (
+        return (
           <>
              <Customernavbar />
               <ProfilePageHeader />
@@ -178,7 +172,12 @@ const cus = customer.map(function(Cus,index){
                       <th>Telephone</th>
                       <th>email</th>
                     <tbody>
-                      {cus}
+                    <tr>
+                 <td>{customer._id}</td>
+                <td>{customer.customer_name}</td>
+                <td>{customer.customer_number}</td>
+                <td>{customer.customer_email}</td>
+                </tr>
                     </tbody>
                   </Table>
                          </CardText>
@@ -187,15 +186,12 @@ const cus = customer.map(function(Cus,index){
                          </CardLink>
                        </CardBody>
                      </Card></h4>
-                  <Row>
-                    
-       </Row>*/}
-   </h5>
-        
+         
+  
         </Container>
              </div>
              <DefaultFooter />
-           </div>
+           
          </>
        );
      }
