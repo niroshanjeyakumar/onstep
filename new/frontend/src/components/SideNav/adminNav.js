@@ -19,7 +19,7 @@ function IndexNavbar() {
   return (
     <>
       
-      <Navbar className="relative" color="default">
+      <Navbar className="relative" color="info">
         <Container  className="justify-content-end">
           <Nav navbar>
               <NavItem>

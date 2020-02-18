@@ -13,14 +13,21 @@ function TransparentFooter() {
           <ul>
             <li>
               <a
-                to="/onstep" tag={Link}
+                href="/onstep" tag={Link}
               >
                 Onstep
               </a>
             </li>
             <li>
               <a
-                to="/onstep" tag={Link}
+                href="/contact-us" tag={Link}
+              >
+                Contact Us
+              </a>
+            </li>
+            <li>
+              <a
+                href="/onstep" tag={Link}
               >
                 About Us
               </a>

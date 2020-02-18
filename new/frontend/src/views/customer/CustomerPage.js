@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
-import axios from 'axios';
-import FileUpload from "views/customer/FileUpload";
+import Axios from 'axios';
 
 
 // reactstrap components
@@ -48,7 +47,7 @@ function ProfilePage() {
   });
   
   useEffect(()=>{
-    axios.get('http://localhost:4000/onstep/user/customer/test/'+userData.details._id)
+    Axios.get('http://localhost:4000/onstep/user/customer/test/'+userData.details._id)
     .then(res=>{
       console.log(res);
       //setCustomer(res.data);
@@ -161,7 +160,37 @@ const cus = customer.map(function(Cus,index){
           Update details 
         </Button>
       </Form>
-      </h5>
+      
+       {/* return (
+          <>
+             <Customernavbar />
+              <ProfilePageHeader />
+              <div className="section">
+                <Container>      
+                  <h3 className="title">My Profile</h3>
+                  <h4>
+                    <Card align="center" >
+                      <CardBody >
+                        <CardText align="crenter">
+                        <Table>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Telephone</th>
+                      <th>email</th>
+                    <tbody>
+                      {cus}
+                    </tbody>
+                  </Table>
+                         </CardText>
+                        <CardLink href="/edit-customer" onClick={e => e.preventDefault()}>
+                          Edit
+                         </CardLink>
+                       </CardBody>
+                     </Card></h4>
+                  <Row>
+                    
+       </Row>*/}
+   </h5>
         
         </Container>
              </div>

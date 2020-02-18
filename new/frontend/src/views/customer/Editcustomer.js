@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from 'react-modal';
+import {Modal} from 'reactstrap';
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
