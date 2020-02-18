@@ -7,8 +7,6 @@ import editdelp from './editdelp'
 import {
   Button,
   Container,
-  Row,
-  UncontrolledTooltip,
   Card,
   CardBody,
   CardText,
@@ -19,9 +17,6 @@ import {
 import ExamplesNavbar from "components/Navbars/DeliveryNavbar";
 import ProfilePageHeader from "components/Headers/delivery-homeHeader";
 import DefaultFooter from "components/Footers/DefaultFooter.js";
-
-
-
 
 function ProfilePage() {
 
@@ -37,8 +32,6 @@ function ProfilePage() {
   });
 
   const [Delivery,setDelivery]=useState([]);//declair delivery
-
-
   
   const {id}= useParams();
      useEffect(()=>{
@@ -53,33 +46,13 @@ function ProfilePage() {
 
   return (
     <>
-      
-
       <ExamplesNavbar />
       <div className="wrapper">
         <ProfilePageHeader />
         <div className="section">
           <Container>
             <div className="button-container">
-              <Button className="btn-round" color="success" size="lg">
-                Delivery Requests
-              </Button>
-                <Button
-                  className="btn-round btn-icon"
-                  color="warning"
-                  id="tooltip515203352"
-                  size="lg"
-                >
-                  <i className="far fa-envelope" ></i>
-                </Button> 
-                
-                  <UncontrolledTooltip delay={0} target="tooltip515203352">
-                    Notifications
-                  </UncontrolledTooltip>
-                <Button className="btn-round" color="success" size="lg">
-                Delivery Status
-                </Button>
-
+                <Button className="btn-round" color="success" size="lg">Delivery Status</Button>
               </div>
             <h3 className="title">My Profile</h3>
             <h4>
@@ -91,8 +64,7 @@ function ProfilePage() {
                       <th>ID</th>    
                       <th>Name</th>
                       <th>Telephone</th>
-                      <th>email</th>
-                      
+                      <th>email</th> 
                       <tbody>
                         <tr>
                           <td>{Delivery._id}</td>
@@ -100,7 +72,6 @@ function ProfilePage() {
                           <td>{Delivery.delivery_number}</td>
                           <td>{Delivery.delivery_email}</td>
                         </tr>
-
                       </tbody>
                   </Table>
                    </CardText>

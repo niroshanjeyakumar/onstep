@@ -26,7 +26,7 @@ import HomePage from './views/Homepage/HomePage';
 import Profile from './views/profile/Profile';
 import ViewProduct from './views/supermarket/viewproducts.js';
 import DelProfile from "views/delivery/ProfilePage";
-//import EditDelP from "views/delivery/editdelp"
+import EditDelP from "views/delivery/editdelp"
 import Supermarket from "views/supermarket/supermarket_profile";
 import Completedorders from "views/delivery/completedorders.js";
 import AciveOrder from "views/delivery/activeorders.js";
@@ -34,6 +34,7 @@ import IncomingOrders from "views/supermarket/supermarketOrder.js";
 import MyOrders from "views/customer/myorders.js";
 import Seller from "views/customer/supermarketprofile.js";
 import CustomerDel from "views/customer/deliveryPersonprofile.js";
+import EditCustomer from "views/customer/Editcustomer"
 
 //admin
 import AdminLogin from "views/admin/adminlogin.js";
@@ -90,6 +91,10 @@ ReactDOM.render(
           render={props => <OnStep {...props} />}
         />
         <Route
+          path="/edit-customer"
+          render={props => <EditCustomer {...props} />}
+        />
+        <Route
           path="/products/:type"
           render={props => <Product {...props} />}
         />
@@ -128,6 +133,10 @@ ReactDOM.render(
         <Route
           path="/delivery-home/:id"
           render={props => <DelProfile {...props} />}
+        />
+        <Route
+          path="/editdelp"
+          render={props => <EditDelP {...props} />}
         />
         <Route 
           path="/supermarkethome"

@@ -8,10 +8,7 @@ import { ButtonGroup } from 'react-bootstrap';
 function Products  () {
   const [product, setproduct] = useState([]);
   const [totVal,settotalVal]=useState(0);
-  //const [neworder, setnewOrder]=useState([]);
- // const [modal, setModal] = useState(false);
-  
-  //const toggle = () => setModal(!modal);
+ 
   const cust=sessionStorage.getItem('user');
   const customer =JSON.parse(cust);
   const ID= customer.details._id;
@@ -25,7 +22,7 @@ function Products  () {
         console.log(error);
     }) 
   });
- // console.log(product);
+
   function deletefromcart (id){
     axios.get("http://localhost:4000/onstep/cart/delete/"+id).catch(function(error){
       console.log(error);

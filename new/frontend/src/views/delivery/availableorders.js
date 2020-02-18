@@ -48,22 +48,11 @@ function Products  () {
         axios.post("http://localhost:4000/onstep/order/accept",orderAccept).catch(err=>{console.log(err);})
       }
       function vieworder(id){
-        //setlistID(id);
         setmodal(true);
         console.log(id);
       }
       const pro = product.map(function (products, index){
-        
-        // if (!products.order_accepted){
-        //     status="Active";
-        // }
-        // else if(!products.order_purchased){
-        //     status="In delivery";
-        // }
-        // else if(!products.order_delivered){
-        //     status="Delivered";
-        // }
-        
+    
           return (  
               <tr>
             <th>{index+1}</th>
