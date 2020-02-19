@@ -46,10 +46,10 @@ function Products  () {
       console.log(error);
   }) 
   }
-  const pro = product.map(function (products){
+  const pro = product.map(function (products,i){
 
             return (
-              <tr>
+              <tr key={i}>
                 <td>{products.product_name}</td>
                 <td>{products.product_category.category_name}</td>
                 <td>{products.product_unit}</td>

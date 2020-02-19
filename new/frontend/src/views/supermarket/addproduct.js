@@ -1,6 +1,8 @@
 import React, {useState,useEffect} from "react";
 import axios from 'axios';
 import '../../assets/css/custom.css'
+import fileUpload from '../../components/fileUpload';
+
 // reactstrap components
 import {
   Button,
@@ -48,9 +50,10 @@ useEffect(()=>{
 })
   const user=sessionStorage.getItem('user');
   const userData=JSON.parse(user);
+
   const categoryList=CatList.map(function(Cat,index){
     return(
-    <option value={Cat._id}>{Cat.category_name}</option>
+    <option value={Cat._id} key={index}>{Cat.category_name}</option>
     )
   })
   function saveProduct(){
@@ -70,6 +73,7 @@ useEffect(()=>{
 
   return (
     <>
+    <fileUpload/>
       <Navbar />
       
       <div className="page-header clear-filter" filter-color="blue">
@@ -97,7 +101,7 @@ useEffect(()=>{
                     >
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
-                          <i className="now-ui-icons shopping_box"></i>
+                          <i className="now-ui-icons users_single-02"></i>
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
@@ -135,7 +139,31 @@ useEffect(()=>{
                         "no-border input-lg" +
                         (unitFocus ? " input-group-focus" : "")
                       }
+                    > 
+                  {/*image upload*/}
+                       <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="now-ui-icons media-1_album"></i>
+                        </InputGroupText>
+                        
+                      </InputGroupAddon>
+                      <Input
+                        placeholder="Image"
+                        type="image"
+                        name="image"
+                        value={Image}
+                        onChange={e=> setunit(e.target.value)}
+                        onFocus={() => setunitFocus(true)}
+                        onBlur={() => setunitFocus(false)} 
+                      >  <fileUpload/></Input>
+                    </InputGroup>
+                    <InputGroup
+                      className={
+                        "no-border input-lg" +
+                        (priceFocus ? " input-group-focus" : "")
+                      }
                     >
+                      
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>
                           <i className="now-ui-icons shopping_basket"></i>

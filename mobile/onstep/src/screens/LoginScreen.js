@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput,KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Button, TextInput,KeyboardAvoidingView,AsyncStorage } from 'react-native';
 import axios from "axios";
 import {path} from "../util/backend.js"
 const url=path;
 console.log(url);
-export default function Login() {
+
+
+export default function Login({navigation}) {
   const [Outtext,setOuttext]=useState("Who are you?");
   const [delEmail,setdelEmail]=useState("");
   const [delPass,setdelPass]=useState("");
 
 function LoginAuth(){
-    console.log("Function" + delEmail + delPass);
     axios.post(url+'/onstep/user/delivery/login',{email:delEmail, password:delPass})
       .then(res => {
 
@@ -25,27 +26,35 @@ function LoginAuth(){
         else if(res.data.email===true && res.data.password===true){
             setOuttext("Logged in successfully");
          // setLoggedin(true);
-          //var user={type:'delivery', details:res.data.details};
-            //sessionStorage.setItem('user',JSON.stringify(user))
+          var user=res.data.details;
+            AsyncStorage.setItem('user',JSON.stringify(user));
+            // AsyncStorage.getItem('user', (err, result) => {
+            //   console.log(result);
+            // })
+            navigation.navigate('App');
         }
       }).catch(err => console.log('err', err));
 }
+
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
        <Text>Delivery Person Login</Text>
        <View style={styles.credentials}>
       <TextInput  placeholder="Email" 
-                  style={{borderBottomColor:'black', borderBottomWidth:2, padding:10}}
+                  style={styles.input}
                   value={delEmail}
-                  onChangeText={(value)=>setdelEmail(value)}/>
+                  onChangeText={(value)=>setdelEmail(value)}
+                  placeholderTextColor='#ffffff'/>
       <TextInput  placeholder="Password" 
-                  style={{borderBottomColor:'black', borderBottomWidth:2, padding:10}}
+                  style={styles.input}
                   value={delPass}
-                  onChangeText={(value)=>setdelPass(value)}/>
+                  onChangeText={(value)=>setdelPass(value)}
+                  placeholderTextColor='#ffffff'/>
      </View>
-      <Button title="LOGIN" onPress={()=>LoginAuth()} style={{padding:40}}/>
-
+      <TouchableOpacity style={styles.loginButton} onPress={()=>LoginAuth()}> 
+        <Text style={styles.buttonText}>LOGIN</Text> 
+      </TouchableOpacity>
       <Text>{Outtext}</Text>
           </KeyboardAvoidingView>
   );
@@ -54,12 +63,38 @@ function LoginAuth(){
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:'#fff',
+    backgroundColor:'#00BFFF',
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   credentials:{
     paddingTop:10,
     paddingBottom:20
+  },
+
+  input:{
+    borderBottomColor:'rgba(0,0,0,0)', 
+    backgroundColor:'rgba(255,255,255,0.3)',
+    borderRadius:25, 
+    width:300,
+    paddingHorizontal:20,
+    padding: 10,
+    fontSize:16,
+    color:'#ffffff',
+    marginVertical:10
+  },
+  buttonText:{
+    fontSize:16,
+    fontWeight:'500',
+    color:'#ffffff',
+    textAlign:'center'
+  },
+  loginButton:{
+    backgroundColor:'rgba(0,0,128,0.4)',
+    borderRadius:25, 
+    width:300,
+    paddingVertical:10
   }
+  
 });

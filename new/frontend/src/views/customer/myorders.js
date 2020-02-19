@@ -3,6 +3,7 @@ import axios from 'axios';
 import {
   Table, Button,Modal,ModalBody,ButtonGroup,Form,Input
 } from 'reactstrap';
+import moment from 'moment'
 import 'assets/css/rating.css'
 import {FaStar} from 'react-icons/fa';
 import IndexNavbar from "components/Navbars/Customernavbar";
@@ -19,6 +20,7 @@ function Products  () {
           document.body.classList.remove("sidebar-collapse");
         };
       });
+      
 
       const [product, setproduct] = useState([]);
       const [modal, setmodal]=useState(false);
@@ -57,7 +59,9 @@ function Products  () {
       console.log(id);
     }
     function recievedOrder(id){
-      axios.post("http://localhost:4000/onstep/order/recieved/"+id).catch(err=>{console.log(err);})
+      var now=moment().format('LLLL');
+      const recievedTime=JSON.stringify(now);
+      axios.post("http://localhost:4000/onstep/order/recieved/"+id,{recievedTime:recievedTime}).catch(err=>{console.log(err);})
       setRecieved(id);
       setmodalRec(true);
 

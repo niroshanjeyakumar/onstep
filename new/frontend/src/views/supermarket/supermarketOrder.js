@@ -3,6 +3,7 @@ import axios from 'axios';
 import {
   Table,Button,Modal,ModalBody
 } from 'reactstrap';
+import moment from 'moment';
 
 import IndexNavbar from "components/Navbars/SupermarketNavbar";
 import IndexHeader from "components/Headers/supermarkethomeheader";
@@ -39,7 +40,9 @@ function Products  () {
      // console.log(product);
      // var status;
      function purchased(id){
-        axios.post("http://localhost:4000/onstep/order/purchased/"+id).catch(err=>{console.log(err);})
+      var now=moment().format('LLLL');
+      const purchasedTime=JSON.stringify(now);
+        axios.post("http://localhost:4000/onstep/order/purchased/"+id,{purchasedTime:purchasedTime}).catch(err=>{console.log(err);})
       }
 
       function vieworder(id){
@@ -63,7 +66,7 @@ function Products  () {
         
           return (  
               <tr>
-            <th>{index+1}</th>
+              <th>{index+1}</th>
               <td>{products.delivery.delivery_name}</td>
               <td>{products.delivery.delivery_number}</td>
               <td>Rs. {products.total}</td>

@@ -63,6 +63,7 @@ else{
         <ExamplesNavbar />
         <AdminSideNav />
       <div className="admin-content">
+      <Button className="sideNavItem" color="info" href='/administrator/category'>Category</Button>
           <h2 align="center">Supermarket</h2>
           <div className="container">
           

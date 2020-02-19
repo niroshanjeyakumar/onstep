@@ -11,6 +11,7 @@ import "assets/demo/demo.css";
 import "assets/demo/nucleo-icons-page-styles.css";
 // pages for this kit
 import Index from "views/Index.js";
+import ContactUs from "views/contactus.js";
 import NucleoIcons from "views/NucleoIcons.js";
 import LoginPage from "views/examples/LoginPage.js";
 import LandingPage from "views/examples/LandingPage.js";
@@ -33,6 +34,7 @@ import IncomingOrders from "views/supermarket/supermarketOrder.js";
 import MyOrders from "views/customer/myorders.js";
 import Seller from "views/customer/supermarketprofile.js";
 import CustomerDel from "views/customer/deliveryPersonprofile.js";
+import EditCustomer from "views/customer/Editcustomer"
 
 //admin
 import AdminLogin from "views/admin/adminlogin.js";
@@ -69,7 +71,7 @@ ReactDOM.render(
        <Route exact path="/administrator/delivery" render={props => <AdminDelivery {...props} />} />
        <Route path="/administrator/delivery/:id" render={props => <AdminDeliveryProfile {...props} />} />
        <Route path="/administrator/unread_messages" render={props => <AdminUnread {...props} />} />
-       <Route path="/administrator/read_messaages" render={props => <AdminRead {...props} />} />
+       <Route path="/administrator/read_messages" render={props => <AdminRead {...props} />} />
        <Route path="/administrator/category" render={props => <AdminCat {...props} />} />
 
 
@@ -79,17 +81,25 @@ ReactDOM.render(
           path="/landing-page"
           render={props => <LandingPage {...props} />}
         />
+        <Route
+          path="/contact-us"
+          render={props => <ContactUs {...props} />}
+        />
 
         <Route
           path="/profile-page"
           render={props => <CustomerPage {...props} />}
+        />
+        <Route
+          path="/edit-customer"
+          render={props => <EditCustomer {...props} />}
         />
          <Route exact
           path="/products"
           render={props => <OnStep {...props} />}
         />
         <Route
-          path="/products/:type"
+          path="/products/:id"
           render={props => <Product {...props} />}
         />
            <Route
