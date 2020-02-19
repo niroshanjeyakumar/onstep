@@ -1,7 +1,6 @@
 import React, {useState,useEffect} from "react";
 import axios from 'axios';
 import '../../assets/css/custom.css';
-import fileuploadcomponent from '../../components/file-upload-component';
 //import '../../../node_modules//bootstrap/dist/css/bootstrap.min.css';
 
 // reactstrap components

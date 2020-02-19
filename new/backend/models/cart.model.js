@@ -1,7 +1,6 @@
 const mongoose =require('mongoose');
 const Schema =mongoose.Schema;
-const Product = require('../models/products.model');
-const Customer = require('../models/user/customer.model');
+
 let cart =new Schema({
     product: { 
         type: Schema.Types.ObjectId, 
