@@ -13,7 +13,10 @@ const FileUpload = () => {
   const onChange = e => {
     setFile(e.target.files[0]);
     setFilename(e.target.files[0].name);
+   
   };
+  const user=sessionStorage.getItem('user');
+  const userData=JSON.parse(user);
 
   const onSubmit = async e => {
     e.preventDefault();
@@ -21,7 +24,7 @@ const FileUpload = () => {
     formData.append('file', file);
 
     try {
-      const res = await axios.post('/upload', formData, {
+      const res = await axios.post('/onstep/user/customer/edit/'+userData.details._id, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
@@ -43,10 +46,12 @@ const FileUpload = () => {
 
       setMessage('File Uploaded');
     } catch (err) {
-      if (err.response.status === 500) {
+      if (err.response.status === 500)  {
+        
         setMessage('There was a problem with the server');
-      } else {
+      } else { 
         setMessage(err.response.data.msg);
+        
       }
     }
   };
@@ -82,7 +87,7 @@ const FileUpload = () => {
             <img style={{ width: '100%' }} src={uploadedFile.filePath} alt='' />
           </div>
         </div>
-      ) : null}
+      ) : null} console.log('mong')
     </Fragment>
   );
 };

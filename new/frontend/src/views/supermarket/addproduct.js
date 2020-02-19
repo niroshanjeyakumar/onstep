@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from "react";
 import axios from 'axios';
-import '../../assets/css/custom.css'
-import fileUpload from '../../components/fileUpload';
+import '../../assets/css/custom.css';
+//import '../../../node_modules//bootstrap/dist/css/bootstrap.min.css';
 
 // reactstrap components
 import {
@@ -155,7 +155,7 @@ useEffect(()=>{
                         onChange={e=> setunit(e.target.value)}
                         onFocus={() => setunitFocus(true)}
                         onBlur={() => setunitFocus(false)} 
-                      >  <fileUpload/></Input>
+                      >  </Input>
                     </InputGroup>
                     <InputGroup
                       className={
@@ -213,9 +213,9 @@ useEffect(()=>{
                     </Button>
                    
                   </CardFooter>
-                </Form>
-              </Card>
-            </Col>
+                </Form> 
+              </Card> <fileuploadcomponent/>
+            </Col> 
           </Container>
         </div>
         <TransparentFooter />

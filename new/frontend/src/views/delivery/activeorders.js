@@ -1,14 +1,16 @@
 import React, {useState,useEffect} from 'react';
 import axios from 'axios';
+//Reactstrap component
 import {
   Table,Button, Modal,ModalBody
 } from 'reactstrap';
-
+//core component
 import IndexNavbar from "components/Navbars/DeliveryNavbar";
 import IndexHeader from "components/Headers/delivery-homeHeader";
 import DarkFooter from "components/Footers/Footer1";
 
 function Products  () {
+//add nav bar 
     useEffect(() => {
         document.body.classList.add("profile-page");
         document.body.classList.add("sidebar-collapse");
@@ -18,11 +20,12 @@ function Products  () {
           document.body.classList.remove("sidebar-collapse");
         };
       });
-
+// declair product, model,listID
       const [product, setproduct] = useState([]);
       const [modal, setmodal]=useState(false);
       const [listID,setlistID]=useState([]);
-      
+
+//retriev customer infomation from sessions      
      const user =sessionStorage.getItem('user');
      const customer =JSON.parse(user);
     const ID= customer.details._id;
@@ -31,28 +34,19 @@ function Products  () {
           .then(res=>{
             setproduct(res.data);
         })
-        .catch(function(error){
+        .catch(function(error){ // error handeling
             console.log(error);
         }) 
       });
+//Function to view order to ID
       function vieworder(id){
-        //setlistID(id);
         setmodal(true);
         console.log(id);
       }
-     // console.log(product);
-     // var status;
+//get products detail of the supermarket to pro
       const pro = product.map(function (products, index){
-        
-        // if (!products.order_accepted){
-        //     status="Active";
-        // }
-        // else if(!products.order_purchased){
-        //     status="In delivery";
-        // }
-        // else if(!products.order_delivered){
-        //     status="Delivered";
-        // }
+
+//create table add add pro
         
           return (  
               <tr>
@@ -69,6 +63,7 @@ function Products  () {
           );
       
       });
+//retriev product details orderd to order_list
       const order_list =listID.map(function (products, index){
         return(
           <tr>
@@ -89,6 +84,7 @@ function Products  () {
     <div className="row m-4">
       <Table hover>
     <thead>
+{/*table header row*/}
       <tr>
         <th>#</th>
         <th>Seller</th>
@@ -114,6 +110,7 @@ function Products  () {
                   >
                     <i className="now-ui-icons ui-1_simple-remove"></i>
                   </button>
+{/*//Orderd items*/}
                   <h4 className="title title-up">Ordered Items</h4>
                 </div>
                 <ModalBody>

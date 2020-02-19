@@ -5,7 +5,6 @@ const bcrypt = require('bcryptjs');
 const passport=require('passport');
 const LocalStrategy=require('passport-local').Strategy;
 const saltrounds=10;
-
 let Supermarket = require('../../models/user/supermarket.model');
 
 supermarketRoutes.route('/add').post(function (req, res) {

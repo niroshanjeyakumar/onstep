@@ -2,17 +2,21 @@ import React, {useState} from 'react'
 import {Redirect} from 'react-router-dom'
 import axios from 'axios'
 import {
-Form,Alert,Container,
-InputGroup, InputGroupAddon,InputGroupText, Input,Button
+Form,
+Alert,
+Container,
+InputGroup,
+InputGroupAddon,
+InputGroupText, 
+Input,Button
 } from "reactstrap";
-
 
 function Customerlogin (){
     const [emailFocus, setemailFocus] = useState(false);
     const [passwordFocus, setpasswordFocus] = useState(false);
     const [customer_email, setcustomer_email]= useState(" ");
     const [customer_password, setcustomer_password]= useState("");
-    //const [response, setresponse] =useState([]);
+    const [Cus,setCus] = useState("");
     const [loggedin,setLoggedin] = useState(false);
     const [loginfailAlert, setloginfailAlert] = React.useState(false);
 
@@ -32,12 +36,12 @@ function Customerlogin (){
           }
           else if(res.data.email===true && res.data.password===true){
             setLoggedin(true);
+
+            setCus(res.data.details._id)
             var user={type:'customer', details:res.data.details};
             sessionStorage.setItem('user',JSON.stringify(user))
+            setLoggedin(true);
           }
-          //console.log(response.json.email);
-          //setLoggedin(true);
-          
           }
           );}
     

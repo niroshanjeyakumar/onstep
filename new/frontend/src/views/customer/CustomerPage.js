@@ -1,5 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Axios from 'axios';
+
+import '../../../src/assets/css/custom.css'
+import { useParams } from "react-router-dom";
 
 
 // reactstrap components
@@ -31,10 +34,13 @@ import Customernavbar from "components/Navbars/Customernavbar.js";
 import ProfilePageHeader from "components/Headers/CustomerHeader.js";
 import DefaultFooter from "components/Footers/DefaultFooter.js";
 
+//const user=sessionStorage.getItem('user');
+//const userData=JSON.parse(user);
 
 function ProfilePage() {
-  const [customer, setCustomer] = React.useState([]);
-  React.useEffect(() => {
+
+  useEffect(() => {
+
     document.body.classList.add("profile-page");
     document.body.classList.add("sidebar-collapse");
     document.documentElement.classList.remove("nav-open");
@@ -43,29 +49,26 @@ function ProfilePage() {
       document.body.classList.remove("sidebar-collapse");
     };
   });
+  const [customer, setCustomer] = React.useState([]);
+  useEffect(() => {
+    const user = sessionStorage.getItem('user');
+    const ur = JSON.parse(user);
+    // const id = '5e4670a486ae8a2f88ead8c1'
+    const id = ur.details._id;
+    console.log(id)
+    Axios.get('http://localhost:4000/onstep/user/customer/test/' + id)
+      .then(res => {
+        console.log(res);
+        setCustomer(res.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+  },[]);
 
-  useEffect(()=>{
-    Axios.get('http://localhost:4000/onstep/user/customer/')
-    .then(res=>{
-      setCustomer(res.data);
-  })
-  .catch(function(error){
-      console.log(error);
-  })
-});
 
-const cus = customer.map(function(Cus,index){
-  return(
-    <tr>
-  <td>{Cus._id}</td>
-  <td>{Cus.customer_name}</td>
-  <td>{Cus.customer_number}</td>
-  <td>{Cus.customer_email}</td>
-  </tr>
-  )
-})
-  
- {/* const [emailFocus, setemailFocus] = useState(false);
+
+  {/* const [emailFocus, setemailFocus] = useState(false);
   const [nameFocus, setnameFocus] = useState(false);
   const [addressFocus, setaddressFocus] = useState(false);
   const [numberFocus, setnumberFocus] = useState(false);
@@ -90,10 +93,10 @@ const cus = customer.map(function(Cus,index){
             console.log("error")
           }
   }*/}
-  
- {/* return (
+
+  return (
     <>
-      <Customernavbar />
+     <Customernavbar />
       <div className="wrapper">
         <ProfilePageHeader />
         <div className="section">
@@ -101,6 +104,7 @@ const cus = customer.map(function(Cus,index){
             <div className="button-container"> 
             </div>
             <h2 className="title">Update profile info</h2>
+            
             <h5 className="description">
             <Form>
         <FormGroup>
@@ -109,23 +113,26 @@ const cus = customer.map(function(Cus,index){
             aria-describedby="emailHelp"
             id="exampleInputEmail1"
             placeholder="Enter email"
+            value={customer.customer_email}
             type="email"
           ></Input>
-         {cus}</FormGroup>
+         </FormGroup>
         <FormGroup>
           <label htmlFor="exampleInputName1">Name</label>
           <Input
             id="exampleInputName1"
             placeholder="Enter name"
+            value={customer.customer_name}
             type="names"
            
           ></Input>
-         {cus}</FormGroup>
+         </FormGroup>
         <FormGroup>
           <label htmlFor="exampleAddress1">Address</label>
           <Input
             id="exampleInputAddress1"
             placeholder="Enter Address"
+            value={customer.customer_address}
             type="names"
            
           ></Input>
@@ -135,66 +142,22 @@ const cus = customer.map(function(Cus,index){
           <Input
             id="exampleInputContactNumber1"
             placeholder="Enter contact number"
+            value={customer.customer_number}
             type="names"
           ></Input>
-         {cus}</FormGroup>
-        <FormGroup>
-          <label htmlFor="exampleInputPassword1">Password</label>
-          <Input
-            id="exampleInputPassword1"
-            placeholder="Password"
-            type="password"
-          ></Input>
-         {cus}</FormGroup>
-        <FormGroup check>
-          <Label check>
-            <Input type="checkbox"></Input>
-            <span className="form-check-sign"></span>
-            I confirm that I will be providing you with my personal data and hereby expressly consent to the use of such data for the purpose of the order placed with you.
-          </Label>
-        </FormGroup>
-        <Button color="primary" type="submit">
-          Update details 
-        </Button>
-      </Form>
-        </h5>*/}
-        return (
-          <>
-             <Customernavbar />
-              <ProfilePageHeader />
-              <div className="section">
-                <Container>      
-                  <h3 className="title">My Profile</h3>
-                  <h4>
-                    <Card align="center" >
-                      <CardBody >
-                        <CardText align="crenter">
-                        <Table>
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Telephone</th>
-                      <th>email</th>
-                    <tbody>
-                      {cus}
-                    </tbody>
-                  </Table>
-                         </CardText>
-                        <CardLink href="/edit-customer" onClick={e => e.preventDefault()}>
-                          Edit
-                         </CardLink>
-                       </CardBody>
-                     </Card></h4>
-                  <Row>
-                    
-                  </Row>
-                 </Container>
-                </div>
-              <DefaultFooter />
-            
-            </>
-          );
-      }
+         </FormGroup>
+
       
+      </Form> 
+    </h5>
+        </Container>
+      </div>
+      </div>
+      <DefaultFooter />
+
+    </>
+  );
+}
 
 
 

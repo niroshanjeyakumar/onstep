@@ -5,8 +5,10 @@ const bcrypt = require('bcryptjs');
 const passport=require('passport');
 const LocalStrategy=require('passport-local').Strategy;
 const saltrounds=10;
- 
+const mongoose =require('mongoose');
 const Customer = require('../../models/user/customer.model');  
+
+//const userId;
 
 customerRoutes.route('/add').post(function (req, res) {
   //const email =req.params.email
@@ -116,10 +118,11 @@ customerRoutes.route('/delete/:id').get(function (req, res) {
      
   });
 });*/
+//userId = this.session.User_id;
 
-
-customerRoutes.route('/edit/:id').get(function (req, res) {
-  customer.findById(req.params.id, function(err, customer) {
+customerRoutes.route('/edit/:id').post(function (req, res) {
+  // console.log(req.params.id);
+  customer.findById(id).then(function(customer, err) {
   if (!customer)
     res.status(404).send("data is not found");
   else {
@@ -149,6 +152,24 @@ customerRoutes.route('/edit/:id').get(function (req, res) {
 //     return res.redirect ('/')
 //   }
 // }
+
+
+customerRoutes.route('/test/:id').get(function (req, res) {
+  const id = req.params.id;
+  console.log(id)
+  Customer.findById(
+      { _id: id },
+      function(err, result) {
+        if (err) {
+          res.send(err);
+          //console.log(res);
+        } else {
+          res.send(result);
+        }
+      }
+    );
+  
+});
 
 
 
