@@ -3,7 +3,7 @@ import axios from 'axios';
 import {
   Button, Table
 } from 'reactstrap';
-import moment from 'moment';
+import moment from 'moment'; //date library 
 import { 
   ButtonGroup 
 } from 'react-bootstrap';
@@ -13,12 +13,12 @@ function Products  () {
   const [totVal,settotalVal]=useState(0);
 
   const cust=sessionStorage.getItem('user');
-  const customer =JSON.parse(cust);
+  const customer =JSON.parse(cust); //create object 
   const ID= customer.details._id;
   useEffect(()=>{
       axios.get('http://localhost:4000/onstep/cart/cust/'+ID)
       .then(res=>{
-        //console.log(res.data);
+
         setproduct(res.data);
     })
     .catch(function(error){
@@ -54,9 +54,8 @@ function Products  () {
           customer:cartData.customer_id,
           total:total,
           orderTime:orderTime
-        };
-        //alert(order.total);
-        //setnewOrder(order);
+        }; //create object 
+        
         axios.post("http://localhost:4000/onstep/order/add/",order).catch(function(error){
           console.log(error);
       }) 
@@ -68,12 +67,11 @@ function Products  () {
   function orderAll(){
         product.map(function (products, index){
           makeorder(products._id);
-          });
+          }); 
   }
   
-
   const pro = product.map(function (products, index){
-     // console.log(products.product.product_name);
+  
 let total=products.product.product_price*products.order_quantity;
 
 return (  
