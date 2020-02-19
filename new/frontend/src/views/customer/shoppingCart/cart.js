@@ -53,7 +53,7 @@ function Products  () {
           seller:cartData.product.seller_id,
           customer:cartData.customer_id,
           total:total,
-          orderTime:orderTime
+          orderTime:orderTime,
         }; //create object 
         
         axios.post("http://localhost:4000/onstep/order/add/",order).catch(function(error){

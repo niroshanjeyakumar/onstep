@@ -11,9 +11,6 @@ InputGroupText,
 Input,Button
 } from "reactstrap";
 
-
-
-
 function Customerlogin (){
     const [emailFocus, setemailFocus] = useState(false);
     const [passwordFocus, setpasswordFocus] = useState(false);

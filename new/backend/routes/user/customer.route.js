@@ -155,9 +155,10 @@ customerRoutes.route('/edit/:id').post(function (req, res) {
 
 
 customerRoutes.route('/test/:id').get(function (req, res) {
-  
+  const id = req.params.id;
+  console.log(id)
   Customer.findById(
-      { _id: "5e4670a486ae8a2f88ead8c1" },
+      { _id: id },
       function(err, result) {
         if (err) {
           res.send(err);
