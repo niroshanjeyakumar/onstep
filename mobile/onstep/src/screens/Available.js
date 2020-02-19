@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, Button, TextInput,FlatList, TouchableOpacity,As
 import axios from 'axios'
 import {path} from '../util/backend.js';
 import moment from 'moment'
+import { Ionicons } from '@expo/vector-icons';
+
 
 const url=path;
 export default function Available({navigation}) {
@@ -55,8 +57,12 @@ export default function Available({navigation}) {
                 <Text style={styles.item}>{item.seller.supermarket_name}</Text>
                 <Text style={styles.price}>Rs.{item.total}</Text>
                 <View style={{flexDirection: "row",alignSelf:'flex-end'}}>
-                <TouchableOpacity style={styles.button1}><Text  style={styles.buttonText} onPress={() =>onLearnMore(item)}>View Order</Text></TouchableOpacity>
-                <TouchableOpacity  style={styles.button2}><Text style={styles.buttonText} onPress={() =>acceptDelivery(item._id)}>Accept</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.button1}>
+                  <Ionicons style={{alignSelf:"center"}} name="ios-list" size={32} color="black" />
+                  <Text  style={styles.buttonText} onPress={() =>onLearnMore(item)}>View Order</Text></TouchableOpacity>
+                <TouchableOpacity  style={styles.button2}>
+                <Ionicons style={{alignSelf:"center"}} name="ios-cart" size={32} color="black" />
+                  <Text style={styles.buttonText} onPress={() =>acceptDelivery(item._id)}>Accept</Text></TouchableOpacity>
             </View>
             </View>
             )}
@@ -91,7 +97,9 @@ export default function Available({navigation}) {
           backgroundColor:'rgba(0,0,0,0.4)',
         //  borderRadius:25, 
           width:150,
-          paddingVertical:5
+          paddingVertical:5,
+          borderBottomLeftRadius:25,
+    borderTopLeftRadius:25
       },
       button2:{
         alignSelf:'flex-end',
@@ -103,7 +111,7 @@ export default function Available({navigation}) {
     buttonText:{
       fontSize:16,
       fontWeight:'500',
-      color:'#ffffff',
+      color:'#000',
       textAlign:'center'
     },
   });

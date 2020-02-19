@@ -3,7 +3,7 @@ import Message from './Message';
 import Progress from './Progress';
 import axios from 'axios';
 
-const FileUpload = () => {
+function FileUpload () {
   const [file, setFile] = useState('');
   const [filename, setFilename] = useState('Choose File');
   const [uploadedFile, setUploadedFile] = useState({});
@@ -24,7 +24,7 @@ const FileUpload = () => {
     formData.append('file', file);
 
     try {
-      const res = await axios.post('/onstep/user/customer/edit/'+userData.details._id, formData, {
+      const res = await axios.post('http://localhost:4000/onstep/user/customer/img/add/'+userData.details._id, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
@@ -46,12 +46,8 @@ const FileUpload = () => {
 
       setMessage('File Uploaded');
     } catch (err) {
-      if (err.response.status === 500)  {
-        
-        setMessage('There was a problem with the server');
-      } else { 
-        setMessage(err.response.data.msg);
-        
+      if (err)  {
+        console.log(err)
       }
     }
   };

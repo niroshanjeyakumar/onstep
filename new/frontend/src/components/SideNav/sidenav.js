@@ -13,7 +13,7 @@ function SideNav(){
         <h4 align='center'>OnStep</h4>
           <h5 align='center'>Administrator</h5>
           <Nav navbar>
-            <Button className="sideNavItem" color="info" href='/administrator'> <i className="now-ui-icons ui-2_settings-90"></i> Dashboard</Button>
+            <Button className="sideNavItem" color="info" href='/administrator/home'> <i className="now-ui-icons ui-2_settings-90"></i> Dashboard</Button>
         
            <h5 align="center">Users</h5>
            <Button className="sideNavItem" color="info" href='/administrator/customer'> <i className="now-ui-icons users_single-02"></i> Customer Dashboard</Button>

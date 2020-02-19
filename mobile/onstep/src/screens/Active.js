@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, TextInput,FlatList, TouchableOpacity,As
 import axios from 'axios'
 import {path} from '../util/backend.js';
 const url=path;
+import { Ionicons } from '@expo/vector-icons';
 
 export default function Active({navigation}) {
   const ID=global.ID;
@@ -46,8 +47,14 @@ export default function Active({navigation}) {
                 
                 <Text style={styles.price}>Rs.{item.total}</Text>
                 <View style={{flexDirection: "row",alignSelf:'flex-end'}}>
-                <TouchableOpacity style={styles.button2}><Text  style={styles.buttonText} onPress={() =>Openmap(item)}>Map</Text></TouchableOpacity>
-                <TouchableOpacity style={styles.button1}><Text  style={styles.buttonText} onPress={() =>onLearnMore(item)}>View Order</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.button2} onPress={() =>Openmap(item)}>
+                <Ionicons style={{alignSelf:"center"}} name="ios-compass" size={32} color="black" />
+                  <Text  style={styles.buttonText} >Map</Text>
+                  </TouchableOpacity>
+                <TouchableOpacity style={styles.button1}>
+                <Ionicons style={{alignSelf:"center"}} name="ios-list" size={32} color="black" />
+                  <Text  style={styles.buttonText} onPress={() =>onLearnMore(item)}>View Order</Text>
+                  </TouchableOpacity>
               </View>
                
             </View>
@@ -86,15 +93,18 @@ export default function Active({navigation}) {
   },
   button2:{
     alignSelf:'flex-start',
-    backgroundColor:'rgba(0,255,0,0.4)',
+    backgroundColor:'rgba(0,0,0,0.4)',
     //borderRadius:25, 
+    //justifyContent:"center",
     width:100,
-    paddingVertical:5
+    paddingVertical:5,
+    borderBottomLeftRadius:25,
+    borderTopLeftRadius:25
 },
   buttonText:{
     fontSize:16,
     fontWeight:'500',
-    color:'#ffffff',
+    color:'#000',
     textAlign:'center'
   },
   });

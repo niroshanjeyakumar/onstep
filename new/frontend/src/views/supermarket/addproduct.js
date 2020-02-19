@@ -6,6 +6,7 @@ import fileuploadcomponent from '../../components/file-upload-component';
 
 // reactstrap components
 import {
+  Alert,
   Button,
   Card,
   CardHeader,
@@ -34,6 +35,7 @@ function LoginPage() {
   const [category, setcategory] = useState("");
   const [unit, setunit] = useState("");
   const [price, setPrice] = useState("");
+  const [added,setAdded] =useState(false);
 
   useEffect(() => {
     document.body.classList.add("login-page");
@@ -47,7 +49,8 @@ function LoginPage() {
     };
   });
 useEffect(()=>{
-  axios.get('http://localhost:4000/onstep/category/').then(res=>{setCatList(res.data)}).catch(err=>console.log(err))
+  axios.get('http://localhost:4000/onstep/category/').then(res=>{
+    setCatList(res.data)}).catch(err=>console.log(err))
 })
   const user=sessionStorage.getItem('user');
   const userData=JSON.parse(user);
@@ -68,11 +71,12 @@ useEffect(()=>{
       product_price:price
   };
   axios.post('http://localhost:4000/onstep/product/add',newProduct)
-  .then(res => console.log(res.data)).catch(err=>console.log(err)); 
+  .then(res => {setAdded(true);console.log(res.data)}).catch(err=>console.log(err)); 
   }
 
   return (
     <>
+              
     <fileUpload/>
       <Navbar />
       
@@ -86,6 +90,23 @@ useEffect(()=>{
         
         <div className="content">
           <Container>
+          <Alert color="success" isOpen={added}>
+                  <Container>
+                    <div className="alert-icon">
+                      <i className="now-ui-icons ui-1_bell-53"></i>
+                    </div>
+                    Product Added
+                    <button
+                      type="button"
+                      className="close"
+                      onClick={() => setAdded(false)}
+                    >
+                      <span aria-hidden="true">
+                        <i className="now-ui-icons ui-1_simple-remove"></i>
+                      </span>
+                    </button>
+                  </Container>
+                </Alert>
           <h3 className="text-center">Insert Product</h3>
             <Col className="ml-auto mr-auto" md="4">
               <Card className="card-login card-plain">
@@ -141,7 +162,7 @@ useEffect(()=>{
                       }
                     > 
                   {/*image upload*/}
-                       <InputGroupAddon addonType="prepend">
+                       {/* <InputGroupAddon addonType="prepend">
                         <InputGroupText>
                           <i className="now-ui-icons media-1_album"></i>
                         </InputGroupText>
@@ -162,7 +183,7 @@ useEffect(()=>{
                         "no-border input-lg" +
                         (priceFocus ? " input-group-focus" : "")
                       }
-                    >
+                    > */}
                       
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>

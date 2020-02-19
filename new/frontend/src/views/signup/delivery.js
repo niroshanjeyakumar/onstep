@@ -4,6 +4,7 @@ import {
 Form,Alert,Container,
 InputGroup, InputGroupAddon,InputGroupText, Input,Button
 } from "reactstrap";
+import {Redirect} from 'react-router-dom'
 
 
 function DeliveryRegistration (){
@@ -19,6 +20,8 @@ function DeliveryRegistration (){
     const [delivery_confirmpassword, setdelivery_confirmpassword]= useState("");
     const [emailAlert, setemailAlert] = React.useState(false);
     const [passwordAlert, setpasswordAlert] = React.useState(false);
+    const [Success, setSuccess] = React.useState(false);
+
   
     function saveDelivery(){
       setemailAlert(false);
@@ -39,11 +42,18 @@ function DeliveryRegistration (){
       if (data===true){
         setemailAlert(true);
       }
+      else{
+        setSuccess(true)
+      }
     }
     ); }
     }
 
-
+    if (Success){
+      return(
+        <Redirect to='login'/>
+      )
+    }
     
 return(
   <>

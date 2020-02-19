@@ -46,7 +46,7 @@ function Onstep() {
         <div className="main">
       
           <Carousel />
-          <h2>type {type}</h2>
+          {/* <h2>{type}</h2> */}
           <Productlist />
         </div>
         <DarkFooter />

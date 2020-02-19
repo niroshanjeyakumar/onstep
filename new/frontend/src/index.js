@@ -36,6 +36,7 @@ import MyOrders from "views/customer/myorders.js";
 import Seller from "views/customer/supermarketprofile.js";
 import CustomerDel from "views/customer/deliveryPersonprofile.js";
 import EditCustomer from "views/customer/Editcustomer"
+import FileUpload from 'views/customer/FileUpload'
 
 //admin
 import AdminLogin from "views/admin/adminlogin.js";
@@ -55,7 +56,7 @@ ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Switch>
-        
+      <Route path="/file" render={props => <FileUpload {...props} />} />
 
         <Route path="/index" render={props => <Index {...props} />} />
         <Route path="/logout" render={props => <Logout {...props} />} />

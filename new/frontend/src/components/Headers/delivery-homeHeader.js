@@ -43,7 +43,7 @@ function ProfilePageHeader() {
 
             <img alt="..." src={require("assets/img/img_avatar5.png")}></img>
 
-            <img alt="..." src={require("assets/img/prf.jpg")}></img>
+            
           </div>
           {/* <h3 className="title">{userData.details.delivery_name}</h3> */}
       

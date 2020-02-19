@@ -1,8 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { StyleSheet, Text, View, Button, TextInput,AsyncStorage,Dimensions } from 'react-native';
-import {useDispatch} from 'react-redux'
-import {loggedIn} from '../actions'
-import MapView from 'react-native-maps';
+import { StyleSheet, Text, View, Button, TextInput,AsyncStorage,Dimensions,Image } from 'react-native';
 
 export default function Home({navigation}) {
     const [Result,setresult]=useState([]);
@@ -24,14 +21,24 @@ export default function Home({navigation}) {
 global.ID=Result._id;
     return (
       <View style={styles.container}>
-          <Text>HOME</Text>
-          <Button title="dispatch"onPress={()=>dispatch(loggedIn(Result._id))}/>
-    <Text>Hello {Result.delivery_name}</Text>
-    <Text>Hello {Result.delivery_number}</Text>
-    <Text>{Result._id}</Text>
+          <Text style={styles.text}>HOME</Text>
+          <View>
+          <Image
+          style={{width: 200, height: 200, alignSelf:"center"}}
+          source={require('../assets/images/delivery.jpg')}
+        />
+            </View>
+            
+            <View>
+  
+   <View style={styles.txtborder}><Text style={{paddingLeft:10,fontSize:18}}>Name : {Result.delivery_name}</Text></View>
+   <View style={styles.txtborder}><Text style={{paddingLeft:10,fontSize:18}}>Contact Number: {Result.delivery_number}</Text></View>
+    <View style={styles.txtborder}><Text style={{paddingLeft:10,fontSize:18}}>Email : {Result.delivery_email}</Text></View>
+    </View>
+    <View style={{justifyContent:'flex-end'}}>
     <Button title="Logout" onPress={()=>logout()}/>
-   
-        <MapView style={styles.mapStyle} />
+    </View>
+
       </View>
     );
   }
@@ -39,10 +46,18 @@ global.ID=Result._id;
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor:'#00BFFF',
-      alignItems: 'center',
-      justifyContent: 'center',
+      backgroundColor:'#fff',
+      //alignItems: 'center',
     },
+    text: {
+      fontSize:48,
+      alignSelf:"center"
+    },
+txtborder:{
+  padding:10,
+  borderWidth:10,
+  borderColor:'#fff'
+},
   
     credentials:{
       paddingTop:10,

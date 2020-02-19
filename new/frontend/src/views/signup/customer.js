@@ -4,6 +4,7 @@ import {
 Form,Alert,Container,
 InputGroup, InputGroupAddon,InputGroupText, Input,Button
 } from "reactstrap";
+import {Redirect} from 'react-router-dom'
 
 
 function CustomerRegistration (){
@@ -21,7 +22,7 @@ function CustomerRegistration (){
     const [customer_confirmpassword, setcustomer_confirmpassword]= useState("");
     const [emailAlert, setemailAlert] = React.useState(false);
     const [passwordAlert, setpasswordAlert] = React.useState(false);
-
+    const [Success, setSuccess] = React.useState(false);
   
     function saveCustomer(){
       setemailAlert(false);
@@ -43,12 +44,19 @@ function CustomerRegistration (){
       if (data===true){
         setemailAlert(true);
       }
+      else{
+        setSuccess(true)
+      }
     }
-    ); }
+    );  }
     }
 
+if (Success){
+  return(
+    <Redirect to='login'/>
+  )
+}
 
-    
 return(
 <>
                   <Alert color="danger" isOpen={emailAlert}>

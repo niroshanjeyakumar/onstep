@@ -30,16 +30,18 @@ function SupermarketLogin (){
       setloginfailAlert(true);
     }
     else if(res.data.email===true && res.data.password===true){
-      setLoggedin(true);
+      
       var user={type:'supermarket', details:res.data.details};
             sessionStorage.setItem('user',JSON.stringify(user))
+
+            setLoggedin(true);
     }
   });
     }
     
     if(loggedin){
       return(
-        <Redirect to="/supermarkethome" />
+        <Redirect to="/incomingorders" />
       )
     }
     else{

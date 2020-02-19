@@ -52,8 +52,7 @@ function Products  () {
               <tr>
                 <td>{products.product_name}</td>
                 <td>{products.product_category.category_name}</td>
-                <td>{products.product_unit}</td>
-                <td>{products.product_price}</td>
+                <td>Rs.{products.product_price}/{products.product_unit}</td>
                 <td><Button color="warning" onClick={()=> editproduct(products._id)}>Edit</Button></td>
                 <td><Button color="danger" onClick={()=> deleteproduct(products._id)}>Delete</Button></td>
               </tr>
@@ -67,12 +66,12 @@ function Products  () {
                   <IndexHeader />
                   <div className="main">
                   <div className="row m-4">
+                  <h3 className="title" style={{align:"center"}}>Products</h3>
                       <Table hover>
                     <thead>
                       <tr>
                         <th>Product</th>
                         <th>Category</th>
-                        <th>Unit</th>
                         <th>Unit price</th>
                         <th></th>
                         <th></th>

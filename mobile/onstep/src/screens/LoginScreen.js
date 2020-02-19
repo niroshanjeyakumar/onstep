@@ -39,14 +39,17 @@ function LoginAuth(){
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
-       <Text>Delivery Person Login</Text>
+       <Text style={styles.onstep}>Login</Text>
        <View style={styles.credentials}>
       <TextInput  placeholder="Email" 
                   style={styles.input}
                   value={delEmail}
+                  autoCapitalize='none'
                   onChangeText={(value)=>setdelEmail(value)}
-                  placeholderTextColor='#ffffff'/>
+                  placeholderTextColor='#ffffff'
+                  keyboardType='email-address'/>
       <TextInput  placeholder="Password" 
+                  secureTextEntry
                   style={styles.input}
                   value={delPass}
                   onChangeText={(value)=>setdelPass(value)}
@@ -67,7 +70,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  onstep:{
+    fontSize:48
 
+  },
   credentials:{
     paddingTop:10,
     paddingBottom:20

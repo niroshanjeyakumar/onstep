@@ -38,7 +38,7 @@ function Onstep() {
       <div className="wrapper">
         <IndexHeader />
         <div className="main">
-          <Carousel />
+          {/* <Carousel /> */}
           <Productlist />
         </div>
         <DarkFooter />

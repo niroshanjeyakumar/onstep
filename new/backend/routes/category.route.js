@@ -2,6 +2,7 @@ const express = require('express');
 const categoryRoutes = express.Router();
 const session = require('express-session');
 
+
 let Category = require('../models/category.model');
 
 categoryRoutes.route('/add').post(function (req, res) {

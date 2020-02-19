@@ -4,6 +4,7 @@ import {
 Form, Alert, Container,
 InputGroup, InputGroupAddon,InputGroupText, Input,Button
 } from "reactstrap";
+import {Redirect} from 'react-router-dom'
 import PlacesAutocomplete,{
   geocodeByAddress,getLatLng
 } from 'react-places-autocomplete'
@@ -25,6 +26,8 @@ function SupermarketRegistration (){
     const [supermarket_confirmpassword, setsupermarket_confirmpassword]= useState("");
     const [emailAlert, setemailAlert] = React.useState(false);
     const [passwordAlert, setpasswordAlert] = React.useState(false);
+    const [Success, setSuccess] = React.useState(false);
+
     const [coordinates,setcoordinates]=useState({
       lat:null,
       lng:null
@@ -62,11 +65,18 @@ function SupermarketRegistration (){
       if (data===true){
         setemailAlert(true);
       }
+      else{
+        setSuccess(true);
+      }
     }
     ); }
     }
 
-
+    if (Success){
+      return(
+        <Redirect to='login'/>
+      )
+    }
     
 return(
   <>

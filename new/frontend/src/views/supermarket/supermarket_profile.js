@@ -24,6 +24,11 @@ function ProfilePage() {
       document.body.classList.remove("sidebar-collapse");
     };
   });
+
+  const user=sessionStorage.getItem('user');
+  const userData=JSON.parse(user);
+
+
   return (
     <>
       <ExamplesNavbar />
@@ -32,11 +37,14 @@ function ProfilePage() {
         <div className="section">
           <Container>
             <h3 className="title">My Information</h3>
-            <h4>
-              </h4>
-            <Row>
-              
-            </Row>
+      
+            <div className='content' style={{fontSize:18}}>
+            Name :  {userData.details.supermarket_name}<br/>
+            Address :{userData.details.supermarket_address}<br/>
+            Contact Number :  {userData.details.supermarket_number} <br/>
+            Email : {userData.details.supermarket_email} 
+            </div>
+
            </Container>
           </div>
         <DefaultFooter />

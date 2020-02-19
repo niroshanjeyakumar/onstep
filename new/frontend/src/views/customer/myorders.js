@@ -50,7 +50,9 @@ function Products  () {
       });
       var status;
      function removeOrder(id){
-       console.log(id);
+      axios.get("http://localhost:4000/onstep/order/delete/"+id).catch(function(error){
+        console.log(error);
+    }) 
      }
      function trackOrder(){
       setModalTrack(true);
@@ -117,9 +119,9 @@ function submitReview(){
               <td>
               <ButtonGroup>
               <Button color="warning" onClick={()=>{setlistID(products.productlist); vieworder(products._id);}}>View Order</Button>
-              <Button color="info" onClick={()=>trackOrder()} disabled={track}>Track Order</Button>
-              <Button color="success" onClick={()=>recievedOrder(products._id)} disabled={recieved}>Recieved</Button>
-              <Button color="danger" onClick={()=>removeOrder(products._id)} disabled={remove}>Delete</Button>
+              {/* <Button color="info" onClick={()=>trackOrder()} disabled={track}>Track Order</Button> */}
+              {products.order_purchased&&!products.order_complete ? <Button color="success" onClick={()=>recievedOrder(products._id)} disabled={recieved}>Recieved</Button>: ""}
+             {!products.order_accepted ? <Button color="danger" onClick={()=>removeOrder(products._id)} disabled={remove}>Cancel</Button> : ""}
               </ButtonGroup></td>
               </tr>
           );

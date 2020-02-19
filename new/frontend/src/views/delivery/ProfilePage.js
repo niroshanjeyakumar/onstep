@@ -63,20 +63,9 @@ function ProfilePage() {
                 <CardBody >
                   <CardText align="crenter">
 
-                    <Table>
-                      <th>ID</th>    
-                      <th>Name</th>
-                      <th>Telephone</th>
-                      <th>email</th> 
-                      <tbody>
-                        <tr>
-                          <td>{Delivery._id}</td>
-                          <td>{Delivery.delivery_name}</td>
-                          <td>{Delivery.delivery_number}</td>
-                          <td>{Delivery.delivery_email}</td>
-                        </tr>
-                      </tbody>
-                  </Table>
+                    Name : {Delivery.delivery_name}<br/>
+                    Email : {Delivery.delivery_email}<br/>
+                    Contact No : {Delivery.delivery_number}<br/>
                    </CardText>
                     <Button color="success" onClick={editdelp}>Edit</Button>          
                  </CardBody>

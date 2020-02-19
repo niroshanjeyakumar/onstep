@@ -8,6 +8,35 @@ const saltrounds=10;
 const mongoose =require('mongoose');
 const Customer = require('../../models/user/customer.model');  
 
+
+//image upload
+const multer =require('multer');
+const storage =multer.diskStorage({
+  destination:function(req,file,cb){
+    cb(null,'images/customers/');
+  },
+  filename:function(req,file,cb){
+    cb(null,new Date().toISOString + file.originalname);
+  }
+});
+
+const filter=(req,file,cb)=>{
+  if(file.mimetype==='image/jgeg' || file.mimetype==='image/png'){
+    cb(null,true)
+  }
+  else{
+    cb(null,false)
+  }
+}
+
+const upload = multer({
+  storage:storage,
+  limits:{
+    fileSize:1024*1024*5
+  },
+  fileFilter:filter
+})
+
 //const userId;
 
 customerRoutes.route('/add').post(function (req, res) {
@@ -122,7 +151,7 @@ customerRoutes.route('/delete/:id').get(function (req, res) {
 
 customerRoutes.route('/edit/:id').post(function (req, res) {
   // console.log(req.params.id);
-  customer.findById(id).then(function(customer, err) {
+  Customer.findById(id).then(function(customer, err) {
   if (!customer)
     res.status(404).send("data is not found");
   else {
@@ -131,7 +160,7 @@ customerRoutes.route('/edit/:id').post(function (req, res) {
       customer.customer_address= req.body.customer_address;
       customer.customer_number= req.body.customer_number;
       customer.customer_password= req.body.customer_password;
-      customer.profile_picture = req.body.profile_picture;
+     // customer.profile_picture = req.body.profile_picture;
       customer.save().then(customer => {
         res.json('Update complete');
     })
@@ -153,6 +182,20 @@ customerRoutes.route('/edit/:id').post(function (req, res) {
 //   }
 // }
 
+customerRoutes.route('/img/add/:id').post(upload.single('customerImage'),(req,res,next)=>{
+  console.log(req.file);
+  const ID = req.params.id
+  Customer.findById(ID).then(function(customer, err){
+    if(!customer){
+      console.log("User Not Found");
+    }
+    else{
+      customer.profile_picture=req.file.path;
+      customer.save()
+    }
+
+  }).catch(err=>console.log(err))
+})
 
 customerRoutes.route('/test/:id').get(function (req, res) {
   

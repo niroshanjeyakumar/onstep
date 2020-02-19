@@ -71,7 +71,7 @@ function Products  () {
               <td>{products.delivery.delivery_number}</td>
               <td>Rs. {products.total}</td>
               <td><Button color="warning" onClick={()=>{setlistID(products.productlist); vieworder(products._id);}}>View Order</Button></td>
-              <td><Button color="success" onClick={()=>purchased(products._id)} disabled={disableButton}>Purchased</Button></td>
+              <td>{!products.order_purchased ? <Button color="success" onClick={()=>purchased(products._id)} disabled={disableButton}>Purchased</Button>: ""}</td>
               <td></td>
               <td></td>
               </tr>

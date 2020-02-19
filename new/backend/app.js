@@ -19,6 +19,7 @@ const adminRoutes =require("./routes/admin.route.js");
 const PORT =  4000;
 
 app.use(cors());
+app.use('/images',express.static('images'));
 app.use(bodyParser.json());
 
 
@@ -40,6 +41,7 @@ app.use(session({
         touchAfter: 3600 
     })
 }))
+
 app.use(passport.initialize())
 app.use(passport.session())
 
