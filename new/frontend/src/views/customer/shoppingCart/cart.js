@@ -9,8 +9,9 @@ import {
 } from 'react-bootstrap';
 
 function Products  () {
-  const [product, setproduct] = useState([]); //method
-   
+  const [product, setproduct] = useState([]);
+  const [totVal,settotalVal]=useState(0);
+
   const cust=sessionStorage.getItem('user');
   const customer =JSON.parse(cust); //create object 
   const ID= customer.details._id;

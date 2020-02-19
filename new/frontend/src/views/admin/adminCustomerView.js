@@ -1,39 +1,20 @@
 import React, {useEffect, useState} from "react";
-// import { useParams } from "react-router";
-import { Route, Switch, Link,useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import AdminSideNav from "components/SideNav/sidenav.js";
 import {
   Table
 }from 'reactstrap';
 import "assets/css/admin.css";
 
-//reactstrap components
-// import {
-//   Card,
-//   CardHeader,
-//   CardBody,
-//   CardFooter,
-//   NavItem,
-//   NavLink,
-//   Nav,
-//   TabContent,
-//   TabPane,
-//   Container,
-//   Col
-// } from "reactstrap";
-
 // core components
 import ExamplesNavbar from "components/SideNav/adminNav";
-import AdminHead from "components/Headers/adminHeader";
 import TransparentFooter from "components/Footers/Footer1.js";
 import Axios from "axios";
 
 
 
 function AdminCust() {
-//const [id,setid]=useState('');
-  //useEffect(()=>{setid(useParams)})
-//console.log(id);
+
 
       const [customer,setCutomer]=useState([]);
       const [product, setproduct] = useState([]);

@@ -27,6 +27,7 @@ import HomePage from './views/Homepage/HomePage';
 import Profile from './views/profile/Profile';
 import ViewProduct from './views/supermarket/viewproducts.js';
 import DelProfile from "views/delivery/ProfilePage";
+import EditDelP from "views/delivery/editdelp"
 import Supermarket from "views/supermarket/supermarket_profile";
 import Completedorders from "views/delivery/completedorders.js";
 import AciveOrder from "views/delivery/activeorders.js";
@@ -90,19 +91,19 @@ ReactDOM.render(
           path="/profile-page"
           render={props => <CustomerPage {...props} />}
         />
-        <Route
-          path="/edit-customer"
-          render={props => <EditCustomer {...props} />}
-        />
-         <Route exact
+         <Route
           path="/products"
           render={props => <OnStep {...props} />}
         />
         <Route
-          path="/products/:id"
+          path="/edit-customer"
+          render={props => <EditCustomer {...props} />}
+        />
+        <Route
+          path="/products/:type"
           render={props => <Product {...props} />}
         />
-           <Route
+        <Route
           path="/login"
           render={props => <Login {...props} />}
         />
@@ -114,7 +115,7 @@ ReactDOM.render(
           path="/shopping_cart"
           render={props => <Cart {...props} />}
         />
-         <Route
+        <Route
           path="/myorders"
           render={props => <MyOrders {...props} />}
         />
@@ -133,28 +134,29 @@ ReactDOM.render(
         <Route
           path="/view"
           render={props => <ViewProduct {...props} />}
+        /> 
+        <Route
+          path="/delivery-home/:id"
+          render={props => <DelProfile {...props} />}
         />
         <Route
-          path="/delivery-home"
-          render={props => <DelProfile {...props} />}
-          />
+          path="/editdelp"
+          render={props => <EditDelP {...props} />}
+        />
         <Route 
           path="/supermarkethome"
           render= {props => <Supermarket {...props}/>}
-          />
-          <Route
+        />
+        <Route
           path="/incomingorders"
           render={props => <IncomingOrders {...props} />}
         />
-          <Route 
+        <Route 
           path="/completedorders"
           render= {props => <Completedorders {...props}/>}
-          />
+        />
       
-         {/* <Route
-          path="/sm/vege"
-          render={props => <Vege {...props} />}
-        /> */}
+         
         <Route path="/delivery/view/:id" render={props => <CustomerDel {...props} />} />
         <Route path="/seller/view/:id" render={props => <Seller {...props} />} />
         <Route path="/login-page" render={props => <LoginPage {...props} />} />

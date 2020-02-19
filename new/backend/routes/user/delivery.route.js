@@ -74,15 +74,15 @@ deliveryRoutes.route('/:id').get(function (req, res) {
   }).catch(err=>console.log(err));
 });
 
-//  Defined update route
-/*deliveryRoutes.route('/update/:id').post(function (req, res) {
+// Defined update route
+deliveryRoutes.route('/editdelp/:id').post(function (req, res) {
     Delivery.findById(req.params.id, function(err, delivery) {
     if (!delivery)
       res.status(404).send("data is not found");
     else {
-        delivery.person_name = req.body.person_name;
-        delivery.delivery_name = req.body.delivery_name;
-        delivery.delivery_gst_number = req.body.delivery_gst_number;
+        delivery.detail.delivery_number = req.body.delivery_number;
+        delivery.detail.delivery_name = req.body.delivery_name;
+        
 
         delivery.save().then(delivery => {
           res.json('Update complete');
@@ -92,7 +92,7 @@ deliveryRoutes.route('/:id').get(function (req, res) {
       });
     }
   });
-});*/
+});
 
 deliveryRoutes.route('/delete/:id').get(function (req, res) {
     Delivery.findByIdAndRemove({_id: req.params.id}, function(err, delivery){
