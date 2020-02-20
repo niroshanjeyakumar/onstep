@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";/* useState signaling the intent to hold a kind of state inside react component which can be even a js func,  useEffect- data fetching, subscriptions, or manually changing the DocumentObjectModel from React components*/
 import Axios from 'axios';
 import {useParams} from "react-router-dom";
 import editdelp from "./editdelp";
@@ -21,7 +21,7 @@ import DefaultFooter from "components/Footers/DefaultFooter.js";
 function ProfilePage() {
 
 
-//Adding side bar & nav bar using hooks
+//Adding side bar & nav bar using hooks to perform side effects from a function component
   useEffect(() => {
     document.body.classList.add("profile-page");
     document.body.classList.add("sidebar-collapse");
@@ -32,10 +32,10 @@ function ProfilePage() {
     };
   });
 
-  const [Delivery,setDelivery]=useState([]);//declair delivery
+  const [Delivery,setDelivery]=useState([]);//pic array containing variables, actual value & state updater function for said state
   
 //retrieve details using id
-  const {id}= useParams();
+  const {id}= useParams(); //get parameter from url
      useEffect(()=>{
         Axios.get('http://localhost:4000/onstep/user/delivery/'+id)
         .then(res=>{
