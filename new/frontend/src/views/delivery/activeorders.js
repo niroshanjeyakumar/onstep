@@ -46,7 +46,7 @@ function Products  () {
 //get products detail of the supermarket to pro
       const pro = product.map(function (products, index){
 
-//create table add add pro
+//create table add  pro
         
           return (  
               <tr>
