@@ -40,7 +40,7 @@
     "@types/googlemaps": "3.36.2",
     "@types/markerclustererplus": "2.1.33",
     "@types/react": "16.8.19",
-    "jquery": "3.4.1"
+    "jquery": "3.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -72,7 +72,7 @@
     "@types/googlemaps": "3.36.2",
     "@types/markerclustererplus": "2.1.33",
     "@types/react": "16.8.19",
-    "jquery": "3.4.1"
+    "jquery": "3.5.0"
   },
   "devDependencies": {
     "eslint-loader": "^3.0.3"
