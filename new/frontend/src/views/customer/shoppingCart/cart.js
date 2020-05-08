@@ -14,7 +14,7 @@ import Map from '../../map'
 function Products  () {
 
   const cust=sessionStorage.getItem('user');
-  const customer =JSON.parse(cust);
+  const customer =JSON.parse(cust); //create object 
   const ID= customer.details._id;
 
   const [product, setproduct] = useState([]);
@@ -36,7 +36,7 @@ function Products  () {
   useEffect(()=>{
       axios.get('http://localhost:4000/onstep/cart/cust/'+ID)
       .then(res=>{
-        //console.log(res.data);
+
         setproduct(res.data);
     })
     .catch(function(error){
@@ -99,12 +99,11 @@ const handleselect = async(value)=>{
   function orderAll(){
         product.map(function (products, index){
           makeorder(products._id);
-          });
+          }); 
   }
   
-
   const pro = product.map(function (products, index){
-     // console.log(products.product.product_name);
+  
 let total=products.product.product_price*products.order_quantity;
 
 return (  

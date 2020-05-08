@@ -137,6 +137,7 @@ const order_list =listID.map(function (products, index){
     <td>{products.unit}</td>
     <td>x {products.order_quantity}</td>
     <td>Rs. {products.order_quantity*products.price}</td>
+    
     </tr>
   );
 });

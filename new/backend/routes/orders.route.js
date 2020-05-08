@@ -5,11 +5,8 @@ let Order = require('../models/orders.model.js');
 
 orderRoutes.route('/add').post(function (req, res) {
     let order = req.body;
-
-
   Order.findOne({customer:order.customer,seller:order.seller,order_accepted:false}).then(res=>{
-    //console.log(res)
-    //{product:order.productlist.product, order_quantity:order.productlist.order_quantity}
+
     if(res==null){
       const orderData={
         productlist:[order.productlist],

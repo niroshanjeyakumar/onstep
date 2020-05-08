@@ -1,8 +1,6 @@
 import React from "react";
+import FileUpload from '../../views/customer/FileUpload';
 
-
-
-// reactstrap components
 import { 
        Container,
        Button
@@ -48,7 +46,7 @@ function ProfilePageHeader() {
         
         <Container>
           <div className="photo-container">
-         
+         <FileUpload/>
        
           </div>
           <h3 className="title">{/*userData.details.customer_name*/}</h3>
