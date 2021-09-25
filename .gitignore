@@ -1,0 +1,4 @@
+#node_modules
+/new/frontend/node_modules
+/new/backend/node_modules
+/mobile/onstep/node_modules
