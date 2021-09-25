@@ -58,7 +58,12 @@ function LoginAuth(){
       <TouchableOpacity style={styles.loginButton} onPress={()=>LoginAuth()}> 
         <Text style={styles.buttonText}>LOGIN</Text> 
       </TouchableOpacity>
-      <Text>{Outtext}</Text>
+      <View style={{flexDirection: 'row',paddingTop:40 ,}}>
+      <Text style={{color:"white"}}>Don't have an account?  </Text>
+      <TouchableOpacity onPress={()=>navigation.navigate('Signup')}>
+        <Text style={{fontWeight:"bold"}}>Signup</Text>
+      </TouchableOpacity>
+      </View>
           </KeyboardAvoidingView>
   );
 }

@@ -5,9 +5,10 @@ import {createAppContainer,createSwitchNavigator} from 'react-navigation';
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 import WelcomeScreen from './screens/WelcomeScreen.js';
 import LoginScreen from './screens/LoginScreen.js';
+import SignupScreen from './screens/SignupScreen.js'
 import TabNav from './routes/tabNav.js';
-import {useDispatch,connect} from 'react-redux';
-import {loggedIn} from './actions'
+
+
 
 const screensAuth = {
   Wecome:{
@@ -16,6 +17,9 @@ const screensAuth = {
   Login: {
     screen: LoginScreen,
   },
+  Signup:{
+    screen:SignupScreen,
+  }
 };
 // const screensApp={
 //   Home: {
@@ -31,13 +35,13 @@ import {
 
 function AuthLoadingScreen ({navigation}) {
  
-const dispatch = useDispatch();
+
   // Fetch the token from storage then navigate to our appropriate place
   initAuth=async()=>{
     const result=await AsyncStorage.getItem('user');
     if (result){
       const details=JSON.parse(result);
-        dispatch(loggedIn(details));
+      
     }
     navigation.navigate(result ? 'App' : 'Auth');
    }
