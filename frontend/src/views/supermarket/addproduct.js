@@ -53,9 +53,10 @@ useEffect(()=>{
 })
   const user=sessionStorage.getItem('user');
   const userData=JSON.parse(user);
+
   const categoryList=CatList.map(function(Cat,index){
     return(
-    <option value={Cat._id}>{Cat.category_name}</option>
+    <option value={Cat._id} key={index}>{Cat.category_name}</option>
     )
   })
   function saveProduct(){

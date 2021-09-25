@@ -43,7 +43,7 @@ deliveryRoutes.route('/').get(function (req, res) {
     }
   });
 });
-
+//rout to login
 deliveryRoutes.route('/login').post(function(req,res){
   const email = req.body.email;
   const password = req.body.password;

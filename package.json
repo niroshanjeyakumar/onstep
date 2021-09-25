@@ -13,5 +13,6 @@
     "bootstrap": "^4.4.1",
     "concurrently": "^5.0.0",
     "google-maps-react": "^2.0.2"
-  }
+  },
+  "devDependencies": {}
 }

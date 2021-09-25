@@ -19,19 +19,21 @@ class About extends Component {
                             <hr />
                             <h2>ABOUT US</h2>
                             <hr />
-                            <p>Grocmart is a family-owned grocery store that
+                            <p><center>OnStep is a Onine grocery shopping that
                                 has been offering quality products for your
-                                 everyday life since 1999, while also providing
-                                  superior service and competitive prices.</p>
+                                 everyday life, while also providing
+                                  superior service and competitive prices.
+                                  OnStep will provide a platform for people to do their grocery purchases online 
+                                  while still having the freedom to choose where their grocery is bought from.
+                                </center>
+                            </p>
                         </div>
 
                         
                     </div>
 
                     <div className="row aboutback2">
-                        <div className="col-3 about-text2"> 
-                            <i class="fas fa-futbol"></i>
-
+                        <div className="col-3 about-text2">
                             <h4>QUALITY PRODUCTS</h4>
                             <p>We work with the best suppliers to offer our customers the fresh grocery products of the highest quality.</p>    
                         </div>

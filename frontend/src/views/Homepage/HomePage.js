@@ -22,6 +22,7 @@ function HomePage() {
                 <InfoPage/>
                 <About/>
                 <Footer/>
+            
             </div>
         )
     }

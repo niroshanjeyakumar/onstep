@@ -97,7 +97,7 @@ const cat = category.map(function(Cat,index){
                 </ModalBody>
                 <div className="modal-footer">
                   <Button color="success" type="submit"
-                  onClick={AddCat}>
+                  onClick={()=>AddCat()}>
                     Add Category
                   </Button>
                   <Button
